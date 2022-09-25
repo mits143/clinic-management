@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_active"
+        android:name="com.clinic.management.fragment.ActiveFragment"
+        android:label="@string/active"
+        tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_appointment_confirmed"
+        android:name="com.clinic.management.fragment.AppointmentConfirmedFragment"
+        android:label="@string/appointment_confirmed"
+        tools:layout="@layout/fragment_appointment_confirmed">
+        <action
+            android:id="@+id/action_nav_my_appointment"
+            app:destination="@id/nav_my_appointment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_appointment"
+        android:name="com.clinic.management.fragment.AppointmentFragment"
+        android:label="@string/appointment_confirmed"
+        tools:layout="@layout/fragment_appointment">
+        <action
+            android:id="@+id/action_nav_appointment_confirmed"
+            app:destination="@id/nav_appointment_confirmed" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_cancelled"
+        android:name="com.clinic.management.fragment.CancelledFragment"
+        android:label="@string/appointment_cancelled"
+        tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_completed"
+        android:name="com.clinic.management.fragment.CompletedFragment"
+        android:label="@string/appointment_completed"
+        tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_dr_detail"
+        android:name="com.clinic.management.fragment.DoctorDetailFragment"
+        android:label="@string/doctor_detail"
+        tools:layout="@layout/fragment_doctor_detail" />
+
+    <fragment
+        android:id="@+id/nav_doctor"
+        android:name="com.clinic.management.fragment.DoctorFragment"
+        android:label="@string/doctor"
+        tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_dr_listing"
+        android:name="com.clinic.management.fragment.DoctorListingFragment"
+        android:label="@string/doctor_listing"
+        tools:layout="@layout/fragment_doctor_listing">
+        <action
+            android:id="@+id/action_nav_doctor_detail"
+            app:destination="@id/nav_dr_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.clinic.management.fragment.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_doctor_listing"
+            app:destination="@id/nav_dr_listing" />
+        <action
+            android:id="@+id/action_nav_doctor_detail"
+            app:destination="@id/nav_dr_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_lab"
+        android:name="com.clinic.management.fragment.LabFragment"
+        android:label="@string/lab"
+        tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_medicine_detail"
+        android:name="com.clinic.management.fragment.MedicineDetailFragment"
+        android:label="@string/medicine_detail"
+        tools:layout="@layout/fragment_medicine_detail" />
+
+    <fragment
+        android:id="@+id/nav_medicine"
+        android:name="com.clinic.management.fragment.MedicineFragment"
+        android:label="@string/medicine"
+        tools:layout="@layout/fragment_medicine" />
+
+    <fragment
+        android:id="@+id/nav_my_appointment"
+        android:name="com.clinic.management.fragment.MyAppointmentFragment"
+        android:label="@string/my_appointment"
+        tools:layout="@layout/fragment_my_appointment" />
+
+    <fragment
+        android:id="@+id/nav_my_result"
+        android:name="com.clinic.management.fragment.MyResultFragment"
+        android:label="@string/result"
+        tools:layout="@layout/fragment_my_result">
+        <argument
+            android:name="currentItem"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.clinic.management.fragment.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_my_appointment"
+            app:destination="@id/nav_my_appointment" />
+        <action
+            android:id="@+id/action_nav_my_result"
+            app:destination="@id/nav_my_result" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_radiology"
+        android:name="com.clinic.management.fragment.RadiologyFragment"
+        android:label="@string/radiology"
+        tools:layout="@layout/fragment_active" />
+
+</navigation>

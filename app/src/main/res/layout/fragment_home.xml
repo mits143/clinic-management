@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HomeFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_place_24px"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Showing result for"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/txtLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Zamalek, Cairo Governorate"
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+
+            <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/group_3316"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:padding="@dimen/_10sdp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                app:iconifiedByDefault="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryBackground="@null"
+                app:queryHint="Search for Doctor, Operation, Surgery" />
+
+            <LinearLayout
+                android:id="@+id/llImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/group_3318"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="@string/scan_your"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="@string/medical_smart_card"
+                    android:textAllCaps="true"
+                    android:textColor="@color/primary_color_dark"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtSpecialistDr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/specialist_doctor"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llImage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Near to Zamalek, Cairo Gove"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSpecialistDr" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewAllSpecialistDr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:backgroundTint="@color/primary_color"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/view_all"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp"
+                app:cornerRadius="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llImage" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSpecialistDr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewAllSpecialistDr"
+                tools:listitem="@layout/item_specialist_dr" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtSpecialist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/specialist_doctor"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvSpecialistDr" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Near to Zamalek, Cairo Gove"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSpecialist" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewAllSpecialist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/primary_color"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/view_all"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp"
+                app:cornerRadius="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvSpecialistDr" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSpecialist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewAllSpecialist"
+                tools:listitem="@layout/item_specialist" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtTopDr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/specialist_doctor"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvSpecialist" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Near to Zamalek, Cairo Gove"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTopDr" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewAllTopDr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/primary_color"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/view_all"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp"
+                app:cornerRadius="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvSpecialist" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTopDr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/btnViewAllTopDr"
+                tools:listitem="@layout/item_specialist_dr" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtRecentReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/specialist_doctor"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvTopDr" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtRecentReviews1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Near to Zamalek, Cairo Gove"
+                android:textAllCaps="true"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRecentReviews" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRecentReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/txtRecentReviews1"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_recent_reviews" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

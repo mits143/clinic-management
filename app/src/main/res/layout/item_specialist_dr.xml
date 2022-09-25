@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="@dimen/_85sdp"
+            android:src="@drawable/nopath_copy2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Dr. Ruby Perrin"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintLeft_toRightOf="@+id/img"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtSpecialist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Dr. Ruby Perrin"
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintLeft_toRightOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txtSpecialist1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Dr. Ruby Perrin"
+            android:textColor="@color/primary_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toRightOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtSpecialist" />
+
+        <RatingBar
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:rating="3"
+            android:theme="@style/RatingBar"
+            app:layout_constraintLeft_toRightOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtSpecialist1" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/dotted"
+            app:layout_constraintTop_toBottomOf="@id/img" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnViewAllSpecialist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/primary_color"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/book_appointment"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12ssp"
+            app:cornerRadius="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

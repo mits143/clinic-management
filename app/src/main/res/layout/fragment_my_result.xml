@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MyAppointmentFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/group_3344"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/my_appointment"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/imgMenu"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <RadioGroup
+        android:id="@+id/rbTabGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <RadioButton
+            android:id="@+id/rbActive"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobtn_bkg1"
+            android:button="@null"
+            android:checked="true"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/doctor"
+            android:textAllCaps="true"
+            android:textColor="@color/radio_flat_text_selector"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/rbCompleted"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/radiobtn_bkg"
+            android:button="@null"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/lab"
+            android:textAllCaps="true"
+            android:textColor="@color/radio_flat_text_selector"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/rbCancelled"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobtn_bkg2"
+            android:button="@null"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/radiology"
+            android:textAllCaps="true"
+            android:textColor="@color/radio_flat_text_selector"
+            android:textSize="@dimen/_12ssp" />
+
+    </RadioGroup>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rbTabGroup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
