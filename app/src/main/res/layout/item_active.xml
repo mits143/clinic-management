@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/llText"
                 android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:background="@drawable/gradient"
                 android:backgroundTint="@color/blue_dark"
                 android:fontFamily="@font/poppins_medium"
@@ -127,20 +127,20 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancel"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/radiobtn_bkg1"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 app:backgroundTint="@color/red" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReschedule"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="@drawable/radiobtn_bkg2"

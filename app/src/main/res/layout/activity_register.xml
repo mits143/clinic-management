@@ -60,7 +60,7 @@
                     android:text="@string/register"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <View
                     android:layout_width="@dimen/_18sdp"
@@ -70,10 +70,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtFullName"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/full_name"
                     android:textColorHint="@color/white"
@@ -91,6 +90,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:maxLength="10"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
                         app:hintTextColor="@color/white" />
@@ -99,10 +99,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtMobile"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/mobile_number"
                     android:textColorHint="@color/white"
@@ -120,6 +119,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="10"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
                         app:hintTextColor="@color/white" />
@@ -128,10 +128,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtEmail"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/email"
                     android:textColorHint="@color/white"
@@ -149,6 +148,7 @@
                         android:inputType="textEmailAddress"
                         android:maxLength="8"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
                         android:textCursorDrawable="@null"
                         app:hintTextColor="@color/white" />
 
@@ -156,10 +156,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtAddress"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/address"
                     android:textColorHint="@color/white"
@@ -177,6 +176,7 @@
                         android:inputType="textPostalAddress"
                         android:maxLength="8"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
                         android:textCursorDrawable="@null"
                         app:hintTextColor="@color/white" />
 
@@ -185,12 +185,12 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:padding="@dimen/_5sdp"
                     android:text="@string/gender"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <RadioGroup
                     android:id="@+id/rbGender"
@@ -208,7 +208,7 @@
                         android:paddingStart="@dimen/_5sdp"
                         android:text="@string/male"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_10ssp" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rbFemale"
@@ -220,7 +220,7 @@
                         android:paddingStart="@dimen/_5sdp"
                         android:text="@string/female"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_10ssp" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rbTransgender"
@@ -232,15 +232,14 @@
                         android:paddingStart="@dimen/_5sdp"
                         android:text="@string/transgender"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_10ssp" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtPassword"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/password"
                     android:textColorHint="@color/white"
@@ -255,6 +254,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionNext"
+                        android:textSize="@dimen/_10ssp"
                         android:inputType="textPassword"
                         android:maxLength="8"
                         android:textColor="@color/white"
@@ -265,10 +265,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtConfirmPassword"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_regular"
                     android:hint="@string/confirm_password"
                     android:textColorHint="@color/white"
@@ -285,6 +284,7 @@
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:maxLength="8"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
                         app:hintTextColor="@color/white" />
@@ -296,7 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:backgroundTint="@color/primary_color_dark"
                     android:drawableEnd="@drawable/ic_trending_flat_24pxwt"
                     android:fontFamily="@font/poppins_semibold"
@@ -304,7 +304,7 @@
                     android:paddingVertical="@dimen/_8sdp"
                     android:text="@string/register"
                     android:textAllCaps="true"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:cornerRadius="@dimen/_20sdp" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -315,7 +315,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/already_have_an_account"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtLogin"
@@ -326,7 +326,7 @@
                     android:text="@string/login"
                     android:textAllCaps="true"
                     android:textColor="@color/primary_color_dark"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="@dimen/_9ssp" />
 
             </LinearLayout>
 

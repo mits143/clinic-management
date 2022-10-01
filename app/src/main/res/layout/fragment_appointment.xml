@@ -93,7 +93,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="Choose Morning Time"
                     android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
@@ -179,7 +179,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="Choose Afternoon Time"
                     android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
@@ -283,7 +283,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:text="Choose Evening Time"
                     android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
@@ -378,7 +378,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:text="@string/confirm_appointment"
             android:textAllCaps="false"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             app:cornerRadius="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/clEveningTime" />
 

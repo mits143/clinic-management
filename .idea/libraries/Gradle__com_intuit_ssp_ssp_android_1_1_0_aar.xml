@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.intuit.ssp:ssp-android:1.1.0@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/6350b54d2ad015433140a0476a12630f/transformed/ssp-android-1.1.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/6350b54d2ad015433140a0476a12630f/transformed/ssp-android-1.1.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/6350b54d2ad015433140a0476a12630f/transformed/ssp-android-1.1.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -50,7 +50,7 @@
             android:text="@string/login"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp" />
+            android:textSize="@dimen/_12ssp" />
 
         <View
             android:layout_width="@dimen/_18sdp"
@@ -60,10 +60,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtMobile"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/mobile_number"
             android:textColorHint="@color/white"
@@ -83,16 +82,16 @@
                 android:maxLength="10"
                 android:textColor="@color/white"
                 android:textCursorDrawable="@null"
+                android:textSize="@dimen/_10ssp"
                 app:hintTextColor="@color/white" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtPwd"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/password"
             android:textColorHint="@color/white"
@@ -111,6 +110,7 @@
                 android:maxLength="8"
                 android:textColor="@color/white"
                 android:textCursorDrawable="@null"
+                android:textSize="@dimen/_10ssp"
                 app:hintTextColor="@color/white" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -123,7 +123,7 @@
             android:padding="@dimen/_5sdp"
             android:text="@string/forogt_password"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_10ssp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
@@ -138,7 +138,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:text="@string/login"
             android:textAllCaps="true"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             app:cornerRadius="@dimen/_20sdp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -149,7 +149,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="@string/new_to_digits"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_10ssp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtRegister"
@@ -160,7 +160,7 @@
             android:text="@string/register"
             android:textAllCaps="true"
             android:textColor="#076a5b"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/_9ssp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/txtSmartCard"
@@ -175,7 +175,7 @@
             android:paddingVertical="@dimen/_8sdp"
             android:text="Login Via SmartCard"
             android:textAllCaps="true"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             app:cornerRadius="@dimen/_20sdp" />
     </LinearLayout>
 

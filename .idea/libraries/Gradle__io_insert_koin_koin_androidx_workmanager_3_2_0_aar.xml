@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: io.insert-koin:koin-androidx-workmanager:3.2.0@aar">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/957e291cf312a22271571a3a16466ab1/transformed/koin-androidx-workmanager-3.2.0/res" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/fc3367b57e600582334fa5c32c237849/transformed/koin-androidx-workmanager-3.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/fc3367b57e600582334fa5c32c237849/transformed/koin-androidx-workmanager-3.2.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/modules-2/files-2.1/io.insert-koin/koin-androidx-workmanager/3.2.0/7d1772c2c1225aded7d5113f16c8f9e651a74543/koin-androidx-workmanager-3.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/modules-2/files-2.1/io.insert-koin/koin-androidx-workmanager/3.2.0/c170c56cd01a6bf86997936611dc479630577c4c/koin-androidx-workmanager-3.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

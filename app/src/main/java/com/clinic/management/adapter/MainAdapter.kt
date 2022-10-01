@@ -16,7 +16,7 @@ class MainAdapter(
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: String, type: String, onClick: OnClick) {
-            if (TextUtils.equals(type, "Doctor")) {
+            if (TextUtils.equals(type, "Doctor") || TextUtils.equals(type, "Medicine")) {
                 itemView.setOnClickListener {
                     onClick.itemClick()
                 }
@@ -37,6 +37,9 @@ class MainAdapter(
             } else if (TextUtils.equals(type, "Appointment")) {
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_active, parent, false)
+            } else if (TextUtils.equals(type, "Medicine")) {
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_medicine, parent, false)
             } else {
                 throw IllegalArgumentException("Invalid type")
             }

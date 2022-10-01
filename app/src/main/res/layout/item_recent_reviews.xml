@@ -14,23 +14,23 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="@dimen/_75sdp"
-            android:layout_height="@dimen/_75sdp"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_65sdp"
             android:src="@drawable/nopath_copy16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnViews"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
             android:backgroundTint="@color/yellow"
             android:drawableEnd="@drawable/ic_star_border_24pxstarwt"
             android:fontFamily="@font/poppins_semibold"
-            android:paddingHorizontal="@dimen/_15sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
             android:textAllCaps="true"
-            android:textSize="@dimen/_12ssp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_10sdp"
             app:cornerRadius="@dimen/_20sdp"
             app:iconPadding="@dimen/_minus5sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/text_color"
             android:textSize="@dimen/_14ssp"
@@ -65,13 +65,13 @@
             app:layout_constraintTop_toBottomOf="@+id/txtName"
             android:text="Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. " />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/dotted"
-            app:layout_constraintTop_toBottomOf="@id/img" />
+<!--        <View-->
+<!--            android:id="@+id/divider"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_1sdp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            android:background="@drawable/dotted"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/img" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

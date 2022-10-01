@@ -58,4 +58,6 @@
     <string name="lab">Lab</string>
     <string name="radiology">Radiology</string>
     <string name="result">Result</string>
+    <string name="digits_clinic_system">DIGITS Clinic system</string>
+    <string name="dashboard">Dashbaord</string>
 </resources>

@@ -98,7 +98,7 @@
                 android:gravity="center"
                 android:text="John, we've got you\nconfirmed appointment"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintTop_toBottomOf="@+id/image" />
 
             <LinearLayout
@@ -120,7 +120,7 @@
                     android:padding="@dimen/_8sdp"
                     android:text="11.30 AM"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <View
                     android:layout_width="@dimen/_2sdp"
@@ -136,7 +136,7 @@
                     android:padding="@dimen/_8sdp"
                     android:text="11.30 AM"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
 
@@ -149,7 +149,7 @@
                 android:gravity="center"
                 android:text="FRIDAY, 28 March, 2022\nZamalek, Cairo Governorate"
                 android:textColor="@color/grey_dark"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintTop_toBottomOf="@+id/llTime" />
 
             <com.google.android.material.button.MaterialButton
@@ -164,7 +164,7 @@
                 android:paddingVertical="@dimen/_8sdp"
                 android:text="@string/my_appointment"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 app:cornerRadius="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
