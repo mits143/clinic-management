@@ -53,6 +53,7 @@
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.9.0/fc93484fc67ab52b1e0ccbdaa3922d8a6678e097/converter-gson-2.9.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.9.0/d8fdfbd5da952141a665a403348b74538efc05ff/retrofit-2.9.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/5.0.0-alpha.2/bf7bed2b2469e05290e258813396114ef080f574/okhttp-5.0.0-alpha.2.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b0b354b5373b8a49c30374dec57e4c81/transformed/kprogresshud-1.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/0cbd526ac67369d099069afddacff4fe/transformed/appcompat-resources-1.5.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f523de55dddf4e40a41e2c114b2b1fe9/transformed/drawerlayout-1.1.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f8f683c804d12abbd330020019e1a870/transformed/coordinatorlayout-1.1.0-api.jar</arg>
@@ -246,6 +247,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-common-ktx:2.5.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui-ktx:2.5.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui:2.5.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.kaopiz:kprogresshud:1.2.0@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="ClinicManagement.app.main" />
 </module>

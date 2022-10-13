@@ -23,7 +23,7 @@
                 android:drawableStart="@drawable/ic_place_24px"
                 android:drawablePadding="@dimen/_5sdp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Showing result for"
+                android:text="@string/showing_result_for"
                 android:textColor="@color/primary_color"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"

@@ -241,18 +241,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txtEducationInfo" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/txtEducationdetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Educational Information About Dr.Ruby Perrin"
-                        android:textColor="@color/grey_dark"
-                        android:textSize="@dimen/_10ssp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtEducation" />
-
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnViewAllSpecialist"
                         android:layout_width="match_parent"
@@ -266,7 +254,7 @@
                         android:textAllCaps="false"
                         android:textSize="@dimen/_10ssp"
                         app:cornerRadius="@dimen/_5sdp"
-                        app:layout_constraintTop_toBottomOf="@id/txtEducationdetail" />
+                        app:layout_constraintTop_toBottomOf="@id/txtEducation" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,6 +103,7 @@
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.13.2/de4490a6d4eb207acc0aaef59de45ce18a6b63fd/disklrucache-4.13.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.13.2/41c0ddef7eb508bb6de9a93a85c8d4be82f65047/annotations-4.13.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/f645ed69d595b24d4cf8b3fbb64cc505bede8829/gson-2.8.5.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b0b354b5373b8a49c30374dec57e4c81/transformed/kprogresshud-1.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Sdk/platforms/android-33/android.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
@@ -242,6 +243,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-common-ktx:2.5.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui-ktx:2.5.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-ui:2.5.2@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.kaopiz:kprogresshud:1.2.0@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="ClinicManagement.app.main" />
 </module>

@@ -60,4 +60,11 @@
     <string name="result">Result</string>
     <string name="digits_clinic_system">DIGITS Clinic system</string>
     <string name="dashboard">Dashbaord</string>
+    <string name="choose_your_slot">Choose your slot</string>
+    <string name="please_choose_your_slot_as_per_your_convenience">Please choose your slot as per your convenience</string>
+    <string name="category_listing">Category Listing</string>
+    <string name="specialities">Specialities</string>
+    <string name="top_doctors_in_your_city">Top Doctors in your City</string>
+    <string name="recent_reviews">Recent Reviews</string>
+    <string name="showing_result_for">Showing result for</string>
 </resources>

@@ -16,7 +16,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.llAppointment.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_appointment)
+            findNavController().navigate(R.id.action_nav_my_appointment)
         }
         binding.llAskDoctor.setOnClickListener {
             findNavController().navigate(R.id.action_nav_appointment)

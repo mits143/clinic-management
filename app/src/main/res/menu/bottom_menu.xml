@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_home_24pxas"
         android:title="@string/home" />
     <item
-        android:id="@+id/nav_appointment"
+        android:id="@+id/nav_my_appointment"
         android:icon="@drawable/group_3338"
         android:title="@string/date" />
     <item

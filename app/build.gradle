@@ -18,7 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField 'String', 'BASE_URL', "\"https://v2.ahlanpos.store/\""
+        buildConfigField 'String', 'BASE_URL', "\"http://digit.persausive.in/web_services/\""
     }
 
     buildTypes {
@@ -73,5 +73,7 @@ dependencies {
 //    Kotlin
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+
+    implementation 'com.kaopiz:kprogresshud:1.2.0'
 
 }

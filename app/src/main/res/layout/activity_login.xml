@@ -73,13 +73,13 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:cursorVisible="true"
                 android:fontFamily="@font/poppins_regular"
                 android:imeOptions="actionNext"
-                android:inputType="phone"
-                android:maxLength="10"
+                android:inputType="text"
                 android:textColor="@color/white"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/_10ssp"
@@ -102,6 +102,7 @@
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"

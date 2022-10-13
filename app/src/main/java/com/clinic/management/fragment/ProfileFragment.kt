@@ -1,12 +1,15 @@
 package com.clinic.management.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.R
+import com.clinic.management.activities.LoginActivity
 import com.clinic.management.databinding.FragmentProfileBinding
+import com.clinic.management.prefs
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
@@ -31,6 +34,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.navRadiologyResult.setOnClickListener {
             val action = ProfileFragmentDirections.actionNavMyResult(2)
             findNavController().navigate(action)
+        }
+        binding.navLogout.setOnClickListener {
+            prefs.accessToken = ""
+            requireActivity().finish()
+            context?.startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
     }
 }

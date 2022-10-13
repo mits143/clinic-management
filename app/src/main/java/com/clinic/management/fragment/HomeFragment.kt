@@ -1,76 +1,135 @@
 package com.clinic.management.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.clinic.management.R
-import com.clinic.management.adapter.MainAdapter
+import com.clinic.management.activities.LoginActivity
+import com.clinic.management.adapter.HomeReviewsAdapter
+import com.clinic.management.adapter.HomeSpecialistAdapter
+import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
 import com.clinic.management.databinding.FragmentHomeBinding
+import com.clinic.management.model.home.ReviewsListing
+import com.clinic.management.model.home.SpecialCategory
+import com.clinic.management.model.home.SpecialistDoctor
+import com.clinic.management.prefs
 import com.clinic.management.util.Status
-import com.clinic.management.viewmodel.CommonViewModel
+import com.clinic.management.viewmodel.HomeViewModel
+import com.kaopiz.kprogresshud.KProgressHUD
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(), MainAdapter.OnClick {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAdapter.OnClick,
+    HomeSpecialistAdapter.OnClick, HomeReviewsAdapter.OnClick {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding =
         FragmentHomeBinding::inflate
 
-    private val viewModel: CommonViewModel by viewModel()
+
+    private val viewModel: HomeViewModel by viewModel()
+
+    private lateinit var hud: KProgressHUD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
         binding.btnViewAllSpecialistDr.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_doctor_listing)
+            val action = HomeFragmentDirections.actionNavDoctorListing(false)
+            findNavController().navigate(action)
         }
+        binding.btnViewAllSpecialist.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavCategory()
+            findNavController().navigate(action)
+        }
+        binding.btnViewAllTopDr.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavDoctorListing(true)
+            findNavController().navigate(action)
+        }
+        hud = KProgressHUD.create(requireContext())
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
     }
 
-    private fun setDoctorDummyData(list: ArrayList<String>) {
-        val adapter = MainAdapter(arrayListOf(), "Doctor", this)
+    private fun setDoctorData(list: ArrayList<SpecialistDoctor>) {
+        val adapter = HomeSpecialistDoctorAdapter(arrayListOf(), this)
         binding.rvSpecialistDr.adapter = adapter
         adapter.addData(list)
     }
 
-    private fun setSpecialistDummyData(list: ArrayList<String>) {
-        val adapter = MainAdapter(arrayListOf(), "Specialist", this)
+    private fun setSpecialistData(list: ArrayList<SpecialCategory>) {
+        val adapter = HomeSpecialistAdapter(arrayListOf(), this)
         binding.rvSpecialist.adapter = adapter
         adapter.addData(list)
     }
 
-    private fun setTopDoctorDummyData(list: ArrayList<String>) {
-        val adapter = MainAdapter(arrayListOf(), "Top Doctor", this)
+    //
+    private fun setTopDoctorData(list: ArrayList<SpecialistDoctor>) {
+        val adapter = HomeSpecialistDoctorAdapter(arrayListOf(), this)
         binding.rvTopDr.adapter = adapter
         adapter.addData(list)
     }
 
-    private fun setReviewDummyData(list: ArrayList<String>) {
-        val adapter = MainAdapter(arrayListOf(), "Review", this)
+    private fun setReviewData(list: ArrayList<ReviewsListing>) {
+        val adapter = HomeReviewsAdapter(arrayListOf(), this)
         binding.rvRecentReview.adapter = adapter
         adapter.addData(list)
     }
 
     private fun setObserver() {
-        viewModel.fetchData()
-        viewModel.getData.observe(this) {
+        viewModel.fetchHomeData(
+            "Bearer " + prefs.accessToken, "18.5074", "73.8077"
+        )
+        viewModel.getHomeData.observe(this) {
             when (it.status) {
                 Status.LOADING -> {
+                    showProgress(true)
                 }
                 Status.SUCCESS -> {
                     it.data?.let {
-                        setDoctorDummyData(it)
-                        setSpecialistDummyData(it)
-                        setTopDoctorDummyData(it)
-                        setReviewDummyData(it)
+                        showProgress(false)
+                        setDoctorData(it.specialistDoctor)
+                        setSpecialistData(it.specialCategory)
+                        setTopDoctorData(it.topDoctors)
+                        setReviewData(it.reviewsListing)
                     }
                 }
                 Status.ERROR -> {
+                    showProgress(false)
+                    showToast(it.message!!)
+                    if (it.message == "Invalid authentication.") {
+                        requireActivity().startActivity(
+                            Intent(
+                                requireContext(),
+                                LoginActivity::class.java
+                            )
+                        )
+                        requireActivity().finish()
+                        prefs.accessToken = ""
+                    }
                 }
             }
         }
     }
 
-    override fun itemClick() {
-        findNavController().navigate(R.id.action_nav_doctor_detail)
+    override fun itemClick(data: SpecialistDoctor, string: String) {
+        if (string == "DOCTOR_DETAIL") {
+            val action = HomeFragmentDirections.actionNavDoctorDetail(data.id)
+            findNavController().navigate(action)
+        } else {
+            val action = HomeFragmentDirections.actionNavAppointment(data.id)
+            findNavController().navigate(action)
+        }
+    }
+
+    override fun itemClick(data: SpecialCategory) {
+    }
+
+    override fun itemClick(data: ReviewsListing) {
+    }
+
+    private fun showProgress(show: Boolean) {
+        if (show)
+            hud.show()
+        else
+            hud.dismiss()
     }
 }

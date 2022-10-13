@@ -67,6 +67,6 @@ class MainAdapter(
     }
 
     interface OnClick {
-        fun itemClick();
+        fun itemClick()
     }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clInfo"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="@dimen/_10sdp"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/gradient"
+        android:backgroundTint="@color/blue_dark"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:src="@drawable/nopath_copy2"
+        android:text="12\nMAY"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtSpecialist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Dr. Ruby Perrin"
+        android:textColor="@color/primary_color"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintLeft_toRightOf="@+id/txtDate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtDate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="12 May, 2022 "
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintLeft_toRightOf="@+id/txtDate"
+        app:layout_constraintTop_toBottomOf="@+id/txtSpecialist" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -83,16 +83,16 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:cursorVisible="true"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:maxLength="10"
-                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -112,6 +112,7 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtMobileNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:cursorVisible="true"
@@ -119,9 +120,9 @@
                         android:imeOptions="actionNext"
                         android:inputType="phone"
                         android:maxLength="10"
-                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -141,15 +142,15 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
-                        android:maxLength="8"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10ssp"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -169,15 +170,15 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionNext"
                         android:inputType="textPostalAddress"
-                        android:maxLength="8"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_10ssp"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -250,15 +251,16 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionNext"
-                        android:textSize="@dimen/_10ssp"
                         android:inputType="textPassword"
                         android:maxLength="8"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -278,15 +280,16 @@
                     app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtConfirmPwd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:maxLength="8"
-                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/white"
                         android:textCursorDrawable="@null"
+                        android:textSize="@dimen/_10ssp"
                         app:hintTextColor="@color/white" />
 
                 </com.google.android.material.textfield.TextInputLayout>

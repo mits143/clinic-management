@@ -65,323 +65,422 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="@dimen/_10sdp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/clMorningTime"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="0dp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clCalendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_4sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/txtMorning"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Choose Morning Time"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:padding="@dimen/_10sdp">
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/txtMorning">
+                    <TextView
+                        android:id="@+id/txtSlots"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/choose_your_slot"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <RadioButton
-                        android:id="@+id/rb10AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="10:00 AM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/txtSlotsText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/please_choose_your_slot_as_per_your_convenience"
+                        android:textColor="@color/grey_dark"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSlots" />
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
 
-                    <RadioButton
-                        android:id="@+id/rb11AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="11:00 AM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    <ImageView
+                        android:id="@+id/iv_calendar_previous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:src="@drawable/group_3344"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSlotsText" />
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                    <ImageView
+                        android:id="@+id/iv_calendar_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:rotation="180"
+                        android:src="@drawable/group_3344"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSlotsText" />
 
-                    <RadioButton
-                        android:id="@+id/rb12AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="12:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/tv_date_month"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_calendar_next"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSlotsText"
+                        tools:text="December 2020" />
 
-                </RadioGroup>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCalender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:visibility="visible"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_calendar_next" />
 
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/clAfternoonTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toBottomOf="@+id/clMorningTime">
+            </androidx.cardview.widget.CardView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clMorningTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_4sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@+id/clCalendar">
 
-                <TextView
-                    android:id="@+id/txtAfternoon"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Choose Afternoon Time"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:padding="@dimen/_10sdp">
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAfternoon">
+                    <TextView
+                        android:id="@+id/txtMorning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Choose Morning Time"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <RadioButton
-                        android:id="@+id/rb1PM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="01:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    <RadioGroup
+                        android:id="@+id/rbMorning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:weightSum="4"
+                        app:layout_constraintTop_toBottomOf="@+id/txtMorning">
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb10AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="10:00 AM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb2PM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="02:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb11AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="11:00 AM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb3AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="03:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb12AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="12:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb4AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="04:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    </RadioGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </RadioGroup>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/clEveningTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toBottomOf="@+id/clAfternoonTime">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clAfternoonTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp">
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_4sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@+id/clMorningTime">
 
-                <TextView
-                    android:id="@+id/txtEvening"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Choose Evening Time"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:padding="@dimen/_10sdp">
 
-                <RadioGroup
+                    <TextView
+                        android:id="@+id/txtAfternoon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Choose Afternoon Time"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RadioGroup
+                        android:id="@+id/rbAfternoon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAfternoon">
+
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb1PM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="01:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
+
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
+
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb2PM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="02:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
+
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
+
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb3AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="03:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
+
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
+
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb4AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="04:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
+
+                    </RadioGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clEveningTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_4sdp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@+id/clAfternoonTime">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_10sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/txtEvening">
+                    android:padding="@dimen/_10sdp">
 
-                    <RadioButton
-                        android:id="@+id/rb5PM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="05:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/txtEvening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Choose Evening Time"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                    <RadioGroup
+                        android:id="@+id/rbEvening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_10sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtEvening">
 
-                    <RadioButton
-                        android:id="@+id/rb6PM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="06:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb5PM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="05:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb7AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="07:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb6PM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="06:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                    <View
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="0dp" />
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
 
-                    <RadioButton
-                        android:id="@+id/rb8AM"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/radiobtn_appointment"
-                        android:button="@null"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="08:00 PM"
-                        android:textAllCaps="true"
-                        android:textColor="@color/radio_flat_text_appointment"
-                        android:textSize="@dimen/_10ssp" />
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb7AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="07:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-                </RadioGroup>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <!--                    <View-->
+                        <!--                        android:layout_width="@dimen/_5sdp"-->
+                        <!--                        android:layout_height="0dp" />-->
 
-        </androidx.cardview.widget.CardView>
+                        <!--                    <RadioButton-->
+                        <!--                        android:id="@+id/rb8AM"-->
+                        <!--                        android:layout_width="0dp"-->
+                        <!--                        android:layout_height="@dimen/_30sdp"-->
+                        <!--                        android:layout_weight="1"-->
+                        <!--                        android:background="@drawable/radiobtn_appointment"-->
+                        <!--                        android:button="@null"-->
+                        <!--                        android:fontFamily="@font/poppins_medium"-->
+                        <!--                        android:gravity="center"-->
+                        <!--                        android:text="08:00 PM"-->
+                        <!--                        android:textAllCaps="true"-->
+                        <!--                        android:textColor="@color/radio_flat_text_appointment"-->
+                        <!--                        android:textSize="@dimen/_10ssp" />-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnConfirm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:backgroundTint="@color/primary_color"
-            android:fontFamily="@font/poppins_semibold"
-            android:paddingVertical="@dimen/_8sdp"
-            android:text="@string/confirm_appointment"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_10ssp"
-            app:cornerRadius="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@id/clEveningTime" />
+                    </RadioGroup>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_30sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:backgroundTint="@color/primary_color"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="@string/confirm_appointment"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp"
+                app:cornerRadius="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/clEveningTime" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
