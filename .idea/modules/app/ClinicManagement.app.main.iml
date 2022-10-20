@@ -15,95 +15,95 @@
             <stringArg name="classpath">
               <args>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/049a46c0235fa027d211c464378a8581/transformed/viewbinding-7.3.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/eac425aeee47b16d495c1ba5e183b2fd/transformed/koin-androidx-workmanager-3.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/eee57126f19d6291374c8a7f0718594d/transformed/koin-androidx-navigation-3.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b10b13f732d163345a3fc9469a69efff/transformed/koin-android-3.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/aef10eb0e620b3c1d2c3abae3f2bcf7a/transformed/viewbinding-7.3.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/defc0c30baf622c9ef777b6c439b9cc9/transformed/koin-androidx-workmanager-3.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/372e9c304bb220a9159756651a0d9bc1/transformed/koin-androidx-navigation-3.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/321b8ec0dff5f63a89eb69dc03874a38/transformed/koin-android-3.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/logging-interceptor/5.0.0-alpha.2/14cd7ecfbf017f84d1f93fe51168188c4ebbd297/logging-interceptor-5.0.0-alpha.2.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c08935cc250f285e788515c00f2a03af/transformed/navigation-fragment-ktx-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/891d1260622d45d5bcf94833dd52d288/transformed/navigation-fragment-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/24f2bf020cea4209dc6858783759f6a4/transformed/fragment-ktx-1.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f42e0fe47c441088a01408284a6fc236/transformed/navigation-ui-ktx-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d76b0e4fd78a0fbf025d0cda7d7d088a/transformed/navigation-runtime-ktx-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/df944fe64d027664ce502a6e5ff9c75f/transformed/navigation-ui-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/1061e5d938f762161a3887132796176f/transformed/navigation-runtime-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a934d93b218ba2a7cee5b319d2514abb/transformed/activity-ktx-1.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c7e76a590c1e36afa26c3f44de38c7c8/transformed/navigation-common-ktx-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/ea76744b57825f3462c98a2536e2e1be/transformed/navigation-common-2.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d0c7d90be4d26778ad5c230c01e6ff40/transformed/lifecycle-viewmodel-ktx-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d8798babc5985f59ce5f2fd2c3c0afb9/transformed/lifecycle-runtime-ktx-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a72d0b692ce3c09944c426808af1fd10/transformed/work-runtime-ktx-2.7.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c3e9ed699c68b0d2dd7104259cbbcfc8/transformed/lifecycle-livedata-ktx-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e9d0f341a775719044bb4245029e12af/transformed/navigation-fragment-ktx-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/685305b45f265512bf370e8b4b9dc8a2/transformed/navigation-fragment-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e4eb39b9659403eedca1087de93ecb89/transformed/fragment-ktx-1.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/80eb95928d477c30108574a5eacd35ee/transformed/navigation-ui-ktx-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/cc9734d712ee4c47116d533799028dd7/transformed/navigation-runtime-ktx-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/34c425618cdad0bf56376863bb5a4e0e/transformed/navigation-ui-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8bf91906cb189e6400e1bec976609e05/transformed/navigation-runtime-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/464cc95286c657041eb3905c1f699b0d/transformed/activity-ktx-1.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/34e4c47c2f1cea22668c92f20749523d/transformed/navigation-common-ktx-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/7feeb091a68eba799b380a9cfdc67a91/transformed/navigation-common-2.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/6376974dcb45f8cb44c74ece90a1258c/transformed/lifecycle-viewmodel-ktx-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/ff98dd06b555197e37f141281e35d1ab/transformed/lifecycle-runtime-ktx-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b62d5a4c61f64f7112c7fe2eb1be9d95/transformed/work-runtime-ktx-2.7.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/58c72281e694cbbbe698407792566511/transformed/lifecycle-livedata-ktx-2.5.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.1/97fd74ccf54a863d221956ffcd21835e168e2aaa/kotlinx-coroutines-core-jvm-1.6.1.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/54be2a0ffca9d141ee315908536fac44/transformed/material-1.6.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/cdeefc9b204f50bc9142b9e26d4accad/transformed/appcompat-1.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/57876570421e6d6242fad4648c053543/transformed/glide-4.13.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/351afc84aef387e543ea85f51e6497b1/transformed/viewpager2-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/291ce2d5320f26eb8768984ce69892ff/transformed/lifecycle-extensions-2.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d4c6e9e5e65a136391d7447295e41bfb/transformed/fragment-1.5.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/022601baff51c7c7d9a129223daaac91/transformed/activity-1.6.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b800cec3a805a7afffe277176ddcd454/transformed/lifecycle-viewmodel-savedstate-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/96745951ad1a5763a9f012817d5e8662/transformed/material-1.6.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8f27b00d93851f7cd2491ab8c80a670b/transformed/appcompat-1.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e70efbad37e00ba69bc5d168b5f683fa/transformed/glide-4.13.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d409339ddbd8227f4d077fb90c4275bf/transformed/viewpager2-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/4bb9d43ff3d6a2d34a3f12d7b3726e99/transformed/lifecycle-extensions-2.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/15f2a102871bf93cb360c999e866072f/transformed/fragment-1.5.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/67c65c8f8555ccff2ef8dfce43565e1c/transformed/activity-1.6.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/0830d798789b16698318c2a7d9720089/transformed/lifecycle-viewmodel-savedstate-2.5.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.1/4e61fcdcc508cbaa37c4a284a50205d7c7767e37/kotlinx-coroutines-android-1.6.1.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/io.insert-koin/koin-core-jvm/3.2.0/ab77b9faefb87ddb5801b9ccfe70d7faff943192/koin-core-jvm-3.2.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.7.10/d70d7d2c56371f7aa18f32e984e3e2e998fe9081/kotlin-stdlib-jdk8-1.7.10.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b79af66f5e81892a43c072290260f088/transformed/core-ktx-1.9.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/3031c998f13e15e0a913f059184c75ef/transformed/recyclerview-1.2.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/0cbd526ac67369d099069afddacff4fe/transformed/appcompat-resources-1.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f523de55dddf4e40a41e2c114b2b1fe9/transformed/drawerlayout-1.1.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f8f683c804d12abbd330020019e1a870/transformed/coordinatorlayout-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/2c280df29bded371999afce455a3a3cb/transformed/dynamicanimation-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/462b3f85121427763def630962b7ce8a/transformed/transition-1.4.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/aa91908eaccef82c5a729c32aafb1a19/transformed/vectordrawable-animated-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b6a214204bd9c34d6cb68429efe38a04/transformed/vectordrawable-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/6d93601d4582b9a345280e9c7b11ede9/transformed/viewpager-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/9ee881e90491fe2ad6a3e5a9c81f84f8/transformed/slidingpanelayout-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/1dd6579219e7dc205525f38570407208/transformed/customview-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/775ffe49315816516078dc7c61214604/transformed/legacy-support-core-utils-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/646bb54b84cdf953b4376ee64c4170ad/transformed/loader-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/69a327da34bb31aa69bd75fe5ebe4ea0/transformed/core-1.9.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/2afbef39b138181e1322b2d4af52787e/transformed/cursoradapter-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/7672d4889f099921fa34ed187389aaef/transformed/savedstate-ktx-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/84c17651b1071b4e48f8cec55e607d1f/transformed/savedstate-1.2.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c7e13e2442e0d181b416766c8708ecf4/transformed/cardview-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/42fde5acb9fd0bb8e95e80b7245a8a87/transformed/lifecycle-runtime-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/5896e6b4ecfa88e0fbb27b98536ea1dc/transformed/lifecycle-viewmodel-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b640e4b849401a4b9f4012c3b09f9a77/transformed/gifdecoder-4.13.2-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8a4ee86c9737479616e436dfd2c010ad/transformed/exifinterface-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/ec7e911cee6ad0c028c810cdfba26a4a/transformed/core-ktx-1.9.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/cde3099178b7e6fc61035cb7a4d15c32/transformed/recyclerview-1.2.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/533a91ead0c685ecaf3e69400c245d5f/transformed/appcompat-resources-1.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/42fc4ac498d9020bb90c6eec828347be/transformed/drawerlayout-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/470d82605d8b078ba54b0d1e403cf9e0/transformed/coordinatorlayout-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/292b907ec05ffdd9a8d2b53fa9238090/transformed/dynamicanimation-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/f9cc91b947141d9948117306064e8f77/transformed/transition-1.4.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a0ff7b132e42baf4c1a6aa7518791da7/transformed/vectordrawable-animated-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/20a35ad2698ad10ae0b443c3afe9d4cc/transformed/vectordrawable-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/ceab85f809ac5b5561f31d4f68929aa1/transformed/viewpager-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c9c4a03f53903cb656ebdc9f222e930e/transformed/slidingpanelayout-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/1fea84547e6233394a22b823cdf60944/transformed/customview-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/36f9c92d25d1af7604e4360c8e952d40/transformed/legacy-support-core-utils-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d023fd99a824acec5bedfbe7c4fbfee5/transformed/loader-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/00ce3ab03f1daca8da57326588a1c536/transformed/core-1.9.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/1d741b644f79ccb0bb389824d275e261/transformed/cursoradapter-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/3c9a2c2f1e23233979f4bdbff3d2294b/transformed/savedstate-ktx-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a9ad022b1b6d22ad038d97e6989296e4/transformed/savedstate-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e5b9f72c393606514f87534609a0dc1c/transformed/cardview-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/0617473371e021f3ca32ce0aee80b4a5/transformed/lifecycle-runtime-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/6527fa60d656fffef71fca8f56cd4d0b/transformed/lifecycle-viewmodel-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/30b768030f0aaf5398cd960bad984a9b/transformed/gifdecoder-4.13.2-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/5ccc60135bea7b44f0eb843f86d484c1/transformed/exifinterface-1.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.5.1/5b8f86fea035328fc9e8c660773037a3401ce25f/lifecycle-common-java8-2.5.1.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/499114ec6b73669c8375ecbae191da6c/transformed/versionedparcelable-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d22fcf6a9f1cc8d8a89972b6a18121ef/transformed/versionedparcelable-1.1.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.collection/collection-ktx/1.1.0/f807b2f366f7b75142a67d2f3c10031065b5168/collection-ktx-1.1.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/d3b269a3e1893e183bbe9c22a2da9969/transformed/work-runtime-2.7.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b9dd21338f2d19aca32591b2bc9f55ab/transformed/lifecycle-livedata-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/829f407616815e70c0845b432480be33/transformed/core-runtime-2.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/348474ddfaa80ad855e821165878c06e/transformed/work-runtime-2.7.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/0d95598ae799eec96b4915f1d7443fa1/transformed/lifecycle-livedata-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/7baa583cfd3eb4b1a329558d17025b4d/transformed/core-runtime-2.1.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c68780166e0ad572c321b4e11007d126/transformed/lifecycle-livedata-core-ktx-2.5.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8d9211561d814259635d7ddcd2c6b08d/transformed/lifecycle-livedata-core-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/2d8f09e14f63c95d1140c4d5e8ae4460/transformed/lifecycle-livedata-core-ktx-2.5.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/9d410ebea1cbb5a5e76c14f36b8b630f/transformed/lifecycle-livedata-core-2.5.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.5.1/1fdb7349701e9cf2f0a69fc10642b6fef6bb3e12/lifecycle-common-2.5.1.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/de16dd2d334cfd0decef8bb551e4df28/transformed/interpolator-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a9e05b8f55bc227323fc8da4a9afc2c1/transformed/documentfile-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/9548cb0a5b2babd5b4d1efd1e49cf066/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/75110404270ac8505f43e34a5a8e4a58/transformed/print-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/90d8532823def86d1d663f587189c45d/transformed/interpolator-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/2ccda0979002a4e99d13659766db2a76/transformed/documentfile-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/c1cc8275ac6ae12c8470724985aef22a/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/5bab88f614cdc4cd5fa43dca4bcfad29/transformed/print-1.0.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.3.0/21f49f5f9b85fc49de712539f79123119740595/annotation-1.3.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.9.0/fc93484fc67ab52b1e0ccbdaa3922d8a6678e097/converter-gson-2.9.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.9.0/d8fdfbd5da952141a665a403348b74538efc05ff/retrofit-2.9.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/5.0.0-alpha.2/bf7bed2b2469e05290e258813396114ef080f574/okhttp-5.0.0-alpha.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.7.10/1ef73fee66f45d52c67e2aca12fd945dbe0659bf/kotlin-stdlib-jdk7-1.7.10.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/bbf21f83d512012707eae9fc1f683880/transformed/annotation-experimental-1.3.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/5d535361b2db978780f5097ae3a03df2/transformed/annotation-experimental-1.3.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/2.9.0/dcc813b08ce5933f8bdfd1dfbab4ad4bd170e7a/okio-jvm-2.9.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.7.10/d2abf9e77736acc4450dc4a3f707fa2c10f5099d/kotlin-stdlib-1.7.10.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.7.10/bac80c520d0a9e3f3673bc2658c6ed02ef45a76a/kotlin-stdlib-common-1.7.10.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/6e899d65f4f08d846520eedd7463bf07/transformed/tracing-1.0.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/a1ee8df8983901bea0eb00483a1506ac/transformed/startup-runtime-1.1.1-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/5a3786a3ea868103b61e0dcf56418b12/transformed/constraintlayout-2.1.4-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8a23074e56acccdbca47581d338eb883/transformed/sdp-android-1.1.0-api.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/46d630a20f2d77d75453677134b5970a/transformed/ssp-android-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e22ebc0374935a74f030bc076d49cceb/transformed/tracing-1.0.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/e562f08349d26d4eb02890a1494e62e4/transformed/startup-runtime-1.1.1-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/8708d0916b0ed6896da6ea7d534f8759/transformed/constraintlayout-2.1.4-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/df0cfa7de073e2257b3553d3978bf3ec/transformed/sdp-android-1.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/ff367fc5411337d5dbf900c58bd2826b/transformed/ssp-android-1.1.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.13.2/de4490a6d4eb207acc0aaef59de45ce18a6b63fd/disklrucache-4.13.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.13.2/41c0ddef7eb508bb6de9a93a85c8d4be82f65047/annotations-4.13.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.5/f645ed69d595b24d4cf8b3fbb64cc505bede8829/gson-2.8.5.jar</arg>
-                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/b0b354b5373b8a49c30374dec57e4c81/transformed/kprogresshud-1.2.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../../../Gradle/caches/transforms-3/500a0890e018e4639ceba102cc642655/transformed/kprogresshud-1.2.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Sdk/platforms/android-33/android.jar</arg>
                 <arg>$MODULE_DIR$/../../../../../Sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
@@ -185,7 +185,7 @@
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.databinding:viewbinding:7.3.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.databinding:viewbinding:7.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core-ktx:1.9.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core:1.9.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.3.0@aar" level="project" />

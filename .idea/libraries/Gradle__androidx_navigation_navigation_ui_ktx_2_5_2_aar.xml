@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-ui-ktx:2.5.2@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/e8a61597b1b16436c1e3bf94affefd94/transformed/navigation-ui-ktx-2.5.2/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/e8a61597b1b16436c1e3bf94affefd94/transformed/navigation-ui-ktx-2.5.2/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/e8a61597b1b16436c1e3bf94affefd94/transformed/navigation-ui-ktx-2.5.2/res" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/87cc79ad5439534074063701c7ebda41/transformed/navigation-ui-ktx-2.5.2/res" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/87cc79ad5439534074063701c7ebda41/transformed/navigation-ui-ktx-2.5.2/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/87cc79ad5439534074063701c7ebda41/transformed/navigation-ui-ktx-2.5.2/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

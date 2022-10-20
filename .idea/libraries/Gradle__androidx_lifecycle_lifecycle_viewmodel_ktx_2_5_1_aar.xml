@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/d6186081a7c60152e30c2a607cb7cba5/transformed/lifecycle-viewmodel-ktx-2.5.1/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/d6186081a7c60152e30c2a607cb7cba5/transformed/lifecycle-viewmodel-ktx-2.5.1/res" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/d6186081a7c60152e30c2a607cb7cba5/transformed/lifecycle-viewmodel-ktx-2.5.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/7940516674b47c111469c6563a70cb1f/transformed/lifecycle-viewmodel-ktx-2.5.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/7940516674b47c111469c6563a70cb1f/transformed/lifecycle-viewmodel-ktx-2.5.1/res" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/7940516674b47c111469c6563a70cb1f/transformed/lifecycle-viewmodel-ktx-2.5.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

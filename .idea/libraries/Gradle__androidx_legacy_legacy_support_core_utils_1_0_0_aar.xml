@@ -2,8 +2,8 @@
   <library name="Gradle: androidx.legacy:legacy-support-core-utils:1.0.0@aar">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/81026cde04cd4a33711ed0cd35c62d6b/transformed/legacy-support-core-utils-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/97e44ca4277db32c31d20c8e92ab5d54/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/97e44ca4277db32c31d20c8e92ab5d54/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/d250223179bdb2b90a6d2c714bc4b6c9/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/d250223179bdb2b90a6d2c714bc4b6c9/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

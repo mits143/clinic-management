@@ -2,8 +2,8 @@
   <library name="Gradle: androidx.interpolator:interpolator:1.0.0@aar">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/e7398a18083fedf76325268632117452/transformed/interpolator-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/43af4fe192aa74277232c285c99cd1e4/transformed/interpolator-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/43af4fe192aa74277232c285c99cd1e4/transformed/interpolator-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/6e9a50280ece8d7ff77c26ef6c035cbd/transformed/interpolator-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/6e9a50280ece8d7ff77c26ef6c035cbd/transformed/interpolator-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -2,8 +2,8 @@
   <library name="Gradle: androidx.tracing:tracing:1.0.0@aar">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/cce19ad36b710229fca337d8d4c2586a/transformed/tracing-1.0.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/c3ec9c1698676e699dde922009b2bc0b/transformed/tracing-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/c3ec9c1698676e699dde922009b2bc0b/transformed/tracing-1.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/617c771e62e4565709ab4b3ecdaa1ce9/transformed/tracing-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/617c771e62e4565709ab4b3ecdaa1ce9/transformed/tracing-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

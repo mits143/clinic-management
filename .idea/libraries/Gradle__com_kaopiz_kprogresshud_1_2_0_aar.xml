@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.kaopiz:kprogresshud:1.2.0@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/c18bda27acf965a5d1103658a8dc3406/transformed/kprogresshud-1.2.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/c18bda27acf965a5d1103658a8dc3406/transformed/kprogresshud-1.2.0/res" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/c18bda27acf965a5d1103658a8dc3406/transformed/kprogresshud-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/aa8f8f8b2a472863949d0a3ed7350cc7/transformed/kprogresshud-1.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/aa8f8f8b2a472863949d0a3ed7350cc7/transformed/kprogresshud-1.2.0/res" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/aa8f8f8b2a472863949d0a3ed7350cc7/transformed/kprogresshud-1.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../Gradle/caches/modules-2/files-2.1/com.kaopiz/kprogresshud/1.2.0/19e35775be188511ec306ee2d0a63d766893643f/kprogresshud-1.2.0-javadoc.jar!/" />

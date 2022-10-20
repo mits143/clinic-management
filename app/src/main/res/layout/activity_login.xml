@@ -98,7 +98,7 @@
             app:boxBackgroundColor="@color/primary_color"
             app:boxStrokeColor="@color/white"
             app:hintTextColor="@color/white"
-            app:startIconDrawable="@drawable/path"
+            app:startIconDrawable="@drawable/pathlc"
             app:startIconTint="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText

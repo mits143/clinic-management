@@ -2,8 +2,8 @@
   <library name="Gradle: io.insert-koin:koin-android:3.2.0@aar">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/4fc8cac67716f3fb02c65727a5f59222/transformed/koin-android-3.2.0/res" />
-      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/7f221b4a0e3ded9e37576ff7478c4d72/transformed/koin-android-3.2.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/7f221b4a0e3ded9e37576ff7478c4d72/transformed/koin-android-3.2.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../../Gradle/caches/transforms-3/b29a0ef0ac60accb0c4b4180708da00f/transformed/koin-android-3.2.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../../Gradle/caches/transforms-3/b29a0ef0ac60accb0c4b4180708da00f/transformed/koin-android-3.2.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../../Gradle/caches/modules-2/files-2.1/io.insert-koin/koin-android/3.2.0/7d1772c2c1225aded7d5113f16c8f9e651a74543/koin-android-3.2.0-javadoc.jar!/" />
