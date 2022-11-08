@@ -2,12 +2,15 @@ package com.clinic.management.networking
 
 import com.clinic.management.model.appointmentslots.AppointmentSlotsResponse
 import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
 import com.clinic.management.model.doctor.DoctorDetailResponse
 import com.clinic.management.model.doctor.DoctorListingResponse
 import com.clinic.management.model.home.HomeResponse
 import com.clinic.management.model.login.LoginResponse
+import com.clinic.management.model.medicine.MedicineDetailResponse
+import com.clinic.management.model.medicine.MedicineResponse
 import com.google.gson.JsonObject
 import retrofit2.Response
 
@@ -58,10 +61,10 @@ interface ApiHelper {
         jsonObject: JsonObject
     ): Response<CompletedAppointmentResponse>
 
-    suspend fun cancel_appointment(
+    suspend fun cancel_appointment_list(
         token: String,
         jsonObject: JsonObject
-    ): Response<AppointmentResponse>
+    ): Response<CancelAppointmentResponse>
 
     suspend fun check_slot_for_doctor(
         token: String,
@@ -72,4 +75,34 @@ interface ApiHelper {
         token: String,
         jsonObject: JsonObject
     ): Response<JsonObject>
+
+    suspend fun get_pages(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject>
+
+    suspend fun category_wise_doctor_listing(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<DoctorListingResponse>
+
+    suspend fun cancel_appointment(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject>
+
+    suspend fun reschdule_appointment(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject>
+
+    suspend fun medicine_listing(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<MedicineResponse>
+
+    suspend fun medicine_detail(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<MedicineDetailResponse>
 }

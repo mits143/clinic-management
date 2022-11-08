@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.repo.MainRepository
+import com.clinic.management.util.Event
 import com.clinic.management.util.NetworkHelper
 import com.clinic.management.util.Resource
 import com.google.gson.JsonObject
@@ -17,15 +18,15 @@ class CompleteAppointmentViewModel(
 ) : ViewModel() {
 
     private val setCompleteAppointmentData =
-        MutableLiveData<Resource<CompletedAppointmentResponse>>()
-    val getCompleteAppointmentData: LiveData<Resource<CompletedAppointmentResponse>>
+        MutableLiveData<Event<Resource<CompletedAppointmentResponse>>>()
+    val getCompleteAppointmentData: LiveData<Event<Resource<CompletedAppointmentResponse>>>
         get() = setCompleteAppointmentData
 
     fun fetchCompleteAppointmentData(
         token: String, pagination: String
     ) {
         viewModelScope.launch {
-            setCompleteAppointmentData.postValue(Resource.loading(null))
+            setCompleteAppointmentData.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("pagination", pagination)
@@ -34,24 +35,30 @@ class CompleteAppointmentViewModel(
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.status!!) {
-                            setCompleteAppointmentData.postValue(Resource.success(it.body()))
+                            setCompleteAppointmentData.postValue(Event(Resource.success(it.body())))
                         } else {
                             setCompleteAppointmentData.postValue(
-                                Resource.error(
-                                    it.body()?.message!!, null
+                                Event(
+                                    Resource.error(
+                                        it.body()?.message!!, null
+                                    )
                                 )
                             )
                         }
                     } else setCompleteAppointmentData.postValue(
-                        Resource.error(
-                            it.message(), null
+                        Event(
+                            Resource.error(
+                                it.message(), null
+                            )
                         )
                     )
                 }
             } else setCompleteAppointmentData.postValue(
-                Resource.error(
-                    "No internet connection",
-                    null
+                Event(
+                    Resource.error(
+                        "No internet connection",
+                        null
+                    )
                 )
             )
         }

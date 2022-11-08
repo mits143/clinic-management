@@ -23,6 +23,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.navMyAppointment.setOnClickListener {
             findNavController().navigate(R.id.action_nav_my_appointment)
         }
+        binding.navAskDoctor.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_ask_a_doctor)
+        }
         binding.navDoctorResult.setOnClickListener {
             val action = ProfileFragmentDirections.actionNavMyResult(0)
             findNavController().navigate(action)

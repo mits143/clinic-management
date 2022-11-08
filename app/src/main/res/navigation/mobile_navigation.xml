@@ -9,7 +9,13 @@
         android:id="@+id/nav_active"
         android:name="com.clinic.management.fragment.ActiveFragment"
         android:label="@string/active"
-        tools:layout="@layout/fragment_active" />
+        tools:layout="@layout/fragment_active">
+
+        <action
+            android:id="@+id/action_nav_appointment"
+            app:destination="@id/nav_appointment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_appointment_confirmed"
@@ -17,8 +23,30 @@
         android:label="@string/appointment_confirmed"
         tools:layout="@layout/fragment_appointment_confirmed">
         <action
-            android:id="@+id/action_nav_my_appointment"
-            app:destination="@id/nav_my_appointment" />
+            android:id="@+id/action_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="date"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="time"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="doctor_name"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="address"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -28,10 +56,16 @@
         tools:layout="@layout/fragment_appointment">
         <action
             android:id="@+id/action_nav_appointment_confirmed"
-            app:destination="@id/nav_appointment_confirmed" />
+            app:destination="@id/nav_appointment_confirmed"
+            app:popUpTo="@id/nav_home" />
 
         <argument
             android:name="doctor_id"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="appointment_id"
             android:defaultValue=""
             app:argType="string" />
     </fragment>
@@ -54,11 +88,11 @@
         android:label="@string/dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
-            android:id="@+id/action_nav_appointment"
-            app:destination="@id/nav_appointment" />
+            android:id="@+id/action_nav_my_appointment"
+            app:destination="@id/nav_my_appointment" />
         <action
             android:id="@+id/action_nav_ask_a_doctor"
-            app:destination="@id/nav_my_appointment" />
+            app:destination="@id/nav_faq" />
         <action
             android:id="@+id/action_nav_doctor_result"
             app:destination="@id/nav_my_result" />
@@ -81,6 +115,10 @@
         android:label="@string/doctor_detail"
         tools:layout="@layout/fragment_doctor_detail">
 
+        <action
+            android:id="@+id/action_nav_appointment"
+            app:destination="@id/nav_appointment" />
+
         <argument
             android:name="doctor_id"
             android:defaultValue=""
@@ -98,6 +136,11 @@
         android:name="com.clinic.management.fragment.DoctorListingFragment"
         android:label="@string/doctor_listing"
         tools:layout="@layout/fragment_doctor_listing">
+
+        <action
+            android:id="@+id/action_nav_appointment"
+            app:destination="@id/nav_appointment" />
+
         <action
             android:id="@+id/action_nav_doctor_detail"
             app:destination="@id/nav_dr_detail" />
@@ -106,13 +149,23 @@
             android:name="isTopDoctor"
             android:defaultValue="false"
             app:argType="boolean" />
+
+        <argument
+            android:name="categoryID"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_category_listing"
         android:name="com.clinic.management.fragment.CategoryListingFragment"
         android:label="@string/category_listing"
-        tools:layout="@layout/fragment_doctor_listing" />
+        tools:layout="@layout/fragment_doctor_listing">
+        <action
+            android:id="@+id/action_nav_doctor_listing"
+            app:destination="@id/nav_dr_listing" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -143,7 +196,13 @@
         android:id="@+id/nav_medicine_detail"
         android:name="com.clinic.management.fragment.MedicineDetailFragment"
         android:label="@string/medicine_detail"
-        tools:layout="@layout/fragment_medicine_detail" />
+        tools:layout="@layout/fragment_medicine_detail">
+
+        <argument
+            android:name="medicine_id"
+            android:defaultValue="0"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_medicine"
@@ -160,7 +219,13 @@
         android:id="@+id/nav_my_appointment"
         android:name="com.clinic.management.fragment.MyAppointmentFragment"
         android:label="@string/my_appointment"
-        tools:layout="@layout/fragment_my_appointment" />
+        tools:layout="@layout/fragment_my_appointment">
+
+        <action
+            android:id="@+id/action_nav_appointment"
+            app:destination="@id/nav_appointment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_my_result"
@@ -187,6 +252,9 @@
         <action
             android:id="@+id/action_nav_my_result"
             app:destination="@id/nav_my_result" />
+        <action
+            android:id="@+id/action_nav_ask_a_doctor"
+            app:destination="@id/nav_faq" />
     </fragment>
 
     <fragment
@@ -194,5 +262,11 @@
         android:name="com.clinic.management.fragment.RadiologyFragment"
         android:label="@string/radiology"
         tools:layout="@layout/fragment_active" />
+
+    <fragment
+        android:id="@+id/nav_faq"
+        android:name="com.clinic.management.fragment.FaqFragment"
+        android:label="@string/faq"
+        tools:layout="@layout/fragment_faq" />
 
 </navigation>

@@ -39,15 +39,13 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
-    private val currentDate = Calendar.getInstance(Locale.ENGLISH)
     private val dates = ArrayList<Date>()
     private lateinit var adapter: CalendarAdapter
     private val calendarList2 = ArrayList<CalendarDateModel>()
 
-    //    private val calendar = Calendar.getInstance()
-//    private var currentMonth = 0
     private var date = ""
     private var time = ""
+    private var isTimeSelected = false
 
     private lateinit var hud: KProgressHUD
 
@@ -55,18 +53,10 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         setObserver()
         setUpAdapter()
         setUpCalendar()
-
-        binding.btnConfirm.setOnClickListener {
-            viewModel.fetchBookAppointmentData(
-                "Bearer " + prefs.accessToken,
-                args.doctorId,
-                date,
-                time
-            )
-        }
         binding.rbMorning.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = view.findViewById<RadioButton>(checkedId)
             if (radioButton != null && radioButton.isChecked) {
+                isTimeSelected = true
                 time = radioButton.text.toString()
                 binding.rbAfternoon.clearCheck()
                 binding.rbEvening.clearCheck()
@@ -75,6 +65,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         binding.rbAfternoon.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = view.findViewById<RadioButton>(checkedId)
             if (radioButton != null && radioButton.isChecked) {
+                isTimeSelected = true
                 time = radioButton.text.toString()
                 binding.rbMorning.clearCheck()
                 binding.rbEvening.clearCheck()
@@ -83,10 +74,14 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         binding.rbEvening.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = view.findViewById<RadioButton>(checkedId)
             if (radioButton != null && radioButton.isChecked) {
+                isTimeSelected = true
                 time = radioButton.text.toString()
                 binding.rbMorning.clearCheck()
                 binding.rbAfternoon.clearCheck()
             }
+        }
+        binding.imgMenu.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         binding.ivCalendarNext.setOnClickListener {
             cal.add(Calendar.MONTH, 1)
@@ -104,14 +99,30 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 setUpCalendar()
             }
         }
-        hud = KProgressHUD.create(requireContext())
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+
+        binding.btnConfirm.setOnClickListener {
+            if (isTimeSelected) {
+                if (args.appointmentId == "0") {
+                    viewModel.fetchBookAppointmentData(
+                        "Bearer " + prefs.accessToken, args.doctorId, date, time
+                    )
+                } else {
+                    viewModel.fetchRescheduleAppointmentData(
+                        "Bearer " + prefs.accessToken, args.appointmentId, date, time
+                    )
+                }
+            } else {
+                showToast("Select date & time to confirm your appointment")
+            }
+        }
+        hud = KProgressHUD.create(requireContext()).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
     }
 
     private fun setUpAdapter() {
         adapter = CalendarAdapter { data: CalendarDateModel, position: Int ->
             calendarList2.forEachIndexed { index, calendarModel ->
                 calendarModel.isSelected = index == position
+                isTimeSelected = false
             }
             var spf = SimpleDateFormat("EEE MMM dd hh:mm:ss zzzz yyyy")
             val newDate = spf.parse(data.date.toString())
@@ -147,58 +158,69 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
 
     private fun setObserver() {
         viewModel.getAppointmentSlotsData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    it.data?.let {
-                        showProgress(false)
-                        morningTimes(it.data.morning)
-                        afternoonTimes(it.data.afternoon)
-                        eveningTimes(it.data.evening)
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                LoginActivity::class.java
+                    Status.SUCCESS -> {
+                        it.data?.let {
+                            showProgress(false)
+                            morningTimes(it.data.morning)
+                            afternoonTimes(it.data.afternoon)
+                            eveningTimes(it.data.evening)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(), LoginActivity::class.java
+                                )
                             )
-                        )
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
         }
         viewModel.getBookAppointmentData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        if (it["status"].asBoolean) findNavController().navigate(R.id.action_nav_appointment_confirmed)
-                        else showToast(it["message"].asString)
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                LoginActivity::class.java
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            if (it["status"].asBoolean) {
+                                val action =
+                                    AppointmentFragmentDirections.actionNavAppointmentConfirmed(
+                                        date,
+                                        time,
+                                        it["doc_name"].asString,
+                                        it["doc_address"].asString
+                                    )
+                                findNavController().navigate(action)
+                            } else
+                                showToast(it["message"].asString)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(), LoginActivity::class.java
+                                )
                             )
-                        )
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
@@ -206,11 +228,8 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
     }
 
     private fun showProgress(show: Boolean) {
-        if (show)
-            hud.show()
-        else
-            if (hud.isShowing)
-                hud.dismiss()
+        if (show) hud.show()
+        else if (hud.isShowing) hud.dismiss()
     }
 
     private fun morningTimes(dataList: ArrayList<Morning>) {
@@ -227,7 +246,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 }
                 val radioButtonMorning = RadioButton(requireContext())
                 radioButtonMorning.layoutParams = params
-                radioButtonMorning.setPadding(60, 25, 60, 25)
+                radioButtonMorning.setPadding(30, 25, 30, 25)
                 radioButtonMorning.buttonDrawable = null
                 radioButtonMorning.background = ResourcesCompat.getDrawable(
                     resources, R.drawable.radiobtn_appointment, null
@@ -263,7 +282,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 }
                 val radioButtonAfternoon = RadioButton(requireContext())
                 radioButtonAfternoon.layoutParams = params
-                radioButtonAfternoon.setPadding(60, 25, 60, 25)
+                radioButtonAfternoon.setPadding(30, 25, 30, 25)
                 radioButtonAfternoon.buttonDrawable = null
                 radioButtonAfternoon.background = ResourcesCompat.getDrawable(
                     resources, R.drawable.radiobtn_appointment, null
@@ -299,7 +318,7 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                 }
                 val radioButtonEvening = RadioButton(requireContext())
                 radioButtonEvening.layoutParams = params
-                radioButtonEvening.setPadding(60, 25, 60, 25)
+                radioButtonEvening.setPadding(30, 25, 30, 25)
                 radioButtonEvening.buttonDrawable = null
                 radioButtonEvening.background = ResourcesCompat.getDrawable(
                     resources, R.drawable.radiobtn_appointment, null

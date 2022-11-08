@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.HomeReviewsAdapter
@@ -34,7 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
         binding.btnViewAllSpecialistDr.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavDoctorListing(false)
+            val action = HomeFragmentDirections.actionNavDoctorListing(false, "0")
             findNavController().navigate(action)
         }
         binding.btnViewAllSpecialist.setOnClickListener {
@@ -42,7 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             findNavController().navigate(action)
         }
         binding.btnViewAllTopDr.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavDoctorListing(true)
+            val action = HomeFragmentDirections.actionNavDoctorListing(true, "0")
             findNavController().navigate(action)
         }
         hud = KProgressHUD.create(requireContext())
@@ -79,31 +80,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             "Bearer " + prefs.accessToken, "18.5074", "73.8077"
         )
         viewModel.getHomeData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    it.data?.let {
-                        showProgress(false)
-                        setDoctorData(it.specialistDoctor)
-                        setSpecialistData(it.specialCategory)
-                        setTopDoctorData(it.topDoctors)
-                        setReviewData(it.reviewsListing)
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                LoginActivity::class.java
+                    Status.SUCCESS -> {
+                        it.data?.let {
+                            showProgress(false)
+                            setDoctorData(it.specialistDoctor)
+                            setSpecialistData(it.specialCategory)
+                            setTopDoctorData(it.topDoctors)
+                            setReviewData(it.reviewsListing)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
                             )
-                        )
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
@@ -115,12 +118,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             val action = HomeFragmentDirections.actionNavDoctorDetail(data.id)
             findNavController().navigate(action)
         } else {
-            val action = HomeFragmentDirections.actionNavAppointment(data.id)
+            val action = HomeFragmentDirections.actionNavAppointment(data.id, "0")
             findNavController().navigate(action)
         }
     }
 
     override fun itemClick(data: SpecialCategory) {
+        val action = HomeFragmentDirections.actionNavDoctorListing(false, data.id)
+        findNavController().navigate(action)
     }
 
     override fun itemClick(data: ReviewsListing) {

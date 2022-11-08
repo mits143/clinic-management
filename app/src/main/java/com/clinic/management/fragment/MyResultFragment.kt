@@ -22,6 +22,9 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
     private val args: MyResultFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.imgMenu.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         adapter = FragmentPagerAdapter(
             childFragmentManager
         )
@@ -31,6 +34,7 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
         binding.viewPager.adapter = adapter
         binding.rbTabGroup.setOnCheckedChangeListener(this)
         binding.viewPager.addOnPageChangeListener(this)
+        binding.viewPager.offscreenPageLimit = 2
         binding.viewPager.currentItem = args.currentItem
 
     }

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.clinic.management.R
 import com.clinic.management.model.CalendarDateModel
+import com.google.android.material.card.MaterialCardView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,7 +20,7 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
         fun bind(calendarDateModel: CalendarDateModel) {
             val calendarDay = itemView.findViewById<TextView>(R.id.tv_calendar_day)
             val calendarDate = itemView.findViewById<TextView>(R.id.tv_calendar_date)
-            val cardView = itemView.findViewById<CardView>(R.id.card_calendar)
+            val cardView = itemView.findViewById<MaterialCardView>(R.id.card_calendar)
 
             if (calendarDateModel.isSelected) {
                 calendarDay.setTextColor(

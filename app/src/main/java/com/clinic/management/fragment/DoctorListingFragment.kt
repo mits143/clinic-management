@@ -9,9 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
+import com.clinic.management.adapter.AppointmentAdapter
 import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
 import com.clinic.management.databinding.FragmentDoctorListingBinding
 import com.clinic.management.model.home.SpecialistDoctor
+import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
 import com.clinic.management.util.Status
 import com.clinic.management.viewmodel.DoctorListingViewModel
@@ -27,62 +29,158 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     private val viewModel: DoctorListingViewModel by viewModel()
 
     private lateinit var hud: KProgressHUD
+    private var page = 1
+    private lateinit var adapter: HomeSpecialistDoctorAdapter
+    private lateinit var scrollListener: RecyclerViewLoadMoreScroll
 
     private val args: DoctorListingFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            page = 1
+            binding.swipeRefresh.isRefreshing = false
+            if (args.categoryID == "0") {
+                if (args.isTopDoctor) {
+                    binding.txtSpecialistDr.text =
+                        resources.getString(R.string.top_doctors_in_your_city)
+                    viewModel.fetchTopDoctorData(
+                        "Bearer " + prefs.accessToken,
+                        "18.5074",
+                        "73.8077",
+                        page.toString()
+                    )
+                } else {
+                    binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
+                    viewModel.fetchDoctorData(
+                        "Bearer " + prefs.accessToken,
+                        "18.5074",
+                        "73.8077",
+                        page.toString()
+                    )
+                }
+            } else {
+                binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
+                viewModel.fetchCategoryDoctorData(
+                    "Bearer " + prefs.accessToken,
+                    args.categoryID.toString(),
+                    "18.5074",
+                    "73.8077",
+                    page.toString()
+                )
+
+            }
+        }
+
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+
+        setDoctorData()
     }
 
-    private fun setDoctorData(list: ArrayList<SpecialistDoctor>) {
-        val adapter = HomeSpecialistDoctorAdapter(arrayListOf(), this)
+    private fun setDoctorData() {
+        adapter = HomeSpecialistDoctorAdapter(arrayListOf(), this)
         binding.rvSpecialistDr.adapter = adapter
-        adapter.addData(list)
+
+        scrollListener = RecyclerViewLoadMoreScroll(binding.rvSpecialistDr.layoutManager!!)
+        binding.rvSpecialistDr.addOnScrollListener(scrollListener)
+        scrollListener.setOnLoadMoreListener {
+            page = page.plus(1)
+            if (args.categoryID == "0") {
+                if (args.isTopDoctor) {
+                    binding.txtSpecialistDr.text =
+                        resources.getString(R.string.top_doctors_in_your_city)
+                    viewModel.fetchTopDoctorData(
+                        "Bearer " + prefs.accessToken,
+                        "18.5074",
+                        "73.8077",
+                        page.toString()
+                    )
+                } else {
+                    binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
+                    viewModel.fetchDoctorData(
+                        "Bearer " + prefs.accessToken,
+                        "18.5074",
+                        "73.8077",
+                        page.toString()
+                    )
+                }
+            } else {
+                binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
+                viewModel.fetchCategoryDoctorData(
+                    "Bearer " + prefs.accessToken,
+                    args.categoryID.toString(),
+                    "18.5074",
+                    "73.8077",
+                    page.toString()
+                )
+            }
+        }
     }
 
     private fun setObserver() {
-        if (args.isTopDoctor) {
-            binding.txtSpecialistDr.text = resources.getString(R.string.top_doctors_in_your_city)
-            viewModel.fetchTopDoctorData(
-                "Bearer " + prefs.accessToken,
-                "18.5074",
-                "73.8077",
-                "1"
-            )
+        if (args.categoryID == "0") {
+            if (args.isTopDoctor) {
+                binding.txtSpecialistDr.text =
+                    resources.getString(R.string.top_doctors_in_your_city)
+                viewModel.fetchTopDoctorData(
+                    "Bearer " + prefs.accessToken,
+                    "18.5074",
+                    "73.8077",
+                    page.toString()
+                )
+            } else {
+                binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
+                viewModel.fetchDoctorData(
+                    "Bearer " + prefs.accessToken,
+                    "18.5074",
+                    "73.8077",
+                    page.toString()
+                )
+            }
         } else {
             binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
-            viewModel.fetchDoctorData(
+            viewModel.fetchCategoryDoctorData(
                 "Bearer " + prefs.accessToken,
+                args.categoryID.toString(),
                 "18.5074",
                 "73.8077",
-                "1"
+                page.toString()
             )
         }
         viewModel.getDoctorData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        setDoctorData(it.data)
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                LoginActivity::class.java
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            if (scrollListener.loaded) {
+                                scrollListener.setLoaded()
+                            }
+                            if (page == 1) {
+                                adapter.addData(it.data)
+                            } else {
+                                adapter.loadMore(it.data)
+                            }
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
                             )
-                        )
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
@@ -91,10 +189,10 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
 
     override fun itemClick(data: SpecialistDoctor, string: String) {
         if (string == "DOCTOR_DETAIL") {
-            val action = HomeFragmentDirections.actionNavDoctorDetail(data.id)
+            val action = DoctorListingFragmentDirections.actionNavDoctorDetail(data.id)
             findNavController().navigate(action)
         } else {
-            val action = HomeFragmentDirections.actionNavAppointment(data.id)
+            val action = DoctorListingFragmentDirections.actionNavAppointment(data.id, "0")
             findNavController().navigate(action)
         }
     }

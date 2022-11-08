@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,10 +11,10 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/poppins_medium"
+        android:text="0.45% W/V Sodium Chloride I.V. Infusion B.P.\n500ml"
         android:textColor="@color/primary_color"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="0.45% W/V Sodium Chloride I.V. Infusion B.P.\n500ml" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtSpecialist"
@@ -24,10 +23,11 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:fontFamily="@font/poppins_medium"
         android:maxLines="2"
+        android:text="0.45% W/V"
         android:textColor="@color/text_color"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintTop_toBottomOf="@+id/txtName"
-        android:text="0.45% W/V" />
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtSolution"
@@ -36,10 +36,10 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:fontFamily="@font/poppins_medium"
         android:maxLines="2"
+        android:text="Solution for Infusion"
         android:textColor="@color/text_color"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintTop_toBottomOf="@+id/txtSpecialist"
-        android:text="Solution for Infusion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSpecialist" />
 
     <View
         android:id="@+id/divider"

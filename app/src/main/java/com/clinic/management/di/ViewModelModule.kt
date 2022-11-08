@@ -24,7 +24,7 @@ val viewModelModule = module {
         DoctorDetailViewModel(get(), get())
     }
     viewModel {
-        AppointmentViewModel(get(), get())
+        ActiveAppointmentViewModel(get(), get())
     }
     viewModel {
         CompleteAppointmentViewModel(get(), get())
@@ -34,5 +34,17 @@ val viewModelModule = module {
     }
     viewModel {
         CategoryListingViewModel(get(), get())
+    }
+    viewModel {
+        FAQViewModel(get(), get())
+    }
+    viewModel {
+        CancelAppointmentViewModel(get(), get())
+    }
+    viewModel {
+        MedicineViewModel(get(), get())
+    }
+    viewModel {
+        MedicineDetailViewModel(get(), get())
     }
 }

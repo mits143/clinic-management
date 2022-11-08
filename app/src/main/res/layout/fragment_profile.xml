@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ProfileFragment">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_10sdp"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 app:cardBackgroundColor="@color/primary_color"
@@ -36,6 +36,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_8sdp"
                         android:src="@drawable/group_3414"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,107 +65,114 @@
                         app:layout_constraintTop_toBottomOf="@+id/image" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
+                android:overScrollMode="never">
 
-                <TextView
-                    android:id="@+id/nav_home"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/group_3425"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/home"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/nav_my_appointment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:drawableStart="@drawable/group_3426"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/my_appointment"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/group_3425"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/home"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/nav_ask_doctor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:drawableStart="@drawable/group_3427"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/ask_a_doctor"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_my_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/group_3426"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/my_appointment"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/nav_doctor_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:drawableStart="@drawable/group_3428"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/doctor_result"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_ask_doctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/group_3427"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/ask_a_doctor"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/nav_lab_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:drawableStart="@drawable/group_3429"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/lab_result"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_doctor_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/group_3428"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/doctor_result"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/nav_radiology_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:drawableStart="@drawable/group_3430"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/radiology_result"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_lab_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/group_3429"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/lab_result"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-                <TextView
-                    android:id="@+id/nav_logout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:drawableStart="@drawable/group_3431"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_vertical"
-                    android:text="@string/logout"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/_10ssp" />
+                    <TextView
+                        android:id="@+id/nav_radiology_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/group_3430"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/radiology_result"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/nav_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:drawableStart="@drawable/group_3431"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="@string/logout"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_10ssp" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

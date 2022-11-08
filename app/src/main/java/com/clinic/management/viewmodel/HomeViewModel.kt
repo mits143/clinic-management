@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clinic.management.model.home.HomeResponse
 import com.clinic.management.repo.MainRepository
+import com.clinic.management.util.Event
 import com.clinic.management.util.NetworkHelper
 import com.clinic.management.util.Resource
 import com.google.gson.JsonObject
@@ -16,8 +17,8 @@ class HomeViewModel(
     private val networkHelper: NetworkHelper,
 ) : ViewModel() {
 
-    private val setHomeData = MutableLiveData<Resource<HomeResponse>>()
-    val getHomeData: LiveData<Resource<HomeResponse>>
+    private val setHomeData = MutableLiveData<Event<Resource<HomeResponse>>>()
+    val getHomeData: LiveData<Event<Resource<HomeResponse>>>
         get() = setHomeData
 
     fun fetchHomeData(
@@ -26,7 +27,7 @@ class HomeViewModel(
         lng: String
     ) {
         viewModelScope.launch {
-            setHomeData.postValue(Resource.loading(null))
+            setHomeData.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("lat", lat)
@@ -37,21 +38,25 @@ class HomeViewModel(
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.status!!) {
-                            setHomeData.postValue(Resource.success(it.body()))
+                            setHomeData.postValue(Event(Resource.success(it.body())))
                         } else {
                             setHomeData.postValue(
-                                Resource.error(
-                                    it.body()?.message!!, null
+                                Event(
+                                    Resource.error(
+                                        it.body()?.message!!, null
+                                    )
                                 )
                             )
                         }
                     } else setHomeData.postValue(
-                        Resource.error(
-                            it.message(), null
+                        Event(
+                            Resource.error(
+                                it.message(), null
+                            )
                         )
                     )
                 }
-            } else setHomeData.postValue(Resource.error("No internet connection", null))
+            } else setHomeData.postValue(Event(Resource.error("No internet connection", null)))
         }
     }
 }

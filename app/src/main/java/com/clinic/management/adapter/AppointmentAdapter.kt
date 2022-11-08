@@ -49,14 +49,14 @@ class AppointmentAdapter(
                 }
 
                 binding.btnCancel.setOnClickListener {
-                    onClick.itemClick(this)
+                    onClick.itemClick(this, "CANCEL", position)
                 }
                 binding.btnReschedule.setOnClickListener {
-                    onClick.itemClick(this)
+                    onClick.itemClick(this, "RESCHEDULE", position)
                 }
-                itemView.setOnClickListener {
-                    onClick.itemClick(this)
-                }
+//                itemView.setOnClickListener {
+//                    onClick.itemClick(this)
+//                }
             }
         }
     }
@@ -77,7 +77,18 @@ class AppointmentAdapter(
         notifyDataSetChanged()
     }
 
+    fun loadMore(list: ArrayList<AppointmentData>) {
+        dataList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     interface OnClick {
-        fun itemClick(data: AppointmentData)
+        fun itemClick(data: AppointmentData, type: String, position: Int)
+    }
+
+    fun removeItem(position: Int) {
+        this.dataList.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
     }
 }

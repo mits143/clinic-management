@@ -55,6 +55,11 @@ class HomeSpecialistDoctorAdapter(
         notifyDataSetChanged()
     }
 
+    fun loadMore(list: ArrayList<SpecialistDoctor>) {
+        dataList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     interface OnClick {
         fun itemClick(data: SpecialistDoctor, string: String)
     }

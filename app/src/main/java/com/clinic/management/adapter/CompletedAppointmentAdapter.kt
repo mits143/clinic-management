@@ -59,6 +59,11 @@ class CompletedAppointmentAdapter(
         notifyDataSetChanged()
     }
 
+    fun loadMore(list: ArrayList<CompleteAppointmentData>) {
+        dataList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     interface OnClick {
         fun itemClick(data: CompleteAppointmentData)
     }

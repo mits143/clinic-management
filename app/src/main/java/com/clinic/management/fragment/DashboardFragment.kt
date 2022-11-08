@@ -19,7 +19,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
             findNavController().navigate(R.id.action_nav_my_appointment)
         }
         binding.llAskDoctor.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_appointment)
+            findNavController().navigate(R.id.action_nav_ask_a_doctor)
         }
         binding.llDoctorResult.setOnClickListener {
             val action = DashboardFragmentDirections.actionNavMyResult(0)

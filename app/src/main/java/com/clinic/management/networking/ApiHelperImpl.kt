@@ -2,12 +2,15 @@ package com.clinic.management.networking
 
 import com.clinic.management.model.appointmentslots.AppointmentSlotsResponse
 import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
 import com.clinic.management.model.doctor.DoctorDetailResponse
 import com.clinic.management.model.doctor.DoctorListingResponse
 import com.clinic.management.model.home.HomeResponse
 import com.clinic.management.model.login.LoginResponse
+import com.clinic.management.model.medicine.MedicineDetailResponse
+import com.clinic.management.model.medicine.MedicineResponse
 import com.google.gson.JsonObject
 import retrofit2.Response
 
@@ -67,11 +70,11 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
     ): Response<CompletedAppointmentResponse> =
         apiService.completed_appointment(token, jsonObject)
 
-    override suspend fun cancel_appointment(
+    override suspend fun cancel_appointment_list(
         token: String,
         jsonObject: JsonObject
-    ): Response<AppointmentResponse> =
-        apiService.cancel_appointment(token, jsonObject)
+    ): Response<CancelAppointmentResponse> =
+        apiService.cancel_appointment_list(token, jsonObject)
 
     override suspend fun check_slot_for_doctor(
         token: String,
@@ -84,4 +87,40 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         jsonObject: JsonObject
     ): Response<JsonObject> =
         apiService.book_appointment(token, jsonObject)
+
+    override suspend fun get_pages(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject> =
+        apiService.get_pages(token, jsonObject)
+
+    override suspend fun category_wise_doctor_listing(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<DoctorListingResponse> =
+        apiService.category_wise_doctor_listing(token, jsonObject)
+
+    override suspend fun cancel_appointment(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject> =
+        apiService.cancel_appointment(token, jsonObject)
+
+    override suspend fun reschdule_appointment(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject> =
+        apiService.reschdule_appointment(token, jsonObject)
+
+    override suspend fun medicine_listing(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<MedicineResponse> =
+        apiService.medicine_listing(token, jsonObject)
+
+    override suspend fun medicine_detail(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<MedicineDetailResponse> =
+        apiService.medicine_detail(token, jsonObject)
 }

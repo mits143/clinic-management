@@ -7,6 +7,7 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.databinding.FragmentDoctorDetailBinding
@@ -16,16 +17,16 @@ import com.clinic.management.util.Status
 import com.clinic.management.viewmodel.DoctorDetailViewModel
 import com.kaopiz.kprogresshud.KProgressHUD
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDoctorDetailBinding =
         FragmentDoctorDetailBinding::inflate
 
-
-    private val viewModel: DoctorDetailViewModel by viewModel()
-
     private val args: DoctorDetailFragmentArgs by navArgs()
+
+    private val viewModel: DoctorDetailViewModel by viewModel { parametersOf(args.doctorId) }
 
     private lateinit var hud: KProgressHUD
 
@@ -33,6 +34,9 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
         setObserver()
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        binding.imgMenu.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     //
@@ -54,6 +58,11 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
                 Html.fromHtml(data.educationInformation, Html.FROM_HTML_MODE_LEGACY)
         else
             binding.txtEducation.text = Html.fromHtml(data.educationInformation);
+
+        binding.btnViewAllSpecialist.setOnClickListener {
+            val action = DoctorDetailFragmentDirections.actionNavAppointment(data.id, "0")
+            findNavController().navigate(action)
+        }
     }
 
     private fun setObserver() {
@@ -61,23 +70,30 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
             "Bearer " + prefs.accessToken, "18.5074", "73.8077", args.doctorId
         )
         viewModel.getDoctorDetailData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        setDoctorDetailData(it.data[0])
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java))
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            setDoctorDetailData(it.data[0])
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
@@ -89,6 +105,6 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
             hud.show()
         else
             if (hud.isShowing)
-            hud.dismiss()
+                hud.dismiss()
     }
 }

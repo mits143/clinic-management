@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clinic.management.model.category.CategoryResponse
 import com.clinic.management.repo.MainRepository
+import com.clinic.management.util.Event
 import com.clinic.management.util.NetworkHelper
 import com.clinic.management.util.Resource
 import com.google.gson.JsonObject
@@ -16,15 +17,15 @@ class CategoryListingViewModel(
     private val networkHelper: NetworkHelper,
 ) : ViewModel() {
 
-    private val setCategoryData = MutableLiveData<Resource<CategoryResponse>>()
-    val getCategoryData: LiveData<Resource<CategoryResponse>>
+    private val setCategoryData = MutableLiveData<Event<Resource<CategoryResponse>>>()
+    val getCategoryData: LiveData<Event<Resource<CategoryResponse>>>
         get() = setCategoryData
 
     fun fetchCategoryData(
         token: String, lat: String, lng: String
     ) {
         viewModelScope.launch {
-            setCategoryData.postValue(Resource.loading(null))
+            setCategoryData.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("lat", lat)
@@ -34,21 +35,25 @@ class CategoryListingViewModel(
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.status!!) {
-                            setCategoryData.postValue(Resource.success(it.body()))
+                            setCategoryData.postValue(Event(Resource.success(it.body())))
                         } else {
                             setCategoryData.postValue(
-                                Resource.error(
-                                    it.body()?.message!!, null
+                                Event(
+                                    Resource.error(
+                                        it.body()?.message!!, null
+                                    )
                                 )
                             )
                         }
                     } else setCategoryData.postValue(
-                        Resource.error(
-                            it.message(), null
+                        Event(
+                            Resource.error(
+                                it.message(), null
+                            )
                         )
                     )
                 }
-            } else setCategoryData.postValue(Resource.error("No internet connection", null))
+            } else setCategoryData.postValue(Event(Resource.error("No internet connection", null)))
         }
     }
 }

@@ -51,7 +51,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         arguments: Bundle?
     ) {
         when (destination.id) {
-            R.id.nav_my_appointment -> hideBottomNavigation()
+            R.id.nav_appointment -> hideBottomNavigation()
             R.id.nav_appointment_confirmed -> hideBottomNavigation()
             R.id.nav_dr_detail -> hideBottomNavigation()
             R.id.nav_dr_listing -> hideBottomNavigation()

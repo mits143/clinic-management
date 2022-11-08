@@ -74,7 +74,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="nav_categor_listing">
+                  <entry key="nav_category_listing">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -109,11 +109,6 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_nav_appointment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_nav_ask_a_doctor">
                               <value>
                                 <LayoutPositions />
@@ -125,6 +120,11 @@
                               </value>
                             </entry>
                             <entry key="action_nav_medicine">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_my_appointment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -160,6 +160,15 @@
                             <option name="y" value="852" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_appointment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -184,6 +193,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="nav_faq">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_home">
                     <value>
                       <LayoutPositions>
@@ -196,6 +217,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_nav_appointment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_category">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -295,6 +321,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_nav_ask_a_doctor">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_nav_home">
                               <value>
                                 <LayoutPositions />

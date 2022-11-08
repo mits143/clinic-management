@@ -6,65 +6,167 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.AppointmentAdapter
 import com.clinic.management.databinding.FragmentActiveBinding
 import com.clinic.management.model.appointmments.AppointmentData
+import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
 import com.clinic.management.util.Status
-import com.clinic.management.viewmodel.AppointmentViewModel
+import com.clinic.management.util.Utility
+import com.clinic.management.util.Utility.alertBox
+import com.clinic.management.viewmodel.ActiveAppointmentViewModel
 import com.kaopiz.kprogresshud.KProgressHUD
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter.OnClick {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentActiveBinding =
         FragmentActiveBinding::inflate
 
-    private val viewModel: AppointmentViewModel by viewModel()
+    private val viewModel: ActiveAppointmentViewModel by viewModel()
 
     private lateinit var hud: KProgressHUD
+    private var pos = 0
+    private var page = 1
+    private lateinit var adapter: AppointmentAdapter
+    private lateinit var scrollListener: RecyclerViewLoadMoreScroll
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            page = 1
+            binding.swipeRefresh.isRefreshing = false
+            viewModel.fetchActiveAppointmentData("Bearer " + prefs.accessToken, page.toString())
+        }
+
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+
+        setActiveAppointmentData()
     }
 
-    private fun setActiveAppointmentData(list: ArrayList<AppointmentData>) {
-        val adapter = AppointmentAdapter(arrayListOf(), this, true)
+    private fun setActiveAppointmentData() {
+        adapter = AppointmentAdapter(arrayListOf(), this, true)
         binding.rvAppointment.adapter = adapter
-        adapter.addData(list)
+
+        scrollListener = RecyclerViewLoadMoreScroll(binding.rvAppointment.layoutManager!!)
+        binding.rvAppointment.addOnScrollListener(scrollListener)
+        scrollListener.setOnLoadMoreListener {
+            page = page.plus(1)
+            viewModel.fetchActiveAppointmentData(
+                "Bearer " + prefs.accessToken,
+                page.toString()
+            )
+        }
     }
 
     private fun setObserver() {
-        viewModel.fetchActiveAppointmentData("Bearer " + prefs.accessToken, "1")
+        viewModel.fetchActiveAppointmentData("Bearer " + prefs.accessToken, page.toString())
         viewModel.getAppointmentData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        setActiveAppointmentData(it.data)
+            it.getContentIfNotHandled()?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
+                    }
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            if (scrollListener.loaded) {
+                                scrollListener.setLoaded()
+                            }
+                            if (page == 1) {
+                                adapter.addData(it.data)
+                            } else {
+                                adapter.loadMore(it.data)
+                            }
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java))
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+            }
+        }
+        viewModel.getAppointmenCanceltData.observe(this) {
+            it.getContentIfNotHandled()?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
+                    }
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            showToast(it["message"].asString)
+                            adapter.removeItem(pos)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
         }
     }
 
-    override fun itemClick(data: AppointmentData) {
+    override fun itemClick(data: AppointmentData, type: String, position: Int) {
+        pos = position
+        when (type) {
+            "CANCEL" -> {
+                alertBox(
+                    requireContext(),
+                    "Cancel Appointment",
+                    "Are you sure!\nDo you want to cancel this appointment?",
+                    object : Utility.alertClickListener {
+                        override fun clickListener() {
+                            viewModel.fetchCancelAppointmenData(
+                                "Bearer " + prefs.accessToken,
+                                data.id
+                            )
+                        }
+
+                    })
+            }
+            "RESCHEDULE" -> {
+                alertBox(
+                    requireContext(),
+                    "Reschedule Appointment",
+                    "Are you sure!\nDo you want to reschedule this appointment?",
+                    object : Utility.alertClickListener {
+                        override fun clickListener() {
+                            val action = ActiveFragmentDirections.actionNavAppointment(
+                                data.doctorId,
+                                data.id
+                            )
+                            findNavController().navigate(action)
+                        }
+                    })
+            }
+        }
     }
 
     private fun showProgress(show: Boolean) {
@@ -72,6 +174,6 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
             hud.show()
         else
             if (hud.isShowing)
-            hud.dismiss()
+                hud.dismiss()
     }
 }

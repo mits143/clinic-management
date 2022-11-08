@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.clinic.management.model.login.LoginResponse
 import com.clinic.management.repo.MainRepository
+import com.clinic.management.util.Event
 import com.clinic.management.util.NetworkHelper
 import com.clinic.management.util.Resource
 import com.google.gson.JsonObject
@@ -16,8 +17,8 @@ class LoginViewModel(
     private val networkHelper: NetworkHelper,
 ) : ViewModel() {
 
-    private val setLoginData = MutableLiveData<Resource<LoginResponse>>()
-    val getLoginData: LiveData<Resource<LoginResponse>>
+    private val setLoginData = MutableLiveData<Event<Resource<LoginResponse>>>()
+    val getLoginData: LiveData<Event<Resource<LoginResponse>>>
         get() = setLoginData
 
     fun login(
@@ -26,7 +27,7 @@ class LoginViewModel(
         password: String
     ) {
         viewModelScope.launch {
-            setLoginData.postValue(Resource.loading(null))
+            setLoginData.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 val jsonObject = JsonObject()
                 jsonObject.addProperty("username", username)
@@ -37,22 +38,26 @@ class LoginViewModel(
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.status!!) {
-                            setLoginData.postValue(Resource.success(it.body()))
+                            setLoginData.postValue(Event(Resource.success(it.body())))
                         } else {
                             setLoginData.postValue(
-                                Resource.error(
-                                    it.body()?.message!!, null
+                                Event(
+                                    Resource.error(
+                                        it.body()?.message!!, null
+                                    )
                                 )
                             )
                         }
                     } else setLoginData.postValue(
-                        Resource.error(
-                            it.message(),
-                            null
+                        Event(
+                            Resource.error(
+                                it.message(),
+                                null
+                            )
                         )
                     )
                 }
-            } else setLoginData.postValue(Resource.error("No internet connection", null))
+            } else setLoginData.postValue(Event(Resource.error("No internet connection", null)))
         }
     }
 }

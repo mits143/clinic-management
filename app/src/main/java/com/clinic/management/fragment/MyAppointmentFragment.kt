@@ -20,6 +20,10 @@ class MyAppointmentFragment : BaseFragment<FragmentMyAppointmentBinding>(),
     private lateinit var adapter: FragmentPagerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.imgMenu.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         adapter = FragmentPagerAdapter(
             childFragmentManager
         )
@@ -30,6 +34,7 @@ class MyAppointmentFragment : BaseFragment<FragmentMyAppointmentBinding>(),
         binding.rbTabGroup.setOnCheckedChangeListener(this)
         binding.viewPager.adapter = adapter
         binding.viewPager.addOnPageChangeListener(this)
+        binding.viewPager.offscreenPageLimit = 2
     }
 
     override fun onCheckedChanged(p0: RadioGroup?, checkedId: Int) {

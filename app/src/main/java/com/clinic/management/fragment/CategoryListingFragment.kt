@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
@@ -48,28 +49,30 @@ class CategoryListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             "73.8077"
         )
         viewModel.getCategoryData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        setSpecialistData(it.data)
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
-                    if (it.message == "Invalid authentication.") {
-                        requireActivity().startActivity(
-                            Intent(
-                                requireContext(),
-                                LoginActivity::class.java
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            setSpecialistData(it.data)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
                             )
-                        )
-                        requireActivity().finish()
-                        prefs.accessToken = ""
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
                     }
                 }
             }
@@ -77,8 +80,9 @@ class CategoryListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     }
 
     override fun itemClick(data: SpecialCategory) {
-//        val action = HomeFragmentDirections.actionNavDoctorDetail(data.id)
-//        findNavController().navigate(action)
+        val action =
+            CategoryListingFragmentDirections.actionNavDoctorListing(false, data.id)
+        findNavController().navigate(action)
     }
 
     private fun showProgress(show: Boolean) {

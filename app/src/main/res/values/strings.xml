@@ -67,4 +67,10 @@
     <string name="top_doctors_in_your_city">Top Doctors in your City</string>
     <string name="recent_reviews">Recent Reviews</string>
     <string name="showing_result_for">Showing result for</string>
+    <string name="faq">FAQ</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="my_result">My Result</string>
+    <string name="time">Time</string>
+    <string name="doctor_name">Doctor Name</string>
 </resources>

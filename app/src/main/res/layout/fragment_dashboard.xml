@@ -73,7 +73,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/teal_700"
@@ -211,7 +211,7 @@
                     </LinearLayout>
 
 
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
                 <FrameLayout
                     android:layout_width="match_parent"

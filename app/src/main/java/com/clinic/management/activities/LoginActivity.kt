@@ -54,21 +54,24 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun setObserver() {
         viewModel.getLoginData.observe(this) {
-            when (it.status) {
-                Status.LOADING -> {
-                    showProgress(true)
-                }
-                Status.SUCCESS -> {
-                    showProgress(false)
-                    it.data?.let {
-                        prefs.accessToken = it.data.token
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+            it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
                     }
-                }
-                Status.ERROR -> {
-                    showProgress(false)
-                    showToast(it.message!!)
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            prefs.accessToken = it.data.token
+                            prefs.userName = it.data.firstName
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                    }
                 }
             }
         }
@@ -79,6 +82,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             hud.show()
         else
             if (hud.isShowing)
-            hud.dismiss()
+                hud.dismiss()
     }
 }

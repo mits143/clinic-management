@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12ssp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/my_appointment"
+                android:text="@string/my_result"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintLeft_toRightOf="@+id/imgMenu"
