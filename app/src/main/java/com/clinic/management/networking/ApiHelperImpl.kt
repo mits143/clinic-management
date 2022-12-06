@@ -7,6 +7,7 @@ import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
 import com.clinic.management.model.doctor.DoctorDetailResponse
 import com.clinic.management.model.doctor.DoctorListingResponse
+import com.clinic.management.model.doctorResult.DoctorAppointmentResponse
 import com.clinic.management.model.home.HomeResponse
 import com.clinic.management.model.login.LoginResponse
 import com.clinic.management.model.medicine.MedicineDetailResponse
@@ -123,4 +124,10 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         jsonObject: JsonObject
     ): Response<MedicineDetailResponse> =
         apiService.medicine_detail(token, jsonObject)
+
+    override suspend fun appointment_detail(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<DoctorAppointmentResponse> =
+        apiService.appointment_detail(token, jsonObject)
 }

@@ -58,6 +58,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.nav_my_result -> hideBottomNavigation()
             R.id.nav_medicine -> hideBottomNavigation()
             R.id.nav_medicine_detail -> hideBottomNavigation()
+            R.id.nav_doctor -> hideBottomNavigation()
             else -> showBottomNavigationView()
         }
     }

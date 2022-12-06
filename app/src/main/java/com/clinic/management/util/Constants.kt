@@ -22,4 +22,5 @@ object Constants {
     const val RESCHDULE_APPOINTMENT = "ecom/reschdule_appointment"
     const val MEDICINE_LISTING = "ecom/medicine_listing"
     const val MEDICINE_DETAIL = "ecom/medicine_detail"
+    const val APPOINTMENT_DETAIL = "ecom/appointment_detail"
 }

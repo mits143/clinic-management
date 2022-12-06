@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
-import com.clinic.management.adapter.CancelAppointmentAdapter
 import com.clinic.management.adapter.CompletedAppointmentAdapter
 import com.clinic.management.databinding.FragmentActiveBinding
 import com.clinic.management.model.appointmments.CompleteAppointmentData
@@ -101,6 +101,10 @@ class CompletedFragment : BaseFragment<FragmentActiveBinding>(),
     }
 
     override fun itemClick(data: CompleteAppointmentData) {
+        val action = CompletedFragmentDirections.actionNavDoctorAppointment(
+            "9"
+        )
+        findNavController().navigate(action)
     }
 
     private fun showProgress(show: Boolean) {

@@ -63,7 +63,8 @@
             android:text="@string/doctor"
             android:textAllCaps="true"
             android:textColor="@color/radio_flat_text_selector"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/_10ssp"
+            android:visibility="gone" />
 
         <RadioButton
             android:id="@+id/rbCompleted"
@@ -71,8 +72,9 @@
             android:layout_height="@dimen/_35sdp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/radiobtn_bkg"
+            android:background="@drawable/radiobtn_bkg1"
             android:button="@null"
+            android:checked="true"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="@string/lab"

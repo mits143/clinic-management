@@ -127,20 +127,21 @@
                         android:gravity="center_vertical"
                         android:text="@string/doctor_result"
                         android:textColor="@color/text_color"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/nav_lab_result"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:drawableStart="@drawable/group_3429"
                         android:drawablePadding="@dimen/_8sdp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center_vertical"
                         android:text="@string/lab_result"
                         android:textColor="@color/text_color"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        app:drawableStartCompat="@drawable/group_3429" />
 
                     <TextView
                         android:id="@+id/nav_radiology_result"

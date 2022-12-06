@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.R
 import com.clinic.management.databinding.FragmentDashboardBinding
+import com.clinic.management.prefs
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
@@ -15,6 +16,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        binding.txtName.text = "Hello " + prefs.userName + ", Welcome to"
+
         binding.llAppointment.setOnClickListener {
             findNavController().navigate(R.id.action_nav_my_appointment)
         }

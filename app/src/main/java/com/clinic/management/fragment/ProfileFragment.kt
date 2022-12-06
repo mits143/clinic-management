@@ -26,16 +26,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.navAskDoctor.setOnClickListener {
             findNavController().navigate(R.id.action_nav_ask_a_doctor)
         }
-        binding.navDoctorResult.setOnClickListener {
+//        binding.navDoctorResult.setOnClickListener {
+//            val action = ProfileFragmentDirections.actionNavMyResult(0)
+//            findNavController().navigate(action)
+//        }
+        binding.navLabResult.setOnClickListener {
             val action = ProfileFragmentDirections.actionNavMyResult(0)
             findNavController().navigate(action)
         }
-        binding.navLabResult.setOnClickListener {
-            val action = ProfileFragmentDirections.actionNavMyResult(1)
-            findNavController().navigate(action)
-        }
         binding.navRadiologyResult.setOnClickListener {
-            val action = ProfileFragmentDirections.actionNavMyResult(2)
+            val action = ProfileFragmentDirections.actionNavMyResult(1)
             findNavController().navigate(action)
         }
         binding.navLogout.setOnClickListener {

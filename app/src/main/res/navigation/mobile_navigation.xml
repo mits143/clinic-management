@@ -77,12 +77,6 @@
         tools:layout="@layout/fragment_active" />
 
     <fragment
-        android:id="@+id/nav_completed"
-        android:name="com.clinic.management.fragment.CompletedFragment"
-        android:label="@string/appointment_completed"
-        tools:layout="@layout/fragment_active" />
-
-    <fragment
         android:id="@+id/nav_dashbaord"
         android:name="com.clinic.management.fragment.DashboardFragment"
         android:label="@string/dashboard"
@@ -93,9 +87,6 @@
         <action
             android:id="@+id/action_nav_ask_a_doctor"
             app:destination="@id/nav_faq" />
-        <action
-            android:id="@+id/action_nav_doctor_result"
-            app:destination="@id/nav_my_result" />
         <action
             android:id="@+id/action_nav_my_result"
             app:destination="@id/nav_my_result" />
@@ -129,7 +120,12 @@
         android:id="@+id/nav_doctor"
         android:name="com.clinic.management.fragment.DoctorFragment"
         android:label="@string/doctor"
-        tools:layout="@layout/fragment_active" />
+        tools:layout="@layout/fragment_doctor_result">
+        <argument
+            android:name="id"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_dr_listing"
@@ -225,6 +221,10 @@
             android:id="@+id/action_nav_appointment"
             app:destination="@id/nav_appointment" />
 
+        <action
+            android:id="@+id/action_nav_doctor_appointment"
+            app:destination="@id/nav_doctor" />
+
     </fragment>
 
     <fragment
@@ -268,5 +268,14 @@
         android:name="com.clinic.management.fragment.FaqFragment"
         android:label="@string/faq"
         tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/nav_completed"
+        android:name="com.clinic.management.fragment.CompletedFragment"
+        android:label="@string/appointment_completed"
+        tools:layout="@layout/fragment_active">
+        <action
+            android:id="@+id/action_nav_doctor_appointment"
+            app:destination="@id/nav_doctor" />
+    </fragment>
 
 </navigation>

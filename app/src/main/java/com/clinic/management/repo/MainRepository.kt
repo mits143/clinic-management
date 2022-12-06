@@ -76,4 +76,8 @@ class MainRepository(private val apiHelper: ApiHelper) {
     suspend fun medicine_detail(
         token: String, jsonObject: JsonObject
     ) = apiHelper.medicine_detail(token, jsonObject)
+
+    suspend fun appointment_detail(
+        token: String, jsonObject: JsonObject
+    ) = apiHelper.appointment_detail(token, jsonObject)
 }

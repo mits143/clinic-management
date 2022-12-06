@@ -14,8 +14,8 @@ data class Data(
     val gender: String,
     @SerializedName("id")
     val id: String,
-//    @SerializedName("logo")
-//    val logo: String,
+    @SerializedName("logo")
+    val logo: String,
     @SerializedName("phone")
     val phone: String,
     @SerializedName("token")

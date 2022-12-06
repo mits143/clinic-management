@@ -28,7 +28,7 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
         adapter = FragmentPagerAdapter(
             childFragmentManager
         )
-        adapter.add(DoctorFragment())
+//        adapter.add(DoctorFragment())
         adapter.add(LabFragment())
         adapter.add(RadiologyFragment())
         binding.viewPager.adapter = adapter
@@ -41,9 +41,9 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
 
     override fun onCheckedChanged(p0: RadioGroup?, checkedId: Int) {
         when (checkedId) {
-            R.id.rbActive -> binding.viewPager.currentItem = 0
-            R.id.rbCompleted -> binding.viewPager.currentItem = 1
-            R.id.rbCancelled -> binding.viewPager.currentItem = 2
+//            R.id.rbActive -> binding.viewPager.currentItem = 0
+            R.id.rbCompleted -> binding.viewPager.currentItem = 0
+            R.id.rbCancelled -> binding.viewPager.currentItem = 1
         }
     }
 
@@ -52,9 +52,9 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
 
     override fun onPageSelected(position: Int) {
         when (position) {
-            0 -> binding.rbActive.isChecked = true
-            1 -> binding.rbCompleted.isChecked = true
-            2 -> binding.rbCancelled.isChecked = true
+//            0 -> binding.rbActive.isChecked = true
+            0 -> binding.rbCompleted.isChecked = true
+            1 -> binding.rbCancelled.isChecked = true
         }
     }
 

@@ -73,4 +73,13 @@
     <string name="my_result">My Result</string>
     <string name="time">Time</string>
     <string name="doctor_name">Doctor Name</string>
+    <string name="diagonstics_from_doctor">Diagonstics From Doctor</string>
+    <string name="suggested_lab_from_doctor">Suggested Lab From Doctor</string>
+    <string name="suggested_radiology_from_doctor">Suggested Radiology From Doctor</string>
+    <string name="medicine_time">Medicine Time</string>
+    <string name="medicine_frequency">Medicine Frequency</string>
+    <string name="medicine_from_doctor">Medicine From Doctor</string>
+    <string name="upload_file">Upload File</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
