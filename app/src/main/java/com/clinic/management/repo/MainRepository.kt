@@ -2,6 +2,9 @@ package com.clinic.management.repo
 
 import com.clinic.management.networking.ApiHelper
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Response
 
 class MainRepository(private val apiHelper: ApiHelper) {
 
@@ -80,4 +83,30 @@ class MainRepository(private val apiHelper: ApiHelper) {
     suspend fun appointment_detail(
         token: String, jsonObject: JsonObject
     ) = apiHelper.appointment_detail(token, jsonObject)
+
+    suspend fun radiology_scan_result(
+        token: String, jsonObject: JsonObject
+    ) = apiHelper.radiology_scan_result(token, jsonObject)
+
+    suspend fun lab_result(
+        token: String, jsonObject: JsonObject
+    ) = apiHelper.lab_result(token, jsonObject)
+
+    suspend fun upload_radiology_result(
+        token: String,
+        appointment_id: RequestBody,
+        radiology_note: RequestBody,
+        radiology_lab_result: ArrayList<MultipartBody.Part>,
+    ): Response<JsonObject> = apiHelper.upload_radiology_result(
+        token, appointment_id, radiology_note, radiology_lab_result
+    )
+
+    suspend fun upload_pathology_result(
+        token: String,
+        appointment_id: RequestBody,
+        pathology_note: RequestBody,
+        pathology_lab_result: ArrayList<MultipartBody.Part>,
+    ): Response<JsonObject> = apiHelper.upload_radiology_result(
+        token, appointment_id, pathology_note, pathology_lab_result
+    )
 }

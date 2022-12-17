@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.HomeReviewsAdapter
@@ -48,6 +47,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
         }
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+
+        binding.txtLocation.setText(prefs.city)
     }
 
     private fun setDoctorData(list: ArrayList<SpecialistDoctor>) {
@@ -77,7 +78,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
 
     private fun setObserver() {
         viewModel.fetchHomeData(
-            "Bearer " + prefs.accessToken, "18.5074", "73.8077"
+            "Bearer " + prefs.accessToken, prefs.latitude!!, prefs.longitude!!,
         )
         viewModel.getHomeData.observe(this) {
             it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
@@ -118,7 +119,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             val action = HomeFragmentDirections.actionNavDoctorDetail(data.id)
             findNavController().navigate(action)
         } else {
-            val action = HomeFragmentDirections.actionNavAppointment(data.id, "0")
+            val action = HomeFragmentDirections.actionNavAppointment(
+                data.id,
+                data.docName,
+                data.degree,
+                data.specialization,
+                "0"
+            )
             findNavController().navigate(action)
         }
     }

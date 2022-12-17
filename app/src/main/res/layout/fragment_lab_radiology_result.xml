@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MedicineDetailFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/group_3344"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/doctor_result"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/imgMenu"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Irrigation BP - "
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/imgMenu"
+                app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Irrigation BP"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/txtResult1"
+                app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <!--        <com.google.android.material.card.MaterialCardView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:cardCornerRadius="@dimen/_10sdp"-->
+        <!--            app:cardElevation="@dimen/_8sdp"-->
+        <!--            app:cardUseCompatPadding="true"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/toolbar">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clDoctorInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/bkg"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/clInfo">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/nopath_copy2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Dr. Ruby Perrin"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtSpecialist1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Dr. Ruby Perrin"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/img"
+                    app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:rating="3"
+                    app:layout_constraintLeft_toRightOf="@+id/img"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSpecialist1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/bkg"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:background="@drawable/gradient"
+                    android:backgroundTint="@color/blue_dark"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="12\nMAY"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtSpecialist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Dr. Ruby Perrin"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtDate1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="12 May, 2022 "
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtDate"
+                    app:layout_constraintTop_toBottomOf="@+id/txtSpecialist" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/bkg"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/description_from_doctor"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtDocPres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Diagonstics From Doctor"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/gradient"
+                android:backgroundTint="@color/bkg"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/lab_result"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintLeft_toRightOf="@+id/txtDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMedicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_images" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <!--        </com.google.android.material.card.MaterialCardView>-->
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

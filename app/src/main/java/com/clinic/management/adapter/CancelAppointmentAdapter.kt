@@ -5,10 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.clinic.management.databinding.ItemActiveBinding
 import com.clinic.management.databinding.ItemCompletedBinding
+import com.clinic.management.model.appointmments.BookingInformation
 import com.clinic.management.model.appointmments.CancelAppointmentData
-import com.clinic.management.util.setDate
 
 class CancelAppointmentAdapter(
     private val dataList: ArrayList<CancelAppointmentData>,
@@ -28,7 +27,13 @@ class CancelAppointmentAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(dataList[position]) {
-                val adapter = SubCompletedAppointmentAdapter(this.bookingInformation, this.docSpecialization)
+                val adapter =
+                    SubCompletedAppointmentAdapter(this.bookingInformation, this.docSpecialization,
+                        object : SubCompletedAppointmentAdapter.OnClick {
+                            override fun itemClick(data: BookingInformation) {
+                            }
+
+                        })
                 binding.rvInfo.adapter = adapter
                 Glide.with(itemView.context).asBitmap().load(this.docImage).into(binding.img)
                 binding.txtName.text = this.docName

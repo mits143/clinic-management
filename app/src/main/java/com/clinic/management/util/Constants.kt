@@ -23,4 +23,8 @@ object Constants {
     const val MEDICINE_LISTING = "ecom/medicine_listing"
     const val MEDICINE_DETAIL = "ecom/medicine_detail"
     const val APPOINTMENT_DETAIL = "ecom/appointment_detail"
+    const val RADIOLOGY_SCAN_RESULT = "ecom/get_radiology_scan_result"
+    const val LAB_RESULT = "ecom/get_lab_result"
+    const val UPLOAD_RADIOLOGY_RESULT = "ecom/upload_radiology_result "
+    const val UPLOAD_PATHOLOGY_RESULT = "ecom/upload_pathology_result"
 }

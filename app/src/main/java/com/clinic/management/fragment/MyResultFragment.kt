@@ -28,7 +28,6 @@ class MyResultFragment : BaseFragment<FragmentMyResultBinding>(),
         adapter = FragmentPagerAdapter(
             childFragmentManager
         )
-//        adapter.add(DoctorFragment())
         adapter.add(LabFragment())
         adapter.add(RadiologyFragment())
         binding.viewPager.adapter = adapter

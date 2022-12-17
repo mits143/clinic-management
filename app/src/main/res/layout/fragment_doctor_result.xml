@@ -30,11 +30,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12ssp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="0.9% Sodium Chloride\nIrrigation BP"
+                android:text="@string/doctor_result"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintLeft_toRightOf="@+id/imgMenu"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Irrigation BP - "
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/imgMenu"
+                app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtResult2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5ssp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Irrigation BP"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintLeft_toRightOf="@+id/txtResult1"
+                app:layout_constraintTop_toBottomOf="@+id/txtResult" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -169,8 +193,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gradient"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/gradient"
                 android:backgroundTint="@color/bkg"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp">
@@ -218,6 +242,7 @@
                     tools:listitem="@layout/item_medicine_prescription" />
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvPathology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="@dimen/_10sdp">
@@ -254,29 +279,42 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/txtTitle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/poppins_medium"
                             android:text="Blood Lab"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_14ssp"
                             app:layout_constraintLeft_toRightOf="@+id/imgLogo"
+                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtDiagonstics" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/txtDesc"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="3"
                             android:text="Blood Lab"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_12ssp"
                             app:layout_constraintLeft_toRightOf="@+id/imgLogo"
+                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvPathologyImages"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+                            app:spanCount="4"
+                            tools:listitem="@layout/item_images" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnUploadFile"
@@ -290,13 +328,14 @@
                             android:textAllCaps="true"
                             android:textSize="@dimen/_10sdp"
                             app:cornerRadius="@dimen/_10sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+                            app:layout_constraintTop_toBottomOf="@+id/rvPathologyImages" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvRadiology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -335,7 +374,7 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/txtTitle1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_5sdp"
@@ -345,20 +384,22 @@
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_14ssp"
                             app:layout_constraintLeft_toRightOf="@+id/imgLogo1"
+                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtRaidology" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/txtDesc1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:maxLines="2"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="3"
                             android:text="Blood Lab"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_12ssp"
                             app:layout_constraintLeft_toRightOf="@+id/imgLogo1"
+                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtTitle1" />
 
                         <com.google.android.material.button.MaterialButton

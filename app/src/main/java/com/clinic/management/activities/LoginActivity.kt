@@ -64,6 +64,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         it.data?.let {
                             prefs.accessToken = it.data.token
                             prefs.userName = it.data.firstName
+                            prefs.userImage = it.data.logo
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()
                         }

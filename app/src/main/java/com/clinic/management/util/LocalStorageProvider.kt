@@ -1,12 +1,14 @@
 package com.alhanpos.store.util
 
 import android.R
+import android.app.Activity
 import android.content.res.AssetFileDescriptor
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Point
+import android.net.Uri
 import android.os.Build
 import android.os.CancellationSignal
 import android.os.Environment
@@ -16,6 +18,10 @@ import android.provider.DocumentsProvider
 import android.util.Log
 import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream

@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
-import com.clinic.management.adapter.AppointmentAdapter
 import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
 import com.clinic.management.databinding.FragmentDoctorListingBinding
 import com.clinic.management.model.home.SpecialistDoctor
@@ -38,6 +37,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
 
+        binding.txtLocation.setText(prefs.city)
+
         binding.swipeRefresh.setOnRefreshListener {
             page = 1
             binding.swipeRefresh.isRefreshing = false
@@ -47,16 +48,14 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                         resources.getString(R.string.top_doctors_in_your_city)
                     viewModel.fetchTopDoctorData(
                         "Bearer " + prefs.accessToken,
-                        "18.5074",
-                        "73.8077",
+                        prefs.latitude!!, prefs.longitude!!,
                         page.toString()
                     )
                 } else {
                     binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                     viewModel.fetchDoctorData(
                         "Bearer " + prefs.accessToken,
-                        "18.5074",
-                        "73.8077",
+                        prefs.latitude!!, prefs.longitude!!,
                         page.toString()
                     )
                 }
@@ -64,9 +63,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                 viewModel.fetchCategoryDoctorData(
                     "Bearer " + prefs.accessToken,
-                    args.categoryID.toString(),
-                    "18.5074",
-                    "73.8077",
+                    args.categoryID,
+                    prefs.latitude!!, prefs.longitude!!,
                     page.toString()
                 )
 
@@ -93,16 +91,14 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                         resources.getString(R.string.top_doctors_in_your_city)
                     viewModel.fetchTopDoctorData(
                         "Bearer " + prefs.accessToken,
-                        "18.5074",
-                        "73.8077",
+                        prefs.latitude!!, prefs.longitude!!,
                         page.toString()
                     )
                 } else {
                     binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                     viewModel.fetchDoctorData(
                         "Bearer " + prefs.accessToken,
-                        "18.5074",
-                        "73.8077",
+                        prefs.latitude!!, prefs.longitude!!,
                         page.toString()
                     )
                 }
@@ -110,9 +106,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                 viewModel.fetchCategoryDoctorData(
                     "Bearer " + prefs.accessToken,
-                    args.categoryID.toString(),
-                    "18.5074",
-                    "73.8077",
+                    args.categoryID,
+                    prefs.latitude!!, prefs.longitude!!,
                     page.toString()
                 )
             }
@@ -126,16 +121,14 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                     resources.getString(R.string.top_doctors_in_your_city)
                 viewModel.fetchTopDoctorData(
                     "Bearer " + prefs.accessToken,
-                    "18.5074",
-                    "73.8077",
+                    prefs.latitude!!, prefs.longitude!!,
                     page.toString()
                 )
             } else {
                 binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                 viewModel.fetchDoctorData(
                     "Bearer " + prefs.accessToken,
-                    "18.5074",
-                    "73.8077",
+                    prefs.latitude!!, prefs.longitude!!,
                     page.toString()
                 )
             }
@@ -143,9 +136,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
             viewModel.fetchCategoryDoctorData(
                 "Bearer " + prefs.accessToken,
-                args.categoryID.toString(),
-                "18.5074",
-                "73.8077",
+                args.categoryID,
+                prefs.latitude!!, prefs.longitude!!,
                 page.toString()
             )
         }
@@ -192,7 +184,13 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             val action = DoctorListingFragmentDirections.actionNavDoctorDetail(data.id)
             findNavController().navigate(action)
         } else {
-            val action = DoctorListingFragmentDirections.actionNavAppointment(data.id, "0")
+            val action = DoctorListingFragmentDirections.actionNavAppointment(
+                data.id,
+                data.docName,
+                data.degree,
+                data.specialization,
+                "0"
+            )
             findNavController().navigate(action)
         }
     }

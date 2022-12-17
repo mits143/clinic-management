@@ -5,10 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.clinic.management.databinding.ItemActiveBinding
 import com.clinic.management.databinding.ItemCompletedBinding
+import com.clinic.management.model.appointmments.BookingInformation
 import com.clinic.management.model.appointmments.CompleteAppointmentData
-import com.clinic.management.util.setDate
 
 class CompletedAppointmentAdapter(
     private val dataList: ArrayList<CompleteAppointmentData>,
@@ -28,7 +27,14 @@ class CompletedAppointmentAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(dataList[position]) {
-                val adapter = SubCompletedAppointmentAdapter(this.bookingInformation, this.docSpecialization)
+                val adapter =
+                    SubCompletedAppointmentAdapter(this.bookingInformation, this.docSpecialization,
+                        object : SubCompletedAppointmentAdapter.OnClick {
+                            override fun itemClick(data: BookingInformation) {
+                                onClick.itemChildClick(data)
+                            }
+
+                        })
                 binding.rvInfo.adapter = adapter
                 Glide.with(itemView.context).asBitmap().load(this.docImage).into(binding.img)
                 binding.txtName.text = this.docName
@@ -66,5 +72,6 @@ class CompletedAppointmentAdapter(
 
     interface OnClick {
         fun itemClick(data: CompleteAppointmentData)
+        fun itemChildClick(data: BookingInformation)
     }
 }

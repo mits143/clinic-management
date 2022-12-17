@@ -9,9 +9,11 @@ import com.clinic.management.model.doctor.DoctorDetailResponse
 import com.clinic.management.model.doctor.DoctorListingResponse
 import com.clinic.management.model.doctorResult.DoctorAppointmentResponse
 import com.clinic.management.model.home.HomeResponse
+import com.clinic.management.model.lab.LabResultResponse
 import com.clinic.management.model.login.LoginResponse
 import com.clinic.management.model.medicine.MedicineDetailResponse
 import com.clinic.management.model.medicine.MedicineResponse
+import com.clinic.management.model.radiology.RadiologyResultResponse
 import com.clinic.management.util.Constants.ACTIVE_APPOINTMENT
 import com.clinic.management.util.Constants.APPOINTMENT_DETAIL
 import com.clinic.management.util.Constants.BOOK_APPOINTMENT
@@ -24,18 +26,22 @@ import com.clinic.management.util.Constants.COMPLETED_APPOINTMENT
 import com.clinic.management.util.Constants.DOCTOR_DETAIL
 import com.clinic.management.util.Constants.GET_PAGES
 import com.clinic.management.util.Constants.HOME_PAGE
+import com.clinic.management.util.Constants.LAB_RESULT
 import com.clinic.management.util.Constants.LOGIN
 import com.clinic.management.util.Constants.MEDICINE_DETAIL
 import com.clinic.management.util.Constants.MEDICINE_LISTING
+import com.clinic.management.util.Constants.RADIOLOGY_SCAN_RESULT
 import com.clinic.management.util.Constants.REGISTER
 import com.clinic.management.util.Constants.RESCHDULE_APPOINTMENT
 import com.clinic.management.util.Constants.SPECIALIST_DOCTOR_VIEW_ALL
 import com.clinic.management.util.Constants.TOP_DOCTOR_VIEW_ALL
+import com.clinic.management.util.Constants.UPLOAD_PATHOLOGY_RESULT
+import com.clinic.management.util.Constants.UPLOAD_RADIOLOGY_RESULT
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -133,4 +139,32 @@ interface ApiService {
     suspend fun appointment_detail(
         @Header("token") token: String, @Body jsonObject: JsonObject
     ): Response<DoctorAppointmentResponse>
+
+    @POST(RADIOLOGY_SCAN_RESULT)
+    suspend fun radiology_scan_result(
+        @Header("token") token: String, @Body jsonObject: JsonObject
+    ): Response<RadiologyResultResponse>
+
+    @POST(LAB_RESULT)
+    suspend fun lab_result(
+        @Header("token") token: String, @Body jsonObject: JsonObject
+    ): Response<LabResultResponse>
+
+    @Multipart
+    @POST(UPLOAD_RADIOLOGY_RESULT)
+    suspend fun upload_radiology_result(
+        @Header("token") token: String,
+        @Part("appointment_id") appointment_id: RequestBody,
+        @Part("pathology_note") pathology_note: RequestBody,
+        @Part file: ArrayList<MultipartBody.Part>
+    ): Response<JsonObject>
+
+    @Multipart
+    @POST(UPLOAD_PATHOLOGY_RESULT)
+    suspend fun upload_pathology_result(
+        @Header("token") token: String,
+        @Part("appointment_id") appointment_id: RequestBody,
+        @Part("pathology_note") pathology_note: RequestBody,
+        @Part file: ArrayList<MultipartBody.Part>
+    ): Response<JsonObject>
 }

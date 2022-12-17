@@ -3,17 +3,20 @@ package com.clinic.management.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
 import androidx.lifecycle.lifecycleScope
-import com.clinic.management.R
+import com.clinic.management.databinding.ActivitySplashBinding
 import com.clinic.management.prefs
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
+
+    override val bindingInflater: (LayoutInflater) -> ActivitySplashBinding =
+        ActivitySplashBinding::inflate
+
+
+    override fun onViewBindingCreated(savedInstanceState: Bundle?) {
         lifecycleScope.launch {
             delay(2000)
             moveToNextScreen()

@@ -25,6 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
+
 abstract class BaseFragment<B : ViewBinding> : DialogFragment(), CoroutineScope by CoroutineScope(
     Dispatchers.Main
 ) {
@@ -36,6 +37,7 @@ abstract class BaseFragment<B : ViewBinding> : DialogFragment(), CoroutineScope 
         private set
 
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> B
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

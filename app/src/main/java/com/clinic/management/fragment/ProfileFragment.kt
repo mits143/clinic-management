@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.databinding.FragmentProfileBinding
@@ -17,6 +18,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         FragmentProfileBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Glide.with(requireContext()).asBitmap().load(prefs.userImage)
+            .placeholder(R.drawable.group_3415).into(binding.image)
+        binding.txtUsername.text = prefs.userName
         binding.navHome.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home)
         }

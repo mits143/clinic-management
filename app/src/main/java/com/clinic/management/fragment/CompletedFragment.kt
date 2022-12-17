@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.CompletedAppointmentAdapter
 import com.clinic.management.databinding.FragmentActiveBinding
+import com.clinic.management.model.appointmments.BookingInformation
 import com.clinic.management.model.appointmments.CompleteAppointmentData
 import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
@@ -101,8 +102,11 @@ class CompletedFragment : BaseFragment<FragmentActiveBinding>(),
     }
 
     override fun itemClick(data: CompleteAppointmentData) {
+    }
+
+    override fun itemChildClick(data: BookingInformation) {
         val action = CompletedFragmentDirections.actionNavDoctorAppointment(
-            "9"
+            data.id
         )
         findNavController().navigate(action)
     }

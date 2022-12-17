@@ -42,6 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="@null"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Zamalek, Cairo Governorate"
                 android:textColor="@color/grey_dark"

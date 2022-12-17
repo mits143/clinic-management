@@ -93,6 +93,35 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/llHome"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingVertical="@dimen/_20sdp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_65sdp"
+                                    android:layout_height="@dimen/_65sdp"
+                                    android:src="@drawable/group_3425" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/home"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12ssp" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="@dimen/_2sdp"
+                                android:layout_height="match_parent"
+                                android:background="@color/bkg1" />
+
+                            <LinearLayout
                                 android:id="@+id/llAppointment"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -112,6 +141,41 @@
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/appointment"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12ssp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:background="@color/bkg1" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/llMyResult"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:paddingVertical="@dimen/_20sdp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/_65sdp"
+                                    android:layout_height="@dimen/_65sdp"
+                                    android:src="@drawable/group_3395" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:text="@string/my_result"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_12ssp" />
                             </LinearLayout>
@@ -141,70 +205,6 @@
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:text="@string/ask_a_doctor"
-                                    android:textColor="@color/white"
-                                    android:textSize="@dimen/_12ssp" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_2sdp"
-                            android:background="@color/bkg1" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/llDoctorResult"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
-
-                                <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
-                                    android:src="@drawable/group_3395" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/doctor_result"
-                                    android:textColor="@color/white"
-                                    android:textSize="@dimen/_12ssp" />
-                            </LinearLayout>
-
-                            <View
-                                android:layout_width="@dimen/_2sdp"
-                                android:layout_height="match_parent"
-                                android:background="@color/bkg1" />
-
-                            <LinearLayout
-                                android:id="@+id/llLabResult"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
-
-                                <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
-                                    android:src="@drawable/group_3396" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:text="@string/lab_result"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_12ssp" />
                             </LinearLayout>

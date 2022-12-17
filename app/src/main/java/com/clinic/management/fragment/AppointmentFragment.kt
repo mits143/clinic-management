@@ -53,6 +53,9 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
         setObserver()
         setUpAdapter()
         setUpCalendar()
+        binding.txtResult.text = args.doctorName
+        binding.txtLocation.setText(args.doctorSpecialist)
+        binding.txtspecialist.setText(args.doctorSpecialist1)
         binding.rbMorning.setOnCheckedChangeListener { group, checkedId ->
             val radioButton = view.findViewById<RadioButton>(checkedId)
             if (radioButton != null && radioButton.isChecked) {
@@ -202,6 +205,8 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>() {
                                         date,
                                         time,
                                         it["doc_name"].asString,
+                                        args.doctorSpecialist,
+                                        args.doctorSpecialist1,
                                         it["doc_address"].asString
                                     )
                                 findNavController().navigate(action)

@@ -50,4 +50,7 @@ val viewModelModule = module {
     viewModel {
         DoctorAppointmentViewModel(get(), get())
     }
+    viewModel {
+        Lab_RadiologyViewModel(get(), get())
+    }
 }

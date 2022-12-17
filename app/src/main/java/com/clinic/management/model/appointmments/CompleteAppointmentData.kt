@@ -15,7 +15,5 @@ data class CompleteAppointmentData(
     @SerializedName("doc_specialization")
     val docSpecialization: String,
     @SerializedName("doctor_id")
-    val doctorId: String,
-    @SerializedName("id")
-    val id: String = "9"
+    val doctorId: String
 )

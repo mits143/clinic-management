@@ -9,7 +9,8 @@ import com.clinic.management.util.setDate
 
 class SubCompletedAppointmentAdapter(
     private val dataList: ArrayList<BookingInformation>,
-    private var doc_specialization: String
+    private var doc_specialization: String,
+    private var onclick: OnClick
 ) : RecyclerView.Adapter<SubCompletedAppointmentAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemSubActiveBinding) :
@@ -25,10 +26,13 @@ class SubCompletedAppointmentAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(dataList[position]) {
-                val adapter =
-                    binding.txtDate.setDate(this.appointmentDate).toString()
+                binding.txtDate.setDate(this.appointmentDate).toString()
                 binding.txtSpecialist.text = doc_specialization
                 binding.txtDate1.text = this.appointmentDate
+
+                itemView.setOnClickListener {
+                    onclick.itemClick(this)
+                }
             }
         }
     }
@@ -47,5 +51,9 @@ class SubCompletedAppointmentAdapter(
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
+    }
+
+    interface OnClick {
+        fun itemClick(data: BookingInformation)
     }
 }

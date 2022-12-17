@@ -50,7 +50,8 @@
             android:fontFamily="@font/poppins_medium"
             android:text="@string/title"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtTitle"
@@ -62,7 +63,8 @@
             android:hint="@string/title"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
@@ -70,7 +72,7 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@string/description"
+            android:text="@string/notes"
             android:textColor="@color/text_color"
             android:textSize="@dimen/_12ssp" />
 
@@ -81,7 +83,8 @@
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:background="@drawable/border"
             android:fontFamily="@font/poppins_medium"
-            android:hint="@string/description"
+            android:gravity="start"
+            android:hint="@string/notes"
             android:padding="@dimen/_10sdp"
             android:textColor="@color/text_color"
             android:textSize="@dimen/_12ssp" />

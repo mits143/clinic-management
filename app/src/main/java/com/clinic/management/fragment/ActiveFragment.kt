@@ -160,6 +160,9 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
                         override fun clickListener() {
                             val action = ActiveFragmentDirections.actionNavAppointment(
                                 data.doctorId,
+                                data.docName,
+                                "",
+                                "",
                                 data.id
                             )
                             findNavController().navigate(action)

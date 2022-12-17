@@ -7,5 +7,7 @@ data class BookingInformation(
     @SerializedName("appointment_date")
     val appointmentDate: String,
     @SerializedName("appointment_time")
-    val appointmentTime: String
+    val appointmentTime: String,
+    @SerializedName("id")
+    val id: String
 )

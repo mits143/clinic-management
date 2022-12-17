@@ -80,4 +80,5 @@ dependencies {
 
     //Dexter
     implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 }

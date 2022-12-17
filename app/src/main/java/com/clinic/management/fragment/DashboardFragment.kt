@@ -19,19 +19,18 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
         binding.txtName.text = "Hello " + prefs.userName + ", Welcome to"
 
+        binding.llHome.setOnClickListener {
+            val action = DashboardFragmentDirections.actionNavHome()
+            findNavController().navigate(action)
+        }
         binding.llAppointment.setOnClickListener {
             findNavController().navigate(R.id.action_nav_my_appointment)
         }
         binding.llAskDoctor.setOnClickListener {
             findNavController().navigate(R.id.action_nav_ask_a_doctor)
         }
-        binding.llDoctorResult.setOnClickListener {
+        binding.llMyResult.setOnClickListener {
             val action = DashboardFragmentDirections.actionNavMyResult(0)
-            findNavController().navigate(action)
-
-        }
-        binding.llLabResult.setOnClickListener {
-            val action = DashboardFragmentDirections.actionNavMyResult(1)
             findNavController().navigate(action)
 
         }

@@ -32,6 +32,9 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
+
+        binding.txtLocation.setText(prefs.city)
+
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
         binding.imgMenu.setOnClickListener {
@@ -60,14 +63,20 @@ class DoctorDetailFragment : BaseFragment<FragmentDoctorDetailBinding>() {
             binding.txtEducation.text = Html.fromHtml(data.educationInformation);
 
         binding.btnViewAllSpecialist.setOnClickListener {
-            val action = DoctorDetailFragmentDirections.actionNavAppointment(data.id, "0")
+            val action = DoctorDetailFragmentDirections.actionNavAppointment(
+                data.id,
+                data.docName,
+                data.degree,
+                data.specialization,
+                "0"
+            )
             findNavController().navigate(action)
         }
     }
 
     private fun setObserver() {
         viewModel.fetchDoctorDetailData(
-            "Bearer " + prefs.accessToken, "18.5074", "73.8077", args.doctorId
+            "Bearer " + prefs.accessToken, prefs.latitude!!, prefs.longitude!!, args.doctorId
         )
         viewModel.getDoctorDetailData.observe(this) {
             it.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled

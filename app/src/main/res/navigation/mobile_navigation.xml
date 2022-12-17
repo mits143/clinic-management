@@ -44,6 +44,16 @@
             app:argType="string" />
 
         <argument
+            android:name="doctor_degree"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="doctor_specialization"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
             android:name="address"
             android:defaultValue=""
             app:argType="string" />
@@ -61,6 +71,21 @@
 
         <argument
             android:name="doctor_id"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="doctor_name"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="doctor_specialist"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="doctor_specialist1"
             android:defaultValue=""
             app:argType="string" />
 
@@ -93,6 +118,9 @@
         <action
             android:id="@+id/action_nav_medicine"
             app:destination="@id/nav_medicine" />
+        <action
+            android:id="@+id/action_nav_home"
+            app:destination="@id/nav_home" />
 
         <argument
             android:name="currentItem"
@@ -118,7 +146,7 @@
 
     <fragment
         android:id="@+id/nav_doctor"
-        android:name="com.clinic.management.fragment.DoctorFragment"
+        android:name="com.clinic.management.fragment.DoctorResultFragment"
         android:label="@string/doctor"
         tools:layout="@layout/fragment_doctor_result">
         <argument
@@ -186,7 +214,11 @@
         android:id="@+id/nav_lab"
         android:name="com.clinic.management.fragment.LabFragment"
         android:label="@string/lab"
-        tools:layout="@layout/fragment_active" />
+        tools:layout="@layout/fragment_active">
+        <action
+            android:id="@+id/action_nav_lab_radiology_result"
+            app:destination="@id/nav_lab_radio_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_medicine_detail"
@@ -232,6 +264,9 @@
         android:name="com.clinic.management.fragment.MyResultFragment"
         android:label="@string/result"
         tools:layout="@layout/fragment_my_result">
+        <action
+            android:id="@+id/action_nav_lab_radiology_result"
+            app:destination="@id/nav_lab_radio_result" />
         <argument
             android:name="currentItem"
             android:defaultValue="0"
@@ -261,7 +296,12 @@
         android:id="@+id/nav_radiology"
         android:name="com.clinic.management.fragment.RadiologyFragment"
         android:label="@string/radiology"
-        tools:layout="@layout/fragment_active" />
+        tools:layout="@layout/fragment_active">
+
+        <action
+            android:id="@+id/action_nav_lab_radiology_result"
+            app:destination="@id/nav_lab_radio_result" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_faq"
@@ -276,6 +316,30 @@
         <action
             android:id="@+id/action_nav_doctor_appointment"
             app:destination="@id/nav_doctor" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_lab_radio_result"
+        android:name="com.clinic.management.fragment.LabRadiologyResultFragment"
+        android:label="@string/appointment_completed"
+        tools:layout="@layout/fragment_lab_radiology_result">
+
+        <argument
+            android:name="type"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+        <argument
+            android:name="lab_data"
+            android:defaultValue="@null"
+            app:argType="com.clinic.management.model.lab.BookingInformation"
+            app:nullable="true" />
+
+        <argument
+            android:name="radiology_data"
+            android:defaultValue="@null"
+            app:argType="com.clinic.management.model.radiology.BookingInformation"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

@@ -9,10 +9,14 @@ import com.clinic.management.model.doctor.DoctorDetailResponse
 import com.clinic.management.model.doctor.DoctorListingResponse
 import com.clinic.management.model.doctorResult.DoctorAppointmentResponse
 import com.clinic.management.model.home.HomeResponse
+import com.clinic.management.model.lab.LabResultResponse
 import com.clinic.management.model.login.LoginResponse
 import com.clinic.management.model.medicine.MedicineDetailResponse
 import com.clinic.management.model.medicine.MedicineResponse
+import com.clinic.management.model.radiology.RadiologyResultResponse
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 interface ApiHelper {
@@ -111,4 +115,28 @@ interface ApiHelper {
         token: String,
         jsonObject: JsonObject
     ): Response<DoctorAppointmentResponse>
+
+    suspend fun radiology_scan_result(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<RadiologyResultResponse>
+
+    suspend fun lab_result(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<LabResultResponse>
+
+    suspend fun upload_radiology_result(
+        token: String,
+        appointment_id: RequestBody,
+        radiology_note: RequestBody,
+        radiology_lab_result: ArrayList<MultipartBody.Part>,
+    ): Response<JsonObject>
+
+    suspend fun upload_pathology_result(
+        token: String,
+        appointment_id: RequestBody,
+        pathology_note: RequestBody,
+        pathology_lab_result: ArrayList<MultipartBody.Part>,
+    ): Response<JsonObject>
 }

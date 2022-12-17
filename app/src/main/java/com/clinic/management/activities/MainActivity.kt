@@ -54,11 +54,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.nav_appointment -> hideBottomNavigation()
             R.id.nav_appointment_confirmed -> hideBottomNavigation()
             R.id.nav_dr_detail -> hideBottomNavigation()
-            R.id.nav_dr_listing -> hideBottomNavigation()
+//            R.id.nav_dr_listing -> hideBottomNavigation()
             R.id.nav_my_result -> hideBottomNavigation()
             R.id.nav_medicine -> hideBottomNavigation()
             R.id.nav_medicine_detail -> hideBottomNavigation()
             R.id.nav_doctor -> hideBottomNavigation()
+            R.id.nav_dashbaord -> hideBottomNavigation()
+            R.id.nav_faq -> hideBottomNavigation()
+            R.id.nav_doctor_result -> hideBottomNavigation()
+            R.id.nav_lab_radio_result -> hideBottomNavigation()
             else -> showBottomNavigationView()
         }
     }

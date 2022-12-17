@@ -15,9 +15,7 @@ class MyCustomDialog(onbuttonClick: onButtonClick) : DialogFragment() {
     var onClick = onbuttonClick
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         dialog?.window?.setBackgroundDrawableResource(R.drawable.gradient1);
         binding = DialogUploadFileBinding.inflate(inflater, container, false);
@@ -28,8 +26,7 @@ class MyCustomDialog(onbuttonClick: onButtonClick) : DialogFragment() {
         super.onStart()
         val width = (resources.displayMetrics.widthPixels * 0.90).toInt()
         dialog?.window?.setLayout(
-            width,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+            width, ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog!!.setCancelable(false)
         dialog?.setCanceledOnTouchOutside(false)
@@ -38,6 +35,8 @@ class MyCustomDialog(onbuttonClick: onButtonClick) : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imgClose.setOnClickListener {
+            binding.edtTitle.setText("")
+            binding.edtTitle.setText("")
             onClick.onClose()
             dialog?.cancel()
         }
@@ -46,9 +45,10 @@ class MyCustomDialog(onbuttonClick: onButtonClick) : DialogFragment() {
         }
         binding.btnUploadFile.setOnClickListener {
             onClick.onClickUploadFile(
-                binding.edtTitle.text.toString().trim(),
-                binding.edtDesc.text.toString().trim()
+                binding.edtTitle.text.toString().trim(), binding.edtDesc.text.toString().trim()
             )
+            binding.edtTitle.setText("")
+            binding.edtTitle.setText("")
             dialog?.cancel()
         }
     }

@@ -25,6 +25,8 @@ class AppointmentConfirmedFragment : BaseFragment<FragmentAppointmentConfirmedBi
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+        binding.txtLocation.setText(args.doctorName)
+        binding.txtspecialist.setText(args.doctorDegree + "-" + args.doctorSpecialization)
         binding.txtAppointment.text = prefs.userName + ", we've got you\nconfirmed appointment"
         binding.txtTime.text = args.time
         binding.txtDrName.text = args.doctorName
