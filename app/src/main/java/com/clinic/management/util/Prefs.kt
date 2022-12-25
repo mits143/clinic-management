@@ -27,7 +27,7 @@ class Prefs(context: Context) {
         set(value) = preferences.edit().putString(USERIMAGE, value).apply()
 
     var city: String?
-        get() = preferences.getString(CITY, "")
+        get() = preferences.getString(CITY, "Select Location")
         set(value) = preferences.edit().putString(CITY, value).apply()
 
     var latitude: String?

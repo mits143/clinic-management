@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/_10sdp"
@@ -24,54 +23,55 @@
             android:id="@+id/btnViews"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_minus2sdp"
             android:backgroundTint="@color/yellow"
             android:drawableEnd="@drawable/ic_star_border_24pxstarwt"
             android:fontFamily="@font/poppins_semibold"
             android:paddingHorizontal="@dimen/_10sdp"
+            android:text="3"
             android:textAllCaps="true"
-            android:layout_marginTop="@dimen/_minus2sdp"
             android:textSize="@dimen/_10sdp"
             app:cornerRadius="@dimen/_20sdp"
             app:iconPadding="@dimen/_minus5sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="3" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
             android:fontFamily="@font/poppins_medium"
+            android:text="Dr. Ruby Perrin"
             android:textColor="@color/text_color"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintLeft_toRightOf="@+id/img"
             app:layout_constraintRight_toLeftOf="@+id/btnViews"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Dr. Ruby Perrin" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txtSpecialist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="2"
+            android:text="Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. "
             android:textColor="@color/grey_dark"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintLeft_toRightOf="@+id/img"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            android:text="Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. " />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
-<!--        <View-->
-<!--            android:id="@+id/divider"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/_1sdp"-->
-<!--            android:layout_marginTop="@dimen/_10sdp"-->
-<!--            android:background="@drawable/dotted"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/img" />-->
+        <!--        <View-->
+        <!--            android:id="@+id/divider"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="@dimen/_1sdp"-->
+        <!--            android:layout_marginTop="@dimen/_10sdp"-->
+        <!--            android:background="@drawable/dotted"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/img" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

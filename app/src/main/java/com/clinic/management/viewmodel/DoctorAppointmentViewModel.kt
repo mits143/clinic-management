@@ -23,13 +23,13 @@ class DoctorAppointmentViewModel(
     val getAppointmentData: LiveData<Event<Resource<DoctorAppointmentResponse>>>
         get() = setAppointmentData
 
-    private val setUploadPathology = MutableLiveData<Event<Resource<JsonObject>>>()
-    val getUploadPathologyData: LiveData<Event<Resource<JsonObject>>>
-        get() = setUploadPathology
+    private val setUpload = MutableLiveData<Event<Resource<JsonObject>>>()
+    val getUpload: LiveData<Event<Resource<JsonObject>>>
+        get() = setUpload
 
-    private val setUploadRadiology = MutableLiveData<Event<Resource<JsonObject>>>()
-    val getUploadRadiologyData: LiveData<Event<Resource<JsonObject>>>
-        get() = setUploadRadiology
+    private val setRateDoctor = MutableLiveData<Event<Resource<JsonObject>>>()
+    val getRateDoctor: LiveData<Event<Resource<JsonObject>>>
+        get() = setRateDoctor
 
     fun fetchAppointmentData(
         token: String, appointment_id: String
@@ -79,16 +79,16 @@ class DoctorAppointmentViewModel(
         radiology_lab_result: ArrayList<MultipartBody.Part>,
     ) {
         viewModelScope.launch {
-            setUploadRadiology.postValue(Event(Resource.loading(null)))
+            setUpload.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 mainRepository.upload_radiology_result(
                     token, appointment_id, radiology_note, radiology_lab_result
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.get("status")?.asBoolean!!) {
-                            setUploadRadiology.postValue(Event(Resource.success(it.body())))
+                            setUpload.postValue(Event(Resource.success(it.body())))
                         } else {
-                            setUploadRadiology.postValue(
+                            setUpload.postValue(
                                 Event(
                                     Resource.error(
                                         it.body()?.get("message")?.asString!!, null
@@ -96,7 +96,7 @@ class DoctorAppointmentViewModel(
                                 )
                             )
                         }
-                    } else setUploadRadiology.postValue(
+                    } else setUpload.postValue(
                         Event(
                             Resource.error(
                                 it.message(), null
@@ -104,7 +104,7 @@ class DoctorAppointmentViewModel(
                         )
                     )
                 }
-            } else setUploadRadiology.postValue(
+            } else setUpload.postValue(
                 Event(
                     Resource.error(
                         "No internet connection", null
@@ -121,16 +121,16 @@ class DoctorAppointmentViewModel(
         pathology_lab_result: ArrayList<MultipartBody.Part>,
     ) {
         viewModelScope.launch {
-            setUploadPathology.postValue(Event(Resource.loading(null)))
+            setUpload.postValue(Event(Resource.loading(null)))
             if (networkHelper.isNetworkConnected()) {
                 mainRepository.upload_pathology_result(
                     token, appointment_id, pathology_note, pathology_lab_result
                 ).let {
                     if (it.isSuccessful) {
                         if (it.body()?.get("status")?.asBoolean!!) {
-                            setUploadPathology.postValue(Event(Resource.success(it.body())))
+                            setUpload.postValue(Event(Resource.success(it.body())))
                         } else {
-                            setUploadPathology.postValue(
+                            setUpload.postValue(
                                 Event(
                                     Resource.error(
                                         it.body()?.get("message")?.asString!!, null
@@ -138,7 +138,7 @@ class DoctorAppointmentViewModel(
                                 )
                             )
                         }
-                    } else setUploadPathology.postValue(
+                    } else setUpload.postValue(
                         Event(
                             Resource.error(
                                 it.message(), null
@@ -146,7 +146,53 @@ class DoctorAppointmentViewModel(
                         )
                     )
                 }
-            } else setUploadPathology.postValue(
+            } else setUpload.postValue(
+                Event(
+                    Resource.error(
+                        "No internet connection", null
+                    )
+                )
+            )
+        }
+    }
+
+    fun fetchRateDoctor(
+        token: String,
+        rating: String,
+        comment: String,
+        appointment_id: String,
+    ) {
+        viewModelScope.launch {
+            setRateDoctor.postValue(Event(Resource.loading(null)))
+            if (networkHelper.isNetworkConnected()) {
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("rating", rating)
+                jsonObject.addProperty("comment", comment)
+                jsonObject.addProperty("appointment_id", appointment_id)
+                mainRepository.submit_review(
+                    token, jsonObject
+                ).let {
+                    if (it.isSuccessful) {
+                        if (it.body()?.get("status")?.asBoolean!!) {
+                            setRateDoctor.postValue(Event(Resource.success(it.body())))
+                        } else {
+                            setRateDoctor.postValue(
+                                Event(
+                                    Resource.error(
+                                        it.body()?.get("message")?.asString!!, null
+                                    )
+                                )
+                            )
+                        }
+                    } else setRateDoctor.postValue(
+                        Event(
+                            Resource.error(
+                                it.message(), null
+                            )
+                        )
+                    )
+                }
+            } else setRateDoctor.postValue(
                 Event(
                     Resource.error(
                         "No internet connection", null

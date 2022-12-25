@@ -106,7 +106,15 @@ class MainRepository(private val apiHelper: ApiHelper) {
         appointment_id: RequestBody,
         pathology_note: RequestBody,
         pathology_lab_result: ArrayList<MultipartBody.Part>,
-    ): Response<JsonObject> = apiHelper.upload_radiology_result(
+    ): Response<JsonObject> = apiHelper.upload_pathology_result(
         token, appointment_id, pathology_note, pathology_lab_result
     )
+
+    suspend fun submit_review(
+        token: String, jsonObject: JsonObject
+    ) = apiHelper.submit_review(token, jsonObject)
+
+    suspend fun get_search_result(
+        token: String, jsonObject: JsonObject
+    ) = apiHelper.get_search_result(token, jsonObject)
 }

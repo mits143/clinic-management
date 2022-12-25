@@ -3,9 +3,9 @@ package com.clinic.management.model.appointmments
 
 import com.google.gson.annotations.SerializedName
 
-data class AppointmentResponse(
+data class ActiveAppointmentResponse(
     @SerializedName("data")
-    val `data`: ArrayList<AppointmentData>,
+    val `data`: ArrayList<ActiveAppointmentData>,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")

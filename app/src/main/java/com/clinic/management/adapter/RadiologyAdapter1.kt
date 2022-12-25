@@ -1,16 +1,17 @@
 package com.clinic.management.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.clinic.management.R
 import com.clinic.management.databinding.ItemImagesBinding
-import com.clinic.management.model.appointmments.ActiveAppointmentData
+import com.clinic.management.model.doctorResult.RadiologyLabResult
 
-class ImagesAdapter(
-    private val dataList: ArrayList<Uri>
-) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class RadiologyAdapter1(
+    private val dataList: ArrayList<RadiologyLabResult>,
+    private var onClick: OnClick
+) : RecyclerView.Adapter<RadiologyAdapter1.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemImagesBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -25,7 +26,16 @@ class ImagesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(dataList[position]) {
-                Glide.with(itemView.context).asBitmap().load(this).into(binding.img)
+                if (this.file_type.contains(".pdf"))
+                    Glide.with(itemView.context).asBitmap().load(R.drawable.pdf)
+                        .into(binding.img)
+                else
+                    Glide.with(itemView.context).asBitmap().load(this.file)
+                        .into(binding.img)
+
+                itemView.setOnClickListener {
+                    onClick.itemClick(this)
+                }
             }
         }
     }
@@ -40,14 +50,14 @@ class ImagesAdapter(
         return position.toLong()
     }
 
-    fun addData(list: ArrayList<Uri>) {
+    fun addData(list: ArrayList<RadiologyLabResult>) {
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
     }
 
     interface OnClick {
-        fun itemClick(data: ActiveAppointmentData, type: String, position: Int)
+        fun itemClick(data: RadiologyLabResult)
     }
 
     fun removeItem(position: Int) {

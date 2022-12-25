@@ -1,7 +1,7 @@
 package com.clinic.management.networking
 
 import com.clinic.management.model.appointmentslots.AppointmentSlotsResponse
-import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.ActiveAppointmentResponse
 import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
@@ -25,6 +25,7 @@ import com.clinic.management.util.Constants.CHECK_SLOT_FOR_DOCTOR
 import com.clinic.management.util.Constants.COMPLETED_APPOINTMENT
 import com.clinic.management.util.Constants.DOCTOR_DETAIL
 import com.clinic.management.util.Constants.GET_PAGES
+import com.clinic.management.util.Constants.GET_SEARCH_RESULT
 import com.clinic.management.util.Constants.HOME_PAGE
 import com.clinic.management.util.Constants.LAB_RESULT
 import com.clinic.management.util.Constants.LOGIN
@@ -34,6 +35,7 @@ import com.clinic.management.util.Constants.RADIOLOGY_SCAN_RESULT
 import com.clinic.management.util.Constants.REGISTER
 import com.clinic.management.util.Constants.RESCHDULE_APPOINTMENT
 import com.clinic.management.util.Constants.SPECIALIST_DOCTOR_VIEW_ALL
+import com.clinic.management.util.Constants.SUBMIT_REVIEW
 import com.clinic.management.util.Constants.TOP_DOCTOR_VIEW_ALL
 import com.clinic.management.util.Constants.UPLOAD_PATHOLOGY_RESULT
 import com.clinic.management.util.Constants.UPLOAD_RADIOLOGY_RESULT
@@ -83,7 +85,7 @@ interface ApiService {
     @POST(ACTIVE_APPOINTMENT)
     suspend fun active_appointment(
         @Header("token") token: String, @Body jsonObject: JsonObject
-    ): Response<AppointmentResponse>
+    ): Response<ActiveAppointmentResponse>
 
     @POST(COMPLETED_APPOINTMENT)
     suspend fun completed_appointment(
@@ -154,8 +156,8 @@ interface ApiService {
     @POST(UPLOAD_RADIOLOGY_RESULT)
     suspend fun upload_radiology_result(
         @Header("token") token: String,
-        @Part("appointment_id") appointment_id: RequestBody,
-        @Part("pathology_note") pathology_note: RequestBody,
+        @Part("appoitment_id") appointment_id: RequestBody,
+        @Part("radiology_note") pathology_note: RequestBody,
         @Part file: ArrayList<MultipartBody.Part>
     ): Response<JsonObject>
 
@@ -163,8 +165,18 @@ interface ApiService {
     @POST(UPLOAD_PATHOLOGY_RESULT)
     suspend fun upload_pathology_result(
         @Header("token") token: String,
-        @Part("appointment_id") appointment_id: RequestBody,
+        @Part("appoitment_id") appointment_id: RequestBody,
         @Part("pathology_note") pathology_note: RequestBody,
         @Part file: ArrayList<MultipartBody.Part>
     ): Response<JsonObject>
+
+    @POST(SUBMIT_REVIEW)
+    suspend fun submit_review(
+        @Header("token") token: String, @Body jsonObject: JsonObject
+    ): Response<JsonObject>
+
+    @POST(GET_SEARCH_RESULT)
+    suspend fun get_search_result(
+        @Header("token") token: String, @Body jsonObject: JsonObject
+    ): Response<DoctorListingResponse>
 }

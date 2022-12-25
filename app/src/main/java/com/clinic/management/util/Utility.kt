@@ -8,7 +8,6 @@ import com.alhanpos.store.util.FileUtils
 import com.clinic.management.R
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 
 object Utility {
@@ -40,7 +39,7 @@ object Utility {
     ): MultipartBody.Part? {
         val file = FileUtils.getFile(context, fileUri)
         if (file != null) {
-            val requestFile: RequestBody =
+            val requestFile =
                 file.asRequestBody(FileUtils.MIME_TYPE_IMAGE.toMediaTypeOrNull())
             return MultipartBody.Part.createFormData(partName, file.name, requestFile)
         }

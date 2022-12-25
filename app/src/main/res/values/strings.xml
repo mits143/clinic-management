@@ -84,4 +84,8 @@
     <string name="description">Description</string>
     <string name="description_from_doctor">Description From Doctor</string>
     <string name="notes">Notes</string>
+    <string name="rate_doctor">Rate Doctor</string>
+    <string name="please_rate_the_doctor">Please rate the doctor</string>
+    <string name="submit">Submit</string>
+    <string name="queue_details">Queue Details</string>
 </resources>

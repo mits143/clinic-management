@@ -37,6 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener(this)
+        getPermission()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -63,6 +64,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.nav_faq -> hideBottomNavigation()
             R.id.nav_doctor_result -> hideBottomNavigation()
             R.id.nav_lab_radio_result -> hideBottomNavigation()
+            R.id.nav_filter -> hideBottomNavigation()
             else -> showBottomNavigationView()
         }
     }

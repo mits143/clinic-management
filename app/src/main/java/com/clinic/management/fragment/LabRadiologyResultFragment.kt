@@ -11,7 +11,7 @@ import com.clinic.management.adapter.RadiologyAdapter
 import com.clinic.management.databinding.FragmentLabRadiologyResultBinding
 import com.clinic.management.model.lab.PathologyLabResult
 import com.clinic.management.model.radiology.RadiologyLabResult
-import com.clinic.management.util.CustomDisplayFileDialog
+import com.clinic.management.dailog.DisplayFileDailog
 import com.clinic.management.util.setDate
 
 class LabRadiologyResultFragment : BaseFragment<FragmentLabRadiologyResultBinding>() {
@@ -21,7 +21,7 @@ class LabRadiologyResultFragment : BaseFragment<FragmentLabRadiologyResultBindin
 
     private val args: LabRadiologyResultFragmentArgs by navArgs()
 
-    private lateinit var dialog: CustomDisplayFileDialog
+    private lateinit var dialog: DisplayFileDailog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -49,7 +49,7 @@ class LabRadiologyResultFragment : BaseFragment<FragmentLabRadiologyResultBindin
 
         val adapter = LabRadiologyAdapter(arrayListOf(), object : LabRadiologyAdapter.OnClick {
             override fun itemClick(data: PathologyLabResult) {
-                dialog = CustomDisplayFileDialog(data.pathology_lab_result!!)
+                dialog = DisplayFileDailog(data.pathology_lab_result!!)
                 dialog.show(childFragmentManager, "Pathology")
             }
         })
@@ -73,7 +73,7 @@ class LabRadiologyResultFragment : BaseFragment<FragmentLabRadiologyResultBindin
 
         val adapter = RadiologyAdapter(arrayListOf(), object : RadiologyAdapter.OnClick {
             override fun itemClick(data: RadiologyLabResult) {
-                dialog = CustomDisplayFileDialog(data.radiology_lab_result!!)
+                dialog = DisplayFileDailog(data.radiology_lab_result!!)
                 dialog.show(childFragmentManager, "Raidology")
             }
         })

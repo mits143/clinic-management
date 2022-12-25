@@ -1,31 +1,31 @@
 package com.clinic.management.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.clinic.management.databinding.ItemImagesBinding
-import com.clinic.management.model.appointmments.ActiveAppointmentData
+import com.clinic.management.databinding.ItemQueueBinding
+import com.clinic.management.model.appointmments.ActivePositionListItem
 
-class ImagesAdapter(
-    private val dataList: ArrayList<Uri>
-) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class QueueAdapter(
+    private val dataList: ArrayList<ActivePositionListItem>,
+) : RecyclerView.Adapter<QueueAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: ItemImagesBinding) :
+    inner class ViewHolder(val binding: ItemQueueBinding) :
         RecyclerView.ViewHolder(binding.root)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemImagesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemQueueBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(dataList[position]) {
-                Glide.with(itemView.context).asBitmap().load(this).into(binding.img)
+                binding.txtID.text = absoluteAdapterPosition.plus(1).toString()
+                binding.txtName.text = this.username
+                binding.txtStatus.text = this.status
             }
         }
     }
@@ -40,14 +40,19 @@ class ImagesAdapter(
         return position.toLong()
     }
 
-    fun addData(list: ArrayList<Uri>) {
+    fun addData(list: ArrayList<ActivePositionListItem>) {
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
     }
 
+    fun loadMore(list: ArrayList<ActivePositionListItem>) {
+        dataList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     interface OnClick {
-        fun itemClick(data: ActiveAppointmentData, type: String, position: Int)
+        fun itemClick(data: ActivePositionListItem, type: String, position: Int)
     }
 
     fun removeItem(position: Int) {

@@ -1,7 +1,7 @@
 package com.clinic.management.networking
 
 import com.clinic.management.model.appointmentslots.AppointmentSlotsResponse
-import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.ActiveAppointmentResponse
 import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
@@ -59,7 +59,7 @@ interface ApiHelper {
     suspend fun active_appointment(
         token: String,
         jsonObject: JsonObject
-    ): Response<AppointmentResponse>
+    ): Response<ActiveAppointmentResponse>
 
     suspend fun completed_appointment(
         token: String,
@@ -139,4 +139,14 @@ interface ApiHelper {
         pathology_note: RequestBody,
         pathology_lab_result: ArrayList<MultipartBody.Part>,
     ): Response<JsonObject>
+
+    suspend fun submit_review(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject>
+
+    suspend fun get_search_result(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<DoctorListingResponse>
 }

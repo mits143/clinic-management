@@ -103,39 +103,65 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Dr. Ruby Perrin"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginEnd="@dimen/_8sdp"
                     app:layout_constraintLeft_toRightOf="@+id/img"
+                    app:layout_constraintRight_toLeftOf="@+id/btnRateDr"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Dr. Ruby Perrin"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txtSpecialist1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Dr. Ruby Perrin"
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rating="3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSpecialist1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRateDr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/primary_color"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/rate_doctor"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_8sdp"
+                    app:cornerRadius="@dimen/_5sdp"
+                    app:icon="@drawable/ic_star_24px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/txtSpecialist1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Dr. Ruby Perrin"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintLeft_toRightOf="@+id/img"
-                    app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:rating="3"
-                    app:layout_constraintLeft_toRightOf="@+id/img"
-                    app:layout_constraintTop_toBottomOf="@+id/txtSpecialist1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -402,6 +428,16 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/txtTitle1" />
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvRadiologyImages"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@+id/imgLogo1"
+                            app:spanCount="4"
+                            tools:listitem="@layout/item_images" />
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnUploadFile1"
                             android:layout_width="match_parent"
@@ -414,7 +450,7 @@
                             android:textAllCaps="true"
                             android:textSize="@dimen/_10sdp"
                             app:cornerRadius="@dimen/_10sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/imgLogo1" />
+                            app:layout_constraintTop_toBottomOf="@+id/rvRadiologyImages" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

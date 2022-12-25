@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.AppointmentAdapter
+import com.clinic.management.dailog.QueueDetailDailog
 import com.clinic.management.databinding.FragmentActiveBinding
-import com.clinic.management.model.appointmments.AppointmentData
+import com.clinic.management.model.appointmments.ActiveAppointmentData
 import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
 import com.clinic.management.util.Status
@@ -32,6 +33,8 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
     private var page = 1
     private lateinit var adapter: AppointmentAdapter
     private lateinit var scrollListener: RecyclerViewLoadMoreScroll
+
+    private lateinit var queueDetailDailog: QueueDetailDailog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
@@ -133,7 +136,7 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
         }
     }
 
-    override fun itemClick(data: AppointmentData, type: String, position: Int) {
+    override fun itemClick(data: ActiveAppointmentData, type: String, position: Int) {
         pos = position
         when (type) {
             "CANCEL" -> {
@@ -168,6 +171,11 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
                             findNavController().navigate(action)
                         }
                     })
+            }
+            "POSITIONLIST" -> {
+                queueDetailDailog = QueueDetailDailog(data.position_list)
+                queueDetailDailog.show(childFragmentManager, "Queue")
+
             }
         }
     }

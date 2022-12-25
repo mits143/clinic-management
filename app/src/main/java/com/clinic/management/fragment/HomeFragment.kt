@@ -1,12 +1,16 @@
 package com.clinic.management.fragment
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.clinic.management.activities.LoginActivity
+import com.clinic.management.activities.MainActivity
 import com.clinic.management.adapter.HomeReviewsAdapter
 import com.clinic.management.adapter.HomeSpecialistAdapter
 import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
@@ -19,6 +23,7 @@ import com.clinic.management.util.Status
 import com.clinic.management.viewmodel.HomeViewModel
 import com.kaopiz.kprogresshud.KProgressHUD
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAdapter.OnClick,
     HomeSpecialistAdapter.OnClick, HomeReviewsAdapter.OnClick {
@@ -33,8 +38,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
-        binding.btnViewAllSpecialistDr.setOnClickListener {
+        binding.searchView.setOnClickListener {
             val action = HomeFragmentDirections.actionNavDoctorListing(false, "0")
+            findNavController().navigate(action)
+        }
+        binding.txtLocation.setOnClickListener {
+            (context as MainActivity).getPermission()
+        }
+        binding.txtLocation.setText(prefs.city)
+
+        binding.btnViewAllSpecialistDr.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavDoctorListing(false, "-1")
             findNavController().navigate(action)
         }
         binding.btnViewAllSpecialist.setOnClickListener {
@@ -42,13 +56,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             findNavController().navigate(action)
         }
         binding.btnViewAllTopDr.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavDoctorListing(true, "0")
+            val action = HomeFragmentDirections.actionNavDoctorListing(true, "-1")
             findNavController().navigate(action)
         }
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 
-        binding.txtLocation.setText(prefs.city)
+
+        context?.registerReceiver(broadcastReceiver, IntentFilter("locationSelected"));
+
     }
 
     private fun setDoctorData(list: ArrayList<SpecialistDoctor>) {
@@ -143,5 +159,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
             hud.show()
         else
             hud.dismiss()
+    }
+
+    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            binding.txtLocation.setText(prefs.city)
+            viewModel.fetchHomeData(
+                "Bearer " + prefs.accessToken, prefs.latitude!!, prefs.longitude!!,
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        context?.unregisterReceiver(broadcastReceiver)
     }
 }

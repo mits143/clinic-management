@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.clinic.management.R
@@ -20,7 +21,7 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
-    HomeSpecialistDoctorAdapter.OnClick {
+    HomeSpecialistDoctorAdapter.OnClick, SearchView.OnQueryTextListener {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDoctorListingBinding =
         FragmentDoctorListingBinding::inflate
@@ -28,6 +29,7 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     private val viewModel: DoctorListingViewModel by viewModel()
 
     private lateinit var hud: KProgressHUD
+    private var searchText = ""
     private var page = 1
     private lateinit var adapter: HomeSpecialistDoctorAdapter
     private lateinit var scrollListener: RecyclerViewLoadMoreScroll
@@ -38,24 +40,47 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
         setObserver()
 
         binding.txtLocation.setText(prefs.city)
+        binding.searchView.setOnQueryTextListener(this)
+
+        binding.btnFilter.setOnClickListener {
+            val action = DoctorListingFragmentDirections.actionNavFilter()
+            findNavController().navigate(action)
+        }
 
         binding.swipeRefresh.setOnRefreshListener {
             page = 1
+            searchText = ""
+            binding.searchView.setQuery("", false);
+            binding.searchView.clearFocus()
             binding.swipeRefresh.isRefreshing = false
             if (args.categoryID == "0") {
+                binding.txtSpecialistDr.text = resources.getString(R.string.doctor_listing)
+                viewModel.fetchSearchResultData(
+                    "Bearer " + prefs.accessToken,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
+                    searchText,
+                    "",
+                    "",
+                    "0",
+                    page.toString()
+                )
+            } else if (args.categoryID == "-1") {
                 if (args.isTopDoctor) {
                     binding.txtSpecialistDr.text =
                         resources.getString(R.string.top_doctors_in_your_city)
                     viewModel.fetchTopDoctorData(
                         "Bearer " + prefs.accessToken,
-                        prefs.latitude!!, prefs.longitude!!,
+                        prefs.latitude!!,
+                        prefs.longitude!!,
                         page.toString()
                     )
                 } else {
                     binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                     viewModel.fetchDoctorData(
                         "Bearer " + prefs.accessToken,
-                        prefs.latitude!!, prefs.longitude!!,
+                        prefs.latitude!!,
+                        prefs.longitude!!,
                         page.toString()
                     )
                 }
@@ -64,15 +89,15 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 viewModel.fetchCategoryDoctorData(
                     "Bearer " + prefs.accessToken,
                     args.categoryID,
-                    prefs.latitude!!, prefs.longitude!!,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
                     page.toString()
                 )
 
             }
         }
 
-        hud = KProgressHUD.create(requireContext())
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        hud = KProgressHUD.create(requireContext()).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 
         setDoctorData()
     }
@@ -86,19 +111,33 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
         scrollListener.setOnLoadMoreListener {
             page = page.plus(1)
             if (args.categoryID == "0") {
+                binding.txtSpecialistDr.text = resources.getString(R.string.doctor_listing)
+                viewModel.fetchSearchResultData(
+                    "Bearer " + prefs.accessToken,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
+                    searchText,
+                    "",
+                    "",
+                    "0",
+                    page.toString()
+                )
+            } else if (args.categoryID == "-1") {
                 if (args.isTopDoctor) {
                     binding.txtSpecialistDr.text =
                         resources.getString(R.string.top_doctors_in_your_city)
                     viewModel.fetchTopDoctorData(
                         "Bearer " + prefs.accessToken,
-                        prefs.latitude!!, prefs.longitude!!,
+                        prefs.latitude!!,
+                        prefs.longitude!!,
                         page.toString()
                     )
                 } else {
                     binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                     viewModel.fetchDoctorData(
                         "Bearer " + prefs.accessToken,
-                        prefs.latitude!!, prefs.longitude!!,
+                        prefs.latitude!!,
+                        prefs.longitude!!,
                         page.toString()
                     )
                 }
@@ -107,7 +146,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 viewModel.fetchCategoryDoctorData(
                     "Bearer " + prefs.accessToken,
                     args.categoryID,
-                    prefs.latitude!!, prefs.longitude!!,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
                     page.toString()
                 )
             }
@@ -116,19 +156,33 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
 
     private fun setObserver() {
         if (args.categoryID == "0") {
+            binding.txtSpecialistDr.text = resources.getString(R.string.doctor_listing)
+            viewModel.fetchSearchResultData(
+                "Bearer " + prefs.accessToken,
+                prefs.latitude!!,
+                prefs.longitude!!,
+                searchText,
+                "",
+                "",
+                "0",
+                page.toString()
+            )
+        } else if (args.categoryID == "-1") {
             if (args.isTopDoctor) {
                 binding.txtSpecialistDr.text =
                     resources.getString(R.string.top_doctors_in_your_city)
                 viewModel.fetchTopDoctorData(
                     "Bearer " + prefs.accessToken,
-                    prefs.latitude!!, prefs.longitude!!,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
                     page.toString()
                 )
             } else {
                 binding.txtSpecialistDr.text = resources.getString(R.string.specialist_doctor)
                 viewModel.fetchDoctorData(
                     "Bearer " + prefs.accessToken,
-                    prefs.latitude!!, prefs.longitude!!,
+                    prefs.latitude!!,
+                    prefs.longitude!!,
                     page.toString()
                 )
             }
@@ -137,7 +191,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             viewModel.fetchCategoryDoctorData(
                 "Bearer " + prefs.accessToken,
                 args.categoryID,
-                prefs.latitude!!, prefs.longitude!!,
+                prefs.latitude!!,
+                prefs.longitude!!,
                 page.toString()
             )
         }
@@ -166,8 +221,7 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                         if (it.message == "Invalid authentication.") {
                             requireActivity().startActivity(
                                 Intent(
-                                    requireContext(),
-                                    LoginActivity::class.java
+                                    requireContext(), LoginActivity::class.java
                                 )
                             )
                             requireActivity().finish()
@@ -185,21 +239,34 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             findNavController().navigate(action)
         } else {
             val action = DoctorListingFragmentDirections.actionNavAppointment(
-                data.id,
-                data.docName,
-                data.degree,
-                data.specialization,
-                "0"
+                data.id, data.docName, data.degree, data.specialization, "0"
             )
             findNavController().navigate(action)
         }
     }
 
     private fun showProgress(show: Boolean) {
-        if (show)
-            hud.show()
-        else
-            if (hud.isShowing)
-                hud.dismiss()
+        if (show) hud.show()
+        else if (hud.isShowing) hud.dismiss()
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        page = 1
+        searchText = newText!!
+        viewModel.fetchSearchResultData(
+            "Bearer " + prefs.accessToken,
+            prefs.latitude!!,
+            prefs.longitude!!,
+            searchText,
+            "",
+            "",
+            "0",
+            page.toString()
+        )
+        return false
     }
 }

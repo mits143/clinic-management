@@ -1,28 +1,38 @@
 package com.clinic.management.activities
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
+import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageManager
-import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.viewbinding.ViewBinding
 import com.clinic.management.prefs
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.common.api.PendingResult
+import com.google.android.gms.common.api.ResultCallback
+import com.google.android.gms.common.api.Status
+import com.google.android.gms.location.*
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.DexterBuilder
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import java.util.*
+
 
 abstract class BaseActivity<B : ViewBinding> : AppCompatActivity(),
     CoroutineScope by CoroutineScope(
@@ -34,7 +44,15 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity(),
 
     abstract val bindingInflater: (LayoutInflater) -> B
 
-    private var fusedLocationClient: FusedLocationProviderClient? = null
+    private lateinit var dexter: DexterBuilder
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    private var googleApiClient: GoogleApiClient? = null
+
+    val REQUEST_LOCATION = 199
+
+    private lateinit var manager: LocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +60,11 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity(),
             setContentView(root)
         }
         onViewBindingCreated(savedInstanceState)
-        getLocation()
     }
 
-    open fun onViewBindingCreated(savedInstanceState: Bundle?) {}
+    open fun onViewBindingCreated(savedInstanceState: Bundle?) {
+
+    }
 
     fun showToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
@@ -55,74 +74,147 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity(),
         Toast.makeText(this, getString(msg), Toast.LENGTH_SHORT).show()
     }
 
-    private fun isLocationEnabled(): Boolean {
-        val locationManager: LocationManager =
-            getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-            LocationManager.NETWORK_PROVIDER
-        )
-    }
 
-    private fun checkPermissions(): Boolean {
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            return true
-        }
-        return false
-    }
-
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            this, arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
-            ), 2
-        )
-    }
-
-    @SuppressLint("MissingSuperCall")
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray
-    ) {
-        if (requestCode == 2) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                getLocation()
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission", "SetTextI18n")
-    private fun getLocation() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
-                fusedLocationClient?.lastLocation?.addOnCompleteListener(this) { task ->
-                    val location: Location? = task.result
-                    if (location != null) {
-                        val geocoder = Geocoder(this, Locale.getDefault())
-                        val list: List<Address> = geocoder.getFromLocation(
-                            location.latitude, location.longitude, 1
-                        ) as List<Address>
-                        prefs.latitude = list[0].latitude.toString()
-                        prefs.longitude = list[0].longitude.toString()
-                        prefs.city = list[0].locality
+    fun getPermission() {
+        manager = getSystemService(LOCATION_SERVICE) as LocationManager
+        dexter = Dexter.withContext(this)
+            .withPermissions(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+            ).withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                    report.let {
+                        if (report.areAllPermissionsGranted()) {
+                            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                                enableLoc()
+                            } else {
+                                getLastKnownLocation()
+                            }
+                        } else if (report.isAnyPermissionPermanentlyDenied) {
+                            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                                enableLoc()
+                            } else {
+                                AlertDialog.Builder(this@BaseActivity)
+                                    .apply {
+                                        setMessage("please allow the required permissions")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Settings") { _, _ ->
+                                                val reqIntent =
+                                                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                                        .apply {
+                                                            val uri = Uri.fromParts(
+                                                                "package",
+                                                                packageName,
+                                                                null
+                                                            )
+                                                            data = uri
+                                                        }
+                                                resultLauncher.launch(reqIntent)
+                                            }
+//                                     setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+                                        val alert = this.create()
+                                        alert.show()
+                                    }
+                            }
+                        }
                     }
                 }
-            } else {
-                Toast.makeText(this, "Please turn on location", Toast.LENGTH_LONG).show()
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: List<PermissionRequest?>?,
+                    token: PermissionToken?
+                ) {
+                    token?.continuePermissionRequest()
+                }
+            }).withErrorListener {
+                showToast(it.name)
             }
-        } else {
-            requestPermissions()
-        }
+        dexter.check()
     }
 
-    override fun onDestroy() {
-        coroutineContext[Job]?.cancel()
-        super.onDestroy()
+    fun getLastKnownLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                if (location != null) {
+                    prefs.latitude = location.latitude.toString()
+                    prefs.longitude = location.longitude.toString()
+                    prefs.city
+                    val geocoder = Geocoder(this, Locale.getDefault())
+                    val addresses =
+                        geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                    prefs.city = addresses!![0].locality
+
+                    val intent = Intent("locationSelected")
+                    sendBroadcast(intent)
+                }
+
+            }
+
     }
+
+    private fun enableLoc() {
+        googleApiClient = GoogleApiClient.Builder(this@BaseActivity)
+            .addApi(LocationServices.API)
+            .addConnectionCallbacks(object : GoogleApiClient.ConnectionCallbacks {
+                override fun onConnected(bundle: Bundle?) {}
+                override fun onConnectionSuspended(i: Int) {
+                    googleApiClient?.connect()
+                }
+            })
+            .addOnConnectionFailedListener { connectionResult ->
+                Log.d(
+                    "Location error",
+                    "Location error " + connectionResult.errorCode
+                )
+            }.build()
+        googleApiClient!!.connect()
+        val locationRequest: LocationRequest = LocationRequest.create()
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        locationRequest.setInterval(30 * 1000)
+        locationRequest.setFastestInterval(5 * 1000)
+        val builder = LocationSettingsRequest.Builder()
+            .addLocationRequest(locationRequest)
+        builder.setAlwaysShow(true)
+        val result: PendingResult<LocationSettingsResult> =
+            LocationServices.SettingsApi.checkLocationSettings(
+                googleApiClient!!,
+                builder.build()
+            )
+        result.setResultCallback(object : ResultCallback<LocationSettingsResult?> {
+            override fun onResult(result: LocationSettingsResult) {
+                val status: Status = result.status
+                when (status.statusCode) {
+                    LocationSettingsStatusCodes.SUCCESS -> {
+                        getLastKnownLocation()
+                    }
+                    LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> try {
+                        status.startResolutionForResult(this@BaseActivity, REQUEST_LOCATION)
+
+//                                finish();
+                    } catch (e: SendIntentException) {
+                        // Ignore the error.
+                    }
+                }
+            }
+        })
+    }
+
+    var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+//                val data: Intent? = result.data
+                dexter.check()
+            }
+        }
 }

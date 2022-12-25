@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.ActiveAppointmentResponse
 import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.repo.MainRepository
 import com.clinic.management.util.Event
@@ -18,8 +18,8 @@ class ActiveAppointmentViewModel(
     private val networkHelper: NetworkHelper,
 ) : ViewModel() {
 
-    private val setAppointmentData = MutableLiveData<Event<Resource<AppointmentResponse>>>()
-    val getAppointmentData: LiveData<Event<Resource<AppointmentResponse>>>
+    private val setAppointmentData = MutableLiveData<Event<Resource<ActiveAppointmentResponse>>>()
+    val getAppointmentData: LiveData<Event<Resource<ActiveAppointmentResponse>>>
         get() = setAppointmentData
 
     private val setCancelAppointmentListData =

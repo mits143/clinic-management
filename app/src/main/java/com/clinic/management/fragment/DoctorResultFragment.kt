@@ -8,16 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.ImagesAdapter
 import com.clinic.management.adapter.MedicinePrescriptionAdapter
+import com.clinic.management.adapter.PathologyAdapter
+import com.clinic.management.adapter.RadiologyAdapter1
+import com.clinic.management.dailog.DisplayFileDailog
+import com.clinic.management.dailog.RateDoctorDailog
+import com.clinic.management.dailog.UploadDailog
 import com.clinic.management.databinding.FragmentDoctorResultBinding
+import com.clinic.management.model.doctorResult.PathologyLabResult
 import com.clinic.management.model.doctorResult.PrescriptionMedicine
+import com.clinic.management.model.doctorResult.RadiologyLabResult
 import com.clinic.management.prefs
-import com.clinic.management.util.Callback
-import com.clinic.management.util.MyCustomDialog
-import com.clinic.management.util.Status
+import com.clinic.management.util.*
 import com.clinic.management.util.Utility.prepareFilePart
-import com.clinic.management.util.setDate
 import com.clinic.management.viewmodel.DoctorAppointmentViewModel
 import com.kaopiz.kprogresshud.KProgressHUD
 import okhttp3.MultipartBody
@@ -25,7 +30,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
-    MyCustomDialog.onButtonClick {
+    UploadDailog.onButtonClick, RateDoctorDailog.onButtonClick {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentDoctorResultBinding =
         FragmentDoctorResultBinding::inflate
@@ -36,7 +41,8 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
 
     private lateinit var hud: KProgressHUD
 
-    private lateinit var myCustomDialog: MyCustomDialog
+    private lateinit var uploaddailog: UploadDailog
+    private lateinit var ratedoctordailog: RateDoctorDailog
 
     var files: ArrayList<Uri> = arrayListOf()
 
@@ -46,33 +52,61 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
 
     private var isPathology = false
 
+    private lateinit var dialog: DisplayFileDailog
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
         callbacks()
 
-        myCustomDialog = MyCustomDialog(this)
+        uploaddailog = UploadDailog(this)
+        ratedoctordailog = RateDoctorDailog(this)
 
         imagesAdapter = ImagesAdapter(files)
 
-        hud = KProgressHUD.create(requireContext())
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        hud = KProgressHUD.create(requireContext()).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 
         binding.imgMenu.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
         binding.btnUploadFile.setOnClickListener {
             isPathology = true
-            myCustomDialog.show(childFragmentManager, "MyCustomFragment")
+            uploaddailog.show(childFragmentManager, "PathologyDialog")
         }
         binding.btnUploadFile1.setOnClickListener {
             isPathology = false
-            myCustomDialog.show(childFragmentManager, "MyCustomFragment")
+            uploaddailog.show(childFragmentManager, "RadiologyDialog")
+        }
+        binding.btnRateDr.setOnClickListener {
+            ratedoctordailog.show(childFragmentManager, "RateDoctor")
         }
     }
 
     private fun setMedicineData(list: ArrayList<PrescriptionMedicine>) {
         val adapter = MedicinePrescriptionAdapter(arrayListOf())
         binding.rvMedicine.adapter = adapter
+        adapter.addData(list)
+    }
+
+    private fun setPathologyData(list: ArrayList<PathologyLabResult>) {
+        val adapter = PathologyAdapter(arrayListOf(), object : PathologyAdapter.OnClick {
+            override fun itemClick(data: PathologyLabResult) {
+                dialog = DisplayFileDailog(data.file)
+                dialog.show(childFragmentManager, "Pathology")
+            }
+        })
+        binding.rvPathologyImages.adapter = adapter
+        adapter.addData(list)
+    }
+
+    private fun setRadiologyData(list: ArrayList<RadiologyLabResult>) {
+        val adapter = RadiologyAdapter1(arrayListOf(), object : RadiologyAdapter1.OnClick {
+            override fun itemClick(data: RadiologyLabResult) {
+                dialog = DisplayFileDailog(data.file)
+                dialog.show(childFragmentManager, "Radiology")
+            }
+
+        })
+        binding.rvPathologyImages.adapter = adapter
         adapter.addData(list)
     }
 
@@ -106,6 +140,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                                     .into(binding.imgLogo)
                                 binding.txtTitle.text = it.data.pathology.name
                                 binding.txtDesc.text = it.data.pathology.pathology_note_from_doctor
+                                setPathologyData(it.data.pathology_lab_result)
                             } else {
                                 binding.cvPathology.visibility = View.GONE
                             }
@@ -114,6 +149,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                                     .into(binding.imgLogo1)
                                 binding.txtTitle1.text = it.data.radiology.name
                                 binding.txtDesc1.text = it.data.radiology.radiology_note_from_doctor
+                                setRadiologyData(it.data.radiology_lab_result)
                             } else {
                                 binding.cvRadiology.visibility = View.GONE
                             }
@@ -125,14 +161,69 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                 }
             }
         }
+        viewModel.getUpload.observe(this) {
+            it.getContentIfNotHandled()?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
+                    }
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            showToast(it["message"].asString)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
+                    }
+                }
+            }
+        }
+        viewModel.getRateDoctor.observe(this) {
+            it.getContentIfNotHandled()?.let {
+                when (it.status) {
+                    Status.LOADING -> {
+                        showProgress(true)
+                    }
+                    Status.SUCCESS -> {
+                        showProgress(false)
+                        it.data?.let {
+                            showToast(it["message"].asString)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgress(false)
+                        showToast(it.message!!)
+                        if (it.message == "Invalid authentication.") {
+                            requireActivity().startActivity(
+                                Intent(
+                                    requireContext(),
+                                    LoginActivity::class.java
+                                )
+                            )
+                            requireActivity().finish()
+                            prefs.accessToken = ""
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun showProgress(show: Boolean) {
-        if (show)
-            hud.show()
-        else
-            if (hud.isShowing)
-                hud.dismiss()
+        if (show) hud.show()
+        else if (hud.isShowing) hud.dismiss()
     }
 
     override fun onClickSelectFile() {
@@ -152,8 +243,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                     val count: Int = data.clipData!!.itemCount
                     var currentItem = 0
                     while (currentItem < count) {
-                        val imageUri: Uri =
-                            data.clipData!!.getItemAt(currentItem).uri
+                        val imageUri: Uri = data.clipData!!.getItemAt(currentItem).uri
                         currentItem += 1
                         try {
                             files.add(imageUri)
@@ -172,7 +262,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
 //                val path = getPath(requireContext(), uri!!)
 //                file = File(path!!)
 //                binding.edtDoc.setText(file?.name.toString().trim())
-                myCustomDialog.bindImages(imagesAdapter)
+                uploaddailog.bindImages(imagesAdapter)
             }
 
             override fun pdfData(data: Intent?) {
@@ -196,40 +286,35 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
             if (files.isNotEmpty()) {
                 parts.clear()
                 for (i in files.indices) {
-                    if (isPathology)
-                        parts.add(
-                            prepareFilePart(
-                                requireActivity(),
-                                "pathology_lab_result",
-                                files[i]
-                            )!!
-                        )
-                    else
-                        parts.add(
-                            prepareFilePart(
-                                requireActivity(),
-                                "radiology_lab_result",
-                                files[i]
-                            )!!
-                        )
+                    if (isPathology) parts.add(
+                        prepareFilePart(
+                            requireActivity(), "pathology_lab_result[]", files[i]
+                        )!!
+                    )
+                    else parts.add(
+                        prepareFilePart(
+                            requireActivity(), "radiology_lab_result[]", files[i]
+                        )!!
+                    )
                 }
             }
-            if (isPathology)
-                viewModel.fetchUploadPathologyData(
-                    "Bearer " + prefs.accessToken,
-                    appoint_id,
-                    note,
-                    parts
-                )
-            else
-                viewModel.fetchUploadRadiologyData(
-                    "Bearer " + prefs.accessToken,
-                    appoint_id,
-                    note,
-                    parts
-                )
+            if (isPathology) viewModel.fetchUploadPathologyData(
+                "Bearer " + prefs.accessToken, appoint_id, note, parts
+            )
+            else viewModel.fetchUploadRadiologyData(
+                "Bearer " + prefs.accessToken, appoint_id, note, parts
+            )
         }
         files.clear()
+    }
+
+    override fun onClickSubmit(rating: String, desc: String) {
+        if (binding.ratingBar.rating > 0)
+            viewModel.fetchRateDoctor(
+                "Bearer " + prefs.accessToken, rating, desc, args.id
+            )
+        else
+            showToast("Please select rating for submitting review.")
     }
 
     override fun onClose() {

@@ -132,4 +132,52 @@ class DoctorListingViewModel(
             } else setDoctorData.postValue(Event(Resource.error("No internet connection", null)))
         }
     }
+
+    fun fetchSearchResultData(
+        token: String,
+        lat: String,
+        lng: String,
+        string: String,
+        specialization: String,
+        rating: String,
+        distance: String,
+        pagination: String
+    ) {
+        viewModelScope.launch {
+            setDoctorData.postValue(Event(Resource.loading(null)))
+            if (networkHelper.isNetworkConnected()) {
+                val jsonObject = JsonObject()
+                jsonObject.addProperty("lat", lat)
+                jsonObject.addProperty("lng", lng)
+                jsonObject.addProperty("string", string)
+                jsonObject.addProperty("specialization", specialization)
+                jsonObject.addProperty("rating", rating)
+                jsonObject.addProperty("distance", distance)
+                jsonObject.addProperty("pagination", pagination)
+                mainRepository.get_search_result(
+                    token, jsonObject
+                ).let {
+                    if (it.isSuccessful) {
+                        if (it.body()?.status!!) {
+                            setDoctorData.postValue(Event(Resource.success(it.body())))
+                        } else {
+                            setDoctorData.postValue(
+                                Event(
+                                    Resource.error(
+                                        it.body()?.message!!, null
+                                    )
+                                )
+                            )
+                        }
+                    } else setDoctorData.postValue(
+                        Event(
+                            Resource.error(
+                                it.message(), null
+                            )
+                        )
+                    )
+                }
+            } else setDoctorData.postValue(Event(Resource.error("No internet connection", null)))
+        }
+    }
 }

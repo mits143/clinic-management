@@ -27,4 +27,6 @@ object Constants {
     const val LAB_RESULT = "ecom/get_lab_result"
     const val UPLOAD_RADIOLOGY_RESULT = "ecom/upload_radiology_result "
     const val UPLOAD_PATHOLOGY_RESULT = "ecom/upload_pathology_result"
+    const val SUBMIT_REVIEW = "ecom/submit_review"
+    const val GET_SEARCH_RESULT = "ecom/get_search_result"
 }

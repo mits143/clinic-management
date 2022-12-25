@@ -1,4 +1,4 @@
-package com.clinic.management.util
+package com.clinic.management.dailog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.clinic.management.R
 import com.clinic.management.adapter.ImagesAdapter
 import com.clinic.management.databinding.DialogUploadFileBinding
 
-class MyCustomDialog(onbuttonClick: onButtonClick) : DialogFragment() {
+class UploadDailog(onbuttonClick: onButtonClick) : DialogFragment() {
 
     lateinit var binding: DialogUploadFileBinding
     var onClick = onbuttonClick

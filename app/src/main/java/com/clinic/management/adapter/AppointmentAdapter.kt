@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.clinic.management.R
 import com.clinic.management.databinding.ItemActiveBinding
-import com.clinic.management.model.appointmments.AppointmentData
+import com.clinic.management.model.appointmments.ActiveAppointmentData
 import com.clinic.management.util.setDate
 
 class AppointmentAdapter(
-    private val dataList: ArrayList<AppointmentData>,
+    private val dataList: ArrayList<ActiveAppointmentData>,
     private var onClick: OnClick,
     private var isActive: Boolean
 ) : RecyclerView.Adapter<AppointmentAdapter.ViewHolder>() {
@@ -33,6 +33,7 @@ class AppointmentAdapter(
                 binding.txtDate.setDate(this.appointmentDate).toString()
                 binding.txtSpecialist.text = this.docSpecialization
                 binding.txtDate1.text = this.appointmentDate
+                binding.txtNo.text = this.position
                 Glide.with(itemView.context).asBitmap().load(this.docImage).into(binding.img)
                 binding.txtName.text = this.docName
                 binding.txtSpecialist1.text = this.docSpecialization
@@ -54,6 +55,9 @@ class AppointmentAdapter(
                 binding.btnReschedule.setOnClickListener {
                     onClick.itemClick(this, "RESCHEDULE", position)
                 }
+                binding.llPosition.setOnClickListener {
+                    onClick.itemClick(this, "POSITIONLIST", position)
+                }
 //                itemView.setOnClickListener {
 //                    onClick.itemClick(this)
 //                }
@@ -71,19 +75,19 @@ class AppointmentAdapter(
         return position.toLong()
     }
 
-    fun addData(list: ArrayList<AppointmentData>) {
+    fun addData(list: ArrayList<ActiveAppointmentData>) {
         dataList.clear()
         dataList.addAll(list)
         notifyDataSetChanged()
     }
 
-    fun loadMore(list: ArrayList<AppointmentData>) {
+    fun loadMore(list: ArrayList<ActiveAppointmentData>) {
         dataList.addAll(list)
         notifyDataSetChanged()
     }
 
     interface OnClick {
-        fun itemClick(data: AppointmentData, type: String, position: Int)
+        fun itemClick(data: ActiveAppointmentData, type: String, position: Int)
     }
 
     fun removeItem(position: Int) {

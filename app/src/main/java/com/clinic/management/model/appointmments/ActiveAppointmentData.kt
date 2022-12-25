@@ -3,7 +3,7 @@ package com.clinic.management.model.appointmments
 
 import com.google.gson.annotations.SerializedName
 
-data class AppointmentData(
+data class ActiveAppointmentData(
     @SerializedName("appointment_date")
     val appointmentDate: String,
     @SerializedName("appointment_time")
@@ -19,5 +19,9 @@ data class AppointmentData(
     @SerializedName("doctor_id")
     val doctorId: String,
     @SerializedName("id")
-    val id: String
+    val id: String,
+    @SerializedName("position")
+    val position: String,
+    @SerializedName("position_list")
+    val position_list : ArrayList<ActivePositionListItem>
 )

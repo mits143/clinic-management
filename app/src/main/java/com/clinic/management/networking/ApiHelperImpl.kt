@@ -1,7 +1,7 @@
 package com.clinic.management.networking
 
 import com.clinic.management.model.appointmentslots.AppointmentSlotsResponse
-import com.clinic.management.model.appointmments.AppointmentResponse
+import com.clinic.management.model.appointmments.ActiveAppointmentResponse
 import com.clinic.management.model.appointmments.CancelAppointmentResponse
 import com.clinic.management.model.appointmments.CompletedAppointmentResponse
 import com.clinic.management.model.category.CategoryResponse
@@ -66,7 +66,7 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
     override suspend fun active_appointment(
         token: String,
         jsonObject: JsonObject
-    ): Response<AppointmentResponse> =
+    ): Response<ActiveAppointmentResponse> =
         apiService.active_appointment(token, jsonObject)
 
     override suspend fun completed_appointment(
@@ -166,11 +166,22 @@ class ApiHelperImpl(private val apiService: ApiService) : ApiHelper {
         pathology_note: RequestBody,
         pathology_lab_result: ArrayList<MultipartBody.Part>,
     ): Response<JsonObject> =
-        apiService.upload_radiology_result(
+        apiService.upload_pathology_result(
             token,
             appointment_id,
             pathology_note,
             pathology_lab_result
         )
 
+    override suspend fun submit_review(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<JsonObject> =
+        apiService.submit_review(token, jsonObject)
+
+    override suspend fun get_search_result(
+        token: String,
+        jsonObject: JsonObject
+    ): Response<DoctorListingResponse> =
+        apiService.get_search_result(token, jsonObject)
 }
