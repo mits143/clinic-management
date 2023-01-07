@@ -3,6 +3,7 @@ package com.clinic.management.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.widget.RadioButton
 import com.clinic.management.databinding.ActivityRegisterBinding
@@ -38,8 +39,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         binding.btnRegister.setOnClickListener {
             register()
         }
-        hud = KProgressHUD.create(this)
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+        hud = KProgressHUD.create(this).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
     }
 
     private fun register() {
@@ -48,13 +48,18 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             binding.edtFullName.requestFocus()
             return
         }
-        if (TextUtils.isEmpty(binding.edtMobileNumber.text.toString().trim())) {
-            binding.edtMobileNumber.error = "Mobile number cannot be empty"
+        if (TextUtils.isEmpty(binding.edtAddress.text.toString().trim())) {
+            binding.edtFullName.error = "Address cannot be empty"
+            binding.edtFullName.requestFocus()
+            return
+        }
+        if (!isValidMobile(binding.edtMobileNumber.text.toString().trim())) {
+            binding.edtMobileNumber.error = "Enter valid mobile number"
             binding.edtMobileNumber.requestFocus()
             return
         }
-        if (TextUtils.isEmpty(binding.edtEmail.text.toString().trim())) {
-            binding.edtEmail.error = "Email cannot be empty"
+        if (!isValidEmail(binding.edtEmail.text.toString().trim())) {
+            binding.edtEmail.error = "Enter valid email address"
             binding.edtEmail.requestFocus()
             return
         }
@@ -63,19 +68,24 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             binding.edtAddress.requestFocus()
             return
         }
-        if (TextUtils.isEmpty(binding.edtPwd.text.toString().trim())) {
-            binding.edtPwd.error = "password cannot be empty"
+        if (TextUtils.isEmpty(
+                binding.edtPwd.text.toString().trim()
+            ) || binding.edtPwd.text.toString().trim().length < 4
+        ) {
+            binding.edtPwd.error = "Password length cannot be less than 4 and greater than 8"
             binding.edtPwd.requestFocus()
             return
         }
         if (!TextUtils.equals(
-                binding.edtPwd.text.toString().trim(),
-                binding.edtConfirmPwd.text.toString().trim()
+                binding.edtPwd.text.toString().trim(), binding.edtConfirmPwd.text.toString().trim()
             )
         ) {
             binding.edtConfirmPwd.error = "Confirm password mismatch"
             binding.edtConfirmPwd.requestFocus()
             return
+        }
+        if (!binding.rbMale.isChecked && !binding.rbFemale.isChecked && !binding.rbTransgender.isChecked) {
+            showToast("Select gender")
         }
         viewModel.register(
             Constants.TOKEN,
@@ -121,10 +131,17 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     }
 
     private fun showProgress(show: Boolean) {
-        if (show)
-            hud.show()
-        else
-            if (hud.isShowing)
-                hud.dismiss()
+        if (show) hud.show()
+        else if (hud.isShowing) hud.dismiss()
+    }
+
+    private fun isValidEmail(target: CharSequence?): Boolean {
+        return !TextUtils.isEmpty(target) && target?.let {
+            Patterns.EMAIL_ADDRESS.matcher(it).matches()
+        } == true
+    }
+
+    private fun isValidMobile(phone: String): Boolean {
+        return Patterns.PHONE.matcher(phone).matches()
     }
 }

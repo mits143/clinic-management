@@ -40,7 +40,7 @@ object Utility {
         val file = FileUtils.getFile(context, fileUri)
         if (file != null) {
             val requestFile =
-                file.asRequestBody(FileUtils.MIME_TYPE_IMAGE.toMediaTypeOrNull())
+                file.asRequestBody("image/png".toMediaTypeOrNull())
             return MultipartBody.Part.createFormData(partName, file.name, requestFile)
         }
         return null

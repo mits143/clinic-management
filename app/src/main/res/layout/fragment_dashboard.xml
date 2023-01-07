@@ -99,11 +99,11 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
+                                android:paddingVertical="@dimen/_15sdp">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
                                     android:src="@drawable/group_3425" />
 
                                 <TextView
@@ -128,11 +128,11 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
+                                android:paddingVertical="@dimen/_15sdp">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
                                     android:src="@drawable/group_3393" />
 
                                 <TextView
@@ -163,11 +163,11 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
+                                android:paddingVertical="@dimen/_15sdp">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
                                     android:src="@drawable/group_3395" />
 
                                 <TextView
@@ -192,11 +192,11 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:orientation="vertical"
-                                android:paddingVertical="@dimen/_20sdp">
+                                android:paddingVertical="@dimen/_15sdp">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_65sdp"
-                                    android:layout_height="@dimen/_65sdp"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
                                     android:src="@drawable/group_3394" />
 
                                 <TextView

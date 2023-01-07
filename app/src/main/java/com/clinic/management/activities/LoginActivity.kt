@@ -3,6 +3,7 @@ package com.clinic.management.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import com.clinic.management.databinding.ActivityLoginBinding
 import com.clinic.management.prefs
@@ -35,13 +36,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun login() {
-        if (TextUtils.isEmpty(binding.edtMobileNumber.text.toString().trim())) {
-            binding.edtMobileNumber.error = "Mobile number cannot be empty"
+        if (!isValidEmail(
+                binding.edtMobileNumber.text.toString().trim()
+            ) && !isValidMobile(binding.edtMobileNumber.text.toString().trim())
+        ) {
+            binding.edtMobileNumber.error = "Enter valid email address or mobile number"
             binding.edtMobileNumber.requestFocus()
             return
         }
-        if (TextUtils.isEmpty(binding.edtPwd.text.toString().trim())) {
-            binding.edtPwd.error = "Invalid password"
+        if (TextUtils.isEmpty(binding.edtPwd.text.toString().trim())
+            || binding.edtPwd.text.toString().trim().length < 4
+        ) {
+            binding.edtPwd.error = "Password length cannot be less than 4 and greater than 8"
             binding.edtPwd.requestFocus()
             return
         }
@@ -84,5 +90,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         else
             if (hud.isShowing)
                 hud.dismiss()
+    }
+
+    private fun isValidEmail(target: CharSequence?): Boolean {
+        return !TextUtils.isEmpty(target) && target?.let {
+            Patterns.EMAIL_ADDRESS.matcher(it).matches()
+        } == true
+    }
+
+    private fun isValidMobile(phone: String): Boolean {
+        return Patterns.PHONE.matcher(phone).matches()
     }
 }
