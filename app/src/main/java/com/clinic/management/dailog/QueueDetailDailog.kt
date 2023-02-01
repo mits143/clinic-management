@@ -17,7 +17,7 @@ class QueueDetailDailog(dataList: ArrayList<ActivePositionListItem>) : DialogFra
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         binding = DialogQueueDetailsBinding.inflate(inflater, container, false);
         return binding.root;
     }
