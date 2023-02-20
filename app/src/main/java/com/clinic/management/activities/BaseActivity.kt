@@ -74,7 +74,6 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity(),
         Toast.makeText(this, getString(msg), Toast.LENGTH_SHORT).show()
     }
 
-
     fun getPermission() {
         manager = getSystemService(LOCATION_SERVICE) as LocationManager
         dexter = Dexter.withContext(this)
