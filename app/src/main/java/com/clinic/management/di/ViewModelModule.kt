@@ -53,4 +53,7 @@ val viewModelModule = module {
     viewModel {
         Lab_RadiologyViewModel(get(), get())
     }
+    viewModel {
+        FilterViewModel(get(), get())
+    }
 }

@@ -12,6 +12,7 @@ import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
 import com.clinic.management.databinding.FragmentDoctorListingBinding
+import com.clinic.management.model.home.SpecialCategory
 import com.clinic.management.model.home.SpecialistDoctor
 import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
@@ -35,6 +36,12 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     private lateinit var scrollListener: RecyclerViewLoadMoreScroll
 
     private val args: DoctorListingFragmentArgs by navArgs()
+
+    companion object {
+        var list: ArrayList<SpecialCategory> = arrayListOf()
+        var rating = "0"
+        var distance = "0"
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
@@ -61,8 +68,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                     prefs.longitude!!,
                     searchText,
                     "",
-                    "",
-                    "0",
+                    rating,
+                    distance,
                     page.toString()
                 )
             } else if (args.categoryID == "-1") {
@@ -118,8 +125,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                     prefs.longitude!!,
                     searchText,
                     "",
-                    "",
-                    "0",
+                    rating,
+                    distance,
                     page.toString()
                 )
             } else if (args.categoryID == "-1") {
@@ -163,8 +170,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 prefs.longitude!!,
                 searchText,
                 "",
-                "",
-                "0",
+                rating,
+                distance,
                 page.toString()
             )
         } else if (args.categoryID == "-1") {
@@ -263,8 +270,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
             prefs.longitude!!,
             searchText,
             "",
-            "",
-            "0",
+            rating,
+            distance,
             page.toString()
         )
         return false
