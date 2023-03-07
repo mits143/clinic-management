@@ -47,8 +47,7 @@ class UploadDailog(onbuttonClick: onButtonClick) : DialogFragment() {
             onClick.onClickUploadFile(
                 binding.edtTitle.text.toString().trim(), binding.edtDesc.text.toString().trim()
             )
-            binding.edtTitle.setText("")
-            binding.edtTitle.setText("")
+            binding.edtDesc.setText("")
             dialog?.cancel()
         }
     }

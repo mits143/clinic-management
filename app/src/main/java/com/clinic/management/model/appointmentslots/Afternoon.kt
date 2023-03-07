@@ -11,5 +11,6 @@ data class Afternoon(
     @SerializedName("status")
     val status: String,
     @SerializedName("time")
-    val time: String
+    val time: String,
+    var isChecked: Boolean
 )

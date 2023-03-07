@@ -21,8 +21,11 @@ import com.clinic.management.model.doctorResult.PathologyLabResult
 import com.clinic.management.model.doctorResult.PrescriptionMedicine
 import com.clinic.management.model.doctorResult.RadiologyLabResult
 import com.clinic.management.prefs
-import com.clinic.management.util.*
+import com.clinic.management.util.Callback
+import com.clinic.management.util.Status
 import com.clinic.management.util.Utility.prepareFilePart
+import com.clinic.management.util.setDate
+import com.clinic.management.util.setHtmlText
 import com.clinic.management.viewmodel.DoctorAppointmentViewModel
 import com.kaopiz.kprogresshud.KProgressHUD
 import okhttp3.MultipartBody
@@ -106,7 +109,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
             }
 
         })
-        binding.rvPathologyImages.adapter = adapter
+        binding.rvRadiologyImages.adapter = adapter
         adapter.addData(list)
     }
 
@@ -121,8 +124,6 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                     Status.SUCCESS -> {
                         showProgress(false)
                         it.data?.let {
-
-
                             binding.txtResult1.setText(it.data.doc_name + " -")
                             binding.txtResult2.setText(it.data.doc_specialization)
                             Glide.with(requireContext()).asBitmap().load(it.data.doc_image)
@@ -133,7 +134,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                             binding.txtDate.setDate(it.data.appointment_date)
                             binding.txtSpecialist.text = it.data.doc_specialization
                             binding.txtDate1.text = it.data.appointment_date
-                            binding.txtDocPres.text = it.data.doc_prescription_note
+                            binding.txtDocPres.setHtmlText(it.data.doc_prescription_note)
                             setMedicineData(it.data.prescription_medicine)
                             if (it.data.pathology != null) {
                                 Glide.with(requireContext()).asBitmap().load(it.data.pathology.logo)
@@ -153,6 +154,10 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                             } else {
                                 binding.cvRadiology.visibility = View.GONE
                             }
+                            if (it.data.is_review.equals("yes"))
+                                binding.btnRateDr.visibility = View.GONE
+                            else
+                                binding.btnRateDr.visibility = View.VISIBLE
                         }
                     }
                     Status.ERROR -> {
@@ -172,6 +177,7 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                         it.data?.let {
                             showToast(it["message"].asString)
                         }
+                        viewModel.fetchAppointmentData("Bearer " + prefs.accessToken, args.id)
                     }
                     Status.ERROR -> {
                         showProgress(false)
@@ -258,10 +264,6 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
                         e.stackTrace
                     }
                 }
-//                files.add(data.data!!)
-//                val path = getPath(requireContext(), uri!!)
-//                file = File(path!!)
-//                binding.edtDoc.setText(file?.name.toString().trim())
                 uploaddailog.bindImages(imagesAdapter)
             }
 
@@ -308,10 +310,10 @@ class DoctorResultFragment : BaseFragment<FragmentDoctorResultBinding>(),
         files.clear()
     }
 
-    override fun onClickSubmit(rating: String, desc: String) {
-        if (binding.ratingBar.rating > 0)
+    override fun onClickSubmit(rating: Float, desc: String) {
+        if (rating > 0)
             viewModel.fetchRateDoctor(
-                "Bearer " + prefs.accessToken, rating, desc, args.id
+                "Bearer " + prefs.accessToken, rating.toString(), desc, args.id
             )
         else
             showToast("Please select rating for submitting review.")

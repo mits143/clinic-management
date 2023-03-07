@@ -42,8 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="@null"
-                android:focusableInTouchMode="false"
                 android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Zamalek, Cairo Governorate"
                 android:textColor="@color/grey_dark"
@@ -182,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Choose Morning Time"
+                        android:text="@string/choose_morning_time"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -193,8 +193,22 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:visibility="gone"
                         android:weightSum="4"
                         app:layout_constraintTop_toBottomOf="@+id/txtMorning" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMorning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/txtMorning"
+                        app:spanCount="4"
+                        tools:listitem="@layout/row_appointment_time" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -218,7 +232,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Choose Afternoon Time"
+                        android:text="@string/choose_afternoon_time"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -229,7 +243,20 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/txtAfternoon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAfternoon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAfternoon"
+                        app:spanCount="4"
+                        tools:listitem="@layout/row_appointment_time" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -253,7 +280,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Choose Evening Time"
+                        android:text="@string/choose_evening_time"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -264,7 +291,20 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:visibility="gone"
                         app:layout_constraintTop_toBottomOf="@+id/txtEvening" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvEvening"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/txtEvening"
+                        app:spanCount="4"
+                        tools:listitem="@layout/row_appointment_time" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>

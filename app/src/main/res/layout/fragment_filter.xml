@@ -54,7 +54,7 @@
             android:id="@+id/rvFilter"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#F6F6F6"
+            android:background="@color/grey"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintHorizontal_weight="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -136,7 +136,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfirm"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/_10sdp"
@@ -144,10 +144,33 @@
         android:backgroundTint="@color/primary_color"
         android:fontFamily="@font/poppins_semibold"
         android:paddingVertical="@dimen/_8sdp"
-        android:text="@string/home"
+        android:text="@string/apply_filter"
         android:textAllCaps="false"
         android:textSize="@dimen/_10ssp"
         app:cornerRadius="@dimen/_5sdp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btnClear" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnClear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:backgroundTint="@color/primary_color"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="@string/clear"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_10ssp"
+        android:visibility="gone"
+        app:cornerRadius="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/btnConfirm"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

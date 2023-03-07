@@ -27,14 +27,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_appointment,
+                R.id.nav_search,
                 R.id.nav_home,
                 R.id.nav_my_appointment,
                 R.id.nav_profile,
             )
         )
-
-//        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener(this)
         getPermission()
@@ -55,7 +53,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             R.id.nav_appointment -> hideBottomNavigation()
             R.id.nav_appointment_confirmed -> hideBottomNavigation()
             R.id.nav_dr_detail -> hideBottomNavigation()
-//            R.id.nav_dr_listing -> hideBottomNavigation()
+            R.id.nav_category_listing -> hideBottomNavigation()
+            R.id.nav_dr_listing -> hideBottomNavigation()
             R.id.nav_my_result -> hideBottomNavigation()
             R.id.nav_medicine -> hideBottomNavigation()
             R.id.nav_medicine_detail -> hideBottomNavigation()
@@ -76,4 +75,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     private fun showBottomNavigationView() {
         binding.bottomNavView.visibility = View.VISIBLE
     }
+
+//    override fun onBackPressed() {
+//        val seletedItemId = binding.bottomNavView.selectedItemId
+//        if (R.id.nav_home != seletedItemId) {
+//            binding.bottomNavView.selectedItemId = R.id.nav_home
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
 }

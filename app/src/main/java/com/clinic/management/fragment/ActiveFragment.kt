@@ -161,7 +161,7 @@ class ActiveFragment : BaseFragment<FragmentActiveBinding>(), AppointmentAdapter
                     "Are you sure!\nDo you want to reschedule this appointment?",
                     object : Utility.alertClickListener {
                         override fun clickListener() {
-                            val action = ActiveFragmentDirections.actionNavAppointment(
+                            val action = MyAppointmentFragmentDirections.actionNavAppointment(
                                 data.doctorId,
                                 data.docName,
                                 "",

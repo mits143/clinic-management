@@ -48,14 +48,37 @@ class SpecialistAdapter(
         notifyDataSetChanged()
     }
 
-    fun getSelectedItem(): ArrayList<SpecialCategory> {
-        var list: ArrayList<SpecialCategory> = arrayListOf()
+    fun getSelectedItem(): String {
+        var rString = StringBuilder()
         dataList.forEach {
             if (it.isChecked) {
-                list.add(it)
+                rString.append(it.id).append(",");
+            }
+
+        }
+        var result = ""
+        if (rString.isNotEmpty()) {
+            result = rString.deleteCharAt(rString.length - 1).toString()
+            return result
+        }
+        return result
+    }
+
+    fun clearSelectedItems() {
+        dataList.forEach {
+            it.isChecked = false
+        }
+        notifyDataSetChanged()
+    }
+
+    fun lastSelectedItem(list: List<String>) {
+        dataList.forEach { outerList ->
+            list.forEach { innerList ->
+                if (outerList.id == innerList)
+                    outerList.isChecked = true
             }
         }
-        return list
+        notifyDataSetChanged()
     }
 
     interface OnClick {

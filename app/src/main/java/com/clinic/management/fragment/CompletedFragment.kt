@@ -105,7 +105,7 @@ class CompletedFragment : BaseFragment<FragmentActiveBinding>(),
     }
 
     override fun itemChildClick(data: BookingInformation) {
-        val action = CompletedFragmentDirections.actionNavDoctorAppointment(
+        val action = MyAppointmentFragmentDirections.actionNavDoctorAppointment(
             data.id
         )
         findNavController().navigate(action)

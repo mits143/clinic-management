@@ -12,7 +12,6 @@ import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.adapter.HomeSpecialistDoctorAdapter
 import com.clinic.management.databinding.FragmentDoctorListingBinding
-import com.clinic.management.model.home.SpecialCategory
 import com.clinic.management.model.home.SpecialistDoctor
 import com.clinic.management.pagination.RecyclerViewLoadMoreScroll
 import com.clinic.management.prefs
@@ -37,22 +36,12 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
 
     private val args: DoctorListingFragmentArgs by navArgs()
 
-    companion object {
-        var list: ArrayList<SpecialCategory> = arrayListOf()
-        var rating = "0"
-        var distance = "0"
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
 
         binding.txtLocation.setText(prefs.city)
         binding.searchView.setOnQueryTextListener(this)
-
-        binding.btnFilter.setOnClickListener {
-            val action = DoctorListingFragmentDirections.actionNavFilter()
-            findNavController().navigate(action)
-        }
+        binding.btnFilter.visibility = View.GONE
 
         binding.swipeRefresh.setOnRefreshListener {
             page = 1
@@ -68,8 +57,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                     prefs.longitude!!,
                     searchText,
                     "",
-                    rating,
-                    distance,
+                    "",
+                    "0",
                     page.toString()
                 )
             } else if (args.categoryID == "-1") {
@@ -125,8 +114,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                     prefs.longitude!!,
                     searchText,
                     "",
-                    rating,
-                    distance,
+                    "",
+                    "0",
                     page.toString()
                 )
             } else if (args.categoryID == "-1") {
@@ -170,8 +159,8 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
                 prefs.longitude!!,
                 searchText,
                 "",
-                rating,
-                distance,
+                "",
+                "",
                 page.toString()
             )
         } else if (args.categoryID == "-1") {
@@ -263,17 +252,19 @@ class DoctorListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
 
     override fun onQueryTextChange(newText: String?): Boolean {
         page = 1
-        searchText = newText!!
-        viewModel.fetchSearchResultData(
-            "Bearer " + prefs.accessToken,
-            prefs.latitude!!,
-            prefs.longitude!!,
-            searchText,
-            "",
-            rating,
-            distance,
-            page.toString()
-        )
+        if (newText!!.isNotEmpty()) {
+            searchText = newText!!
+            viewModel.fetchSearchResultData(
+                "Bearer " + prefs.accessToken,
+                prefs.latitude!!,
+                prefs.longitude!!,
+                searchText,
+                "",
+                "",
+                "0",
+                page.toString()
+            )
+        }
         return false
     }
 }

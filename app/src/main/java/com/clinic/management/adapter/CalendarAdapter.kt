@@ -104,4 +104,9 @@ class CalendarAdapter(private val listener: (calendarDateModel: CalendarDateMode
         list.addAll(calendarList)
         notifyDataSetChanged()
     }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
 }

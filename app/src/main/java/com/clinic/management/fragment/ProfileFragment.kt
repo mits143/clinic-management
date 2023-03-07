@@ -22,18 +22,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             .placeholder(R.drawable.group_3415).into(binding.image)
         binding.txtUsername.text = prefs.userName
         binding.navHome.setOnClickListener {
+            findNavController().popBackStack(R.id.nav_profile, true)
             findNavController().navigate(R.id.action_nav_home)
         }
         binding.navMyAppointment.setOnClickListener {
+            findNavController().popBackStack(R.id.nav_profile, true)
             findNavController().navigate(R.id.action_nav_my_appointment)
         }
         binding.navAskDoctor.setOnClickListener {
             findNavController().navigate(R.id.action_nav_ask_a_doctor)
         }
-//        binding.navDoctorResult.setOnClickListener {
-//            val action = ProfileFragmentDirections.actionNavMyResult(0)
-//            findNavController().navigate(action)
-//        }
         binding.navLabResult.setOnClickListener {
             val action = ProfileFragmentDirections.actionNavMyResult(0)
             findNavController().navigate(action)

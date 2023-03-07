@@ -1,5 +1,7 @@
 package com.clinic.management.util
 
+import android.os.Build
+import android.text.Html
 import android.widget.TextView
 
 
@@ -33,4 +35,12 @@ fun TextView.setDate(date: String) {
     if (part1 == "12")
         date = "$part2\nDec"
     text = date
+}
+
+fun TextView.setHtmlText(desc: String) {
+    text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(desc, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        Html.fromHtml(desc)
+    }
 }

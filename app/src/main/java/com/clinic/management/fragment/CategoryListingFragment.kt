@@ -31,6 +31,7 @@ class CategoryListingFragment : BaseFragment<FragmentDoctorListingBinding>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
         binding.txtSpecialistDr.text = resources.getString(R.string.specialities)
+        binding.btnFilter.visibility = View.GONE
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
     }

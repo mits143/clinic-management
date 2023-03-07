@@ -39,17 +39,25 @@ class RateDoctorDailog(onbuttonClick: onButtonClick) : DialogFragment() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            onClick.onClickSubmit(
-                binding.ratingBar.rating.toString(),
-                binding.edtDesc.text.toString().trim()
-            )
-            binding.edtDesc.setText("")
-            dialog?.cancel()
+            if (binding.ratingBar.rating > 0) {
+                onClick.onClickSubmit(
+                    binding.ratingBar.rating,
+                    binding.edtDesc.text.toString().trim()
+                )
+                binding.ratingBar.rating = 0f
+                binding.edtDesc.setText("")
+                dialog?.cancel()
+            } else {
+                onClick.onClickSubmit(
+                    binding.ratingBar.rating,
+                    binding.edtDesc.text.toString().trim()
+                )
+            }
         }
     }
 
     interface onButtonClick {
-        fun onClickSubmit(rating: String, desc: String)
+        fun onClickSubmit(rating: Float, desc: String)
         fun onClose()
     }
 

@@ -8,9 +8,9 @@ import android.widget.SeekBar
 import com.clinic.management.adapter.FilterAdapter
 import com.clinic.management.adapter.SpecialistAdapter
 import com.clinic.management.databinding.FragmentFilterBinding
-import com.clinic.management.fragment.DoctorListingFragment.Companion.distance
-import com.clinic.management.fragment.DoctorListingFragment.Companion.list
-import com.clinic.management.fragment.DoctorListingFragment.Companion.rating
+import com.clinic.management.fragment.SearchFragment.Companion.distance
+import com.clinic.management.fragment.SearchFragment.Companion.list
+import com.clinic.management.fragment.SearchFragment.Companion.rating
 import com.clinic.management.model.home.SpecialCategory
 import com.clinic.management.prefs
 import com.clinic.management.util.Status
@@ -39,6 +39,18 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
         hud = KProgressHUD.create(requireContext())
             .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
 
+        binding.btnClear.setOnClickListener {
+            adapter.clearSelectedItems()
+            binding.txtSeekEnd.text = "0"
+            binding.seekBarRating.progress = 0
+            binding.txtSeekDistanceEnd.text = "0"
+            binding.seekBarDistance.progress = 0
+            list = adapter.getSelectedItem()
+            rating = binding.seekBarRating.progress.toString()
+            distance = binding.seekBarDistance.progress.toString()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         binding.imgMenu.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
@@ -47,6 +59,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
             list = adapter.getSelectedItem()
             rating = binding.txtSeekEnd.text.toString().trim()
             distance = binding.txtSeekDistanceEnd.text.toString().trim()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
     }
@@ -76,6 +89,12 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
 
             override fun onStopTrackingTouch(seek: SeekBar) {
                 binding.txtSeekEnd.text = seek.progress.toString()
+                if (adapter.getSelectedItem()
+                        .isNotEmpty() || binding.seekBarRating.progress > 0 || binding.seekBarDistance.progress > 0
+                )
+                    binding.btnClear.visibility = View.VISIBLE
+                else
+                    binding.btnClear.visibility = View.GONE
             }
         })
     }
@@ -93,6 +112,12 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
 
             override fun onStopTrackingTouch(seek: SeekBar) {
                 binding.txtSeekDistanceEnd.text = seek.progress.toString()
+                if (adapter.getSelectedItem()
+                        .isNotEmpty() || binding.seekBarRating.progress > 0 || binding.seekBarDistance.progress > 0
+                )
+                    binding.btnClear.visibility = View.VISIBLE
+                else
+                    binding.btnClear.visibility = View.GONE
             }
         })
     }
@@ -127,6 +152,20 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
                     Status.SUCCESS -> {
                         it.data?.let {
                             setSpecializationData(it.data)
+                            if (list.isEmpty() && rating == "0" && distance == "0") {
+                                binding.btnClear.visibility = View.GONE
+                            } else {
+                                binding.btnClear.visibility = View.VISIBLE
+                                if (list.isNotEmpty()) {
+                                    val result = list.split(",").map { it.trim() }
+                                    adapter.lastSelectedItem(result)
+                                }
+                                binding.txtSeekEnd.text = rating
+                                binding.seekBarRating.progress = rating.toInt()
+                                binding.txtSeekDistanceEnd.text = distance
+                                binding.seekBarDistance.progress = distance.toInt()
+
+                            }
                         }
                     }
                     Status.ERROR -> {
@@ -163,6 +202,12 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>(), FilterAdapter.OnCl
 
     override fun itemClick(data: SpecialCategory) {
         data.isChecked = !data.isChecked
+        if (adapter.getSelectedItem()
+                .isNotEmpty() || binding.seekBarRating.progress > 0 || binding.seekBarDistance.progress > 0
+        )
+            binding.btnClear.visibility = View.VISIBLE
+        else
+            binding.btnClear.visibility = View.GONE
         adapter.notifyDataSetChanged()
     }
 }

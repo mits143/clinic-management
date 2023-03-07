@@ -88,4 +88,9 @@
     <string name="please_rate_the_doctor">Please rate the doctor</string>
     <string name="submit">Submit</string>
     <string name="queue_details">Queue Details</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="clear">Clear Filter</string>
+    <string name="choose_evening_time">Choose Evening Time</string>
+    <string name="choose_afternoon_time">Choose Afternoon Time</string>
+    <string name="choose_morning_time">Choose Morning Time</string>
 </resources>

@@ -9,13 +9,7 @@
         android:id="@+id/nav_active"
         android:name="com.clinic.management.fragment.ActiveFragment"
         android:label="@string/active"
-        tools:layout="@layout/fragment_active">
-
-        <action
-            android:id="@+id/action_nav_appointment"
-            app:destination="@id/nav_appointment" />
-
-    </fragment>
+        tools:layout="@layout/fragment_active"/>
 
     <fragment
         android:id="@+id/nav_appointment_confirmed"
@@ -24,9 +18,7 @@
         tools:layout="@layout/fragment_appointment_confirmed">
         <action
             android:id="@+id/action_nav_home"
-            app:destination="@id/nav_home"
-            app:popUpTo="@id/nav_home"
-            app:popUpToInclusive="true" />
+            app:destination="@id/nav_home" />
 
         <argument
             android:name="date"
@@ -66,8 +58,7 @@
         tools:layout="@layout/fragment_appointment">
         <action
             android:id="@+id/action_nav_appointment_confirmed"
-            app:destination="@id/nav_appointment_confirmed"
-            app:popUpTo="@id/nav_home" />
+            app:destination="@id/nav_appointment_confirmed" />
 
         <argument
             android:name="doctor_id"
@@ -160,10 +151,6 @@
         android:name="com.clinic.management.fragment.DoctorListingFragment"
         android:label="@string/doctor_listing"
         tools:layout="@layout/fragment_doctor_listing">
-
-        <action
-            android:id="@+id/action_nav_filter"
-            app:destination="@id/nav_filter" />
 
         <action
             android:id="@+id/action_nav_appointment"
@@ -312,15 +299,12 @@
         android:name="com.clinic.management.fragment.FaqFragment"
         android:label="@string/faq"
         tools:layout="@layout/fragment_faq" />
+
     <fragment
         android:id="@+id/nav_completed"
         android:name="com.clinic.management.fragment.CompletedFragment"
         android:label="@string/appointment_completed"
-        tools:layout="@layout/fragment_active">
-        <action
-            android:id="@+id/action_nav_doctor_appointment"
-            app:destination="@id/nav_doctor" />
-    </fragment>
+        tools:layout="@layout/fragment_active"/>
 
     <fragment
         android:id="@+id/nav_lab_radio_result"
@@ -351,5 +335,24 @@
         android:name="com.clinic.management.fragment.FilterFragment"
         android:label="@string/filter"
         tools:layout="@layout/fragment_filter" />
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.clinic.management.fragment.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_doctor_listing">
+
+        <action
+            android:id="@+id/action_nav_appointment"
+            app:destination="@id/nav_appointment" />
+
+        <action
+            android:id="@+id/action_nav_doctor_detail"
+            app:destination="@id/nav_dr_detail" />
+
+        <action
+            android:id="@+id/action_nav_filter"
+            app:destination="@id/nav_filter" />
+    </fragment>
 
 </navigation>

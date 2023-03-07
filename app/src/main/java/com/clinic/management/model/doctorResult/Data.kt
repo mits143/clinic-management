@@ -15,5 +15,6 @@ data class Data(
     val prescription_medicine: ArrayList<PrescriptionMedicine>,
     val radiology: Radiology,
     val radiology_lab_result: ArrayList<RadiologyLabResult>,
-    val radiology_note: String
+    val radiology_note: String,
+    val is_review: String
 )

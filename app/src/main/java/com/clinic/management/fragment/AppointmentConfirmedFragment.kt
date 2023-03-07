@@ -19,10 +19,13 @@ class AppointmentConfirmedFragment : BaseFragment<FragmentAppointmentConfirmedBi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnConfirm.setOnClickListener {
+            findNavController().popBackStack(R.id.nav_search, true)
+            findNavController().popBackStack(R.id.nav_home, true)
+            findNavController().popBackStack(R.id.nav_my_appointment, true)
             findNavController().navigate(R.id.action_nav_home)
         }
         binding.imgMenu.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            findNavController().navigate(R.id.action_nav_home)
         }
 
         binding.txtLocation.setText(args.doctorName)

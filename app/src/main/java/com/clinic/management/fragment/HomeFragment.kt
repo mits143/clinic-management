@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.clinic.management.R
 import com.clinic.management.activities.LoginActivity
 import com.clinic.management.activities.MainActivity
 import com.clinic.management.adapter.HomeReviewsAdapter
