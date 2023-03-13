@@ -84,4 +84,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 //            super.onBackPressed()
 //        }
 //    }
+
+    fun openSearch() {
+        binding.bottomNavView.selectedItemId = R.id.nav_search
+    }
 }

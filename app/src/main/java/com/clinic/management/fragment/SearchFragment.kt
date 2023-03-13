@@ -47,6 +47,7 @@ class SearchFragment : BaseFragment<FragmentDoctorListingBinding>(),
         binding.btnFilter.visibility = View.VISIBLE
 
         binding.btnFilter.setOnClickListener {
+//            findNavController().popBackStack(R.id.nav_search, true)
             val action = SearchFragmentDirections.actionNavFilter()
             findNavController().navigate(action)
         }

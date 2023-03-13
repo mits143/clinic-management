@@ -59,6 +59,8 @@ public class HomeFragmentDirections private constructor() {
   }
 
   public companion object {
+    public fun actionNavSearch(): NavDirections = ActionOnlyNavDirections(R.id.action_nav_search)
+
     public fun actionNavDoctorListing(isTopDoctor: Boolean = false, categoryID: String = "0"):
         NavDirections = ActionNavDoctorListing(isTopDoctor, categoryID)
 

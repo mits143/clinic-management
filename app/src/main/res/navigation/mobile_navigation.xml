@@ -188,6 +188,9 @@
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_nav_search"
+            app:destination="@id/nav_search" />
+        <action
             android:id="@+id/action_nav_doctor_listing"
             app:destination="@id/nav_dr_listing" />
         <action

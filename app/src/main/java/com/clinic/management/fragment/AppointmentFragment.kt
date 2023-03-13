@@ -215,31 +215,31 @@ class AppointmentFragment : BaseFragment<FragmentAppointmentBinding>(), MorningA
     private fun morningTimes(dataList: ArrayList<Morning>) {
         if (dataList.isNotEmpty()) {
             binding.clMorningTime.visibility = View.VISIBLE
-            morningAdapter = MorningAdapter(dataList, this)
-            binding.rvMorning.adapter = morningAdapter
         } else {
             binding.clMorningTime.visibility = View.GONE
         }
+        morningAdapter = MorningAdapter(dataList, this)
+        binding.rvMorning.adapter = morningAdapter
     }
 
     private fun afternoonTimes(dataList: ArrayList<Afternoon>) {
         if (dataList.isNotEmpty()) {
             binding.clAfternoonTime.visibility = View.VISIBLE
-            afternoonAdapter = AfternoonAdapter(dataList, this)
-            binding.rvAfternoon.adapter = afternoonAdapter
         } else {
             binding.clAfternoonTime.visibility = View.GONE
         }
+        afternoonAdapter = AfternoonAdapter(dataList, this)
+        binding.rvAfternoon.adapter = afternoonAdapter
     }
 
     private fun eveningTimes(dataList: ArrayList<Evening>) {
         if (dataList.isNotEmpty()) {
             binding.clEveningTime.visibility = View.VISIBLE
-            eveningAdapter = EveningAdapter(dataList, this)
-            binding.rvEvening.adapter = eveningAdapter
         } else {
             binding.clEveningTime.visibility = View.GONE
         }
+        eveningAdapter = EveningAdapter(dataList, this)
+        binding.rvEvening.adapter = eveningAdapter
     }
 
     override fun itemClick(data: Morning) {

@@ -40,8 +40,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), HomeSpecialistDoctorAd
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
         binding.searchView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavDoctorListing(false, "0")
-            findNavController().navigate(action)
+//            findNavController().popBackStack(R.id.nav_home, true)
+//            val action = HomeFragmentDirections.actionNavSearch()
+//            findNavController().navigate(action)
+            (context as MainActivity).openSearch()
         }
         binding.txtLocation.setOnClickListener {
             (context as MainActivity).getPermission()
